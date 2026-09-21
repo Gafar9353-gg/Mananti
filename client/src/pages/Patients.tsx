@@ -16,7 +16,7 @@ const Patients = () => {
   const fetchPatients = async () => {
     try {
       const config = { headers: { Authorization: `Bearer ${doctor.token}` } };
-      const { data } = await axios.get(`http://localhost:5005/api/patients`, config);
+      const { data } = await axios.get(`${import.meta.env.VITE_API_URL}/api/patients`, config);
       setPatients(data);
     } catch (error) {
       console.error(error);

@@ -28,7 +28,7 @@ const PatientDetail = () => {
   const fetchPatient = async () => {
     try {
       const config = { headers: { Authorization: `Bearer ${doctor.token}` } };
-      const { data } = await axios.get(`http://localhost:5005/api/patients/${id}`, config);
+      const { data } = await axios.get(`${import.meta.env.VITE_API_URL}/api/patients/${id}`, config);
       setPatient(data);
     } catch (error) {
       console.error(error);
@@ -165,7 +165,7 @@ const PatientDetail = () => {
             ) : (
               <div className="grid grid-cols-2 sm:grid-cols-3 gap-4">
                 {patient.bills && patient.bills.map(report => (
-                  <a key={report._id} href={`http://localhost:5005${report.filePath}`} target="_blank" rel="noopener noreferrer" className="block group">
+                  <a key={report._id} href={`${import.meta.env.VITE_API_URL}${report.filePath}`} target="_blank" rel="noopener noreferrer" className="block group">
                     <div className="bg-slate-50 border border-slate-200 rounded-xl p-3 flex flex-col items-center justify-center text-center hover:bg-blue-50 hover:border-blue-200 transition-colors aspect-square">
                       <FileImage className="h-8 w-8 text-slate-400 group-hover:text-blue-600 mb-2 transition-colors" />
                       <span className="text-xs font-semibold text-slate-700 line-clamp-1 w-full">{report.originalName}</span>

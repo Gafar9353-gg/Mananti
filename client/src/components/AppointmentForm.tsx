@@ -23,7 +23,7 @@ const AppointmentForm = ({ onClose }) => {
     setLoading(true);
     try {
       const config = { headers: { Authorization: `Bearer ${doctor.token}` } };
-      const { data } = await axios.post('http://localhost:5005/api/appointments', formData, config);
+      const { data } = await axios.post(`${import.meta.env.VITE_API_URL}/api/appointments`, formData, config);
       setSuccessData(data);
     } catch (error) {
       console.error(error);

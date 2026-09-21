@@ -26,9 +26,9 @@ const PatientForm = ({ onClose, initialData = null }) => {
     try {
       const config = { headers: { Authorization: `Bearer ${doctor.token}` } };
       if (initialData) {
-        await axios.put(`http://localhost:5005/api/patients/${initialData._id}`, formData, config);
+        await axios.put(`${import.meta.env.VITE_API_URL}/api/patients/${initialData._id}`, formData, config);
       } else {
-        await axios.post('http://localhost:5005/api/patients', formData, config);
+        await axios.post(`${import.meta.env.VITE_API_URL}/api/patients`, formData, config);
       }
       onClose();
     } catch (error) {

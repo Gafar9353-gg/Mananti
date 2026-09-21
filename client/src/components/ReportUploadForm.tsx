@@ -22,7 +22,7 @@ const ReportUploadForm = ({ patientId, onClose }) => {
 
     try {
       const config = { headers: { Authorization: `Bearer ${doctor.token}` } };
-      await axios.post('http://localhost:5005/api/bills/upload', formData, config);
+      await axios.post(`${import.meta.env.VITE_API_URL}/api/bills/upload`, formData, config);
       onClose();
     } catch (error) {
       console.error(error);

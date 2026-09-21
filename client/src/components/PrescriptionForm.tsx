@@ -18,7 +18,7 @@ const PrescriptionForm = ({ patientId, initialDisease, onClose, onPrescriptionSa
     const fetchMedicines = async () => {
       try {
         const config = { headers: { Authorization: `Bearer ${doctor.token}` } };
-        const { data } = await axios.get('http://localhost:5005/api/medicines', config);
+        const { data } = await axios.get(`${import.meta.env.VITE_API_URL}/api/medicines`, config);
         setStockMedicines(data);
       } catch (error) {
         console.error("Could not load medicines for suggestions", error);
@@ -46,7 +46,7 @@ const PrescriptionForm = ({ patientId, initialDisease, onClose, onPrescriptionSa
     setLoading(true);
     try {
       const config = { headers: { Authorization: `Bearer ${doctor.token}` } };
-      await axios.post(`http://localhost:5005/api/patients/${patientId}/prescriptions`, {
+      await axios.post(`${import.meta.env.VITE_API_URL}/api/patients/${patientId}/prescriptions`, {
         disease,
         medicines,
         nextVisit
