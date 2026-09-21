@@ -1,0 +1,1598 @@
+{
+  "users": [
+    {
+      "_id": "doc_123",
+      "name": "Dr. Rajesh Kumar",
+      "email": "doctor",
+      "password": "$2b$10$8wwYPrDk5fKOrmXXc3vZG.gdsW/kfklc.mRsOl0xqlW2nqBXOaqDm",
+      "role": "doctor"
+    },
+    {
+      "_id": "staff_1",
+      "name": "Reception Desk",
+      "email": "staff",
+      "password": "$2b$10$eUk.P6eEfDiiCHYcJsLGe.faiCqi8rgZNDl99jxLYbfUNqVtW15ii",
+      "role": "staff"
+    }
+  ],
+  "patients": [
+    {
+      "_id": "pat_1789878550203",
+      "pid": "P011",
+      "name": "subu",
+      "careOf": "dubu",
+      "age": "30",
+      "gender": "Male",
+      "contact": "7389457654",
+      "location": "DS",
+      "doctorName": "Dr.subba",
+      "dateOfVisit": "2026-09-20",
+      "remarks": "",
+      "history": [],
+      "bills": [],
+      "prescriptions": [
+        {
+          "_id": "rx_1789880576902",
+          "date": "2026-09-20T05:02:56.902Z",
+          "doctorId": "doc_123",
+          "doctorName": "Dr. Rajesh Kumar",
+          "disease": "fevrer",
+          "medicines": [
+            {
+              "name": "doll111",
+              "dosing": "1-0-1",
+              "days": "5"
+            }
+          ],
+          "nextVisit": "2026-09-24"
+        },
+        {
+          "_id": "rx_1789880999638",
+          "date": "2026-09-20T05:09:59.638Z",
+          "doctorId": "doc_123",
+          "doctorName": "Dr. Rajesh Kumar",
+          "disease": "fevrer",
+          "medicines": [
+            {
+              "name": "doll123",
+              "dosing": "1-0-1",
+              "days": "5"
+            }
+          ],
+          "nextVisit": "2026-09-25"
+        },
+        {
+          "_id": "rx_1789881187274",
+          "date": "2026-09-20T05:13:07.274Z",
+          "doctorId": "doc_123",
+          "doctorName": "Dr. Rajesh Kumar",
+          "disease": "fevrer",
+          "medicines": [
+            {
+              "name": "doll123",
+              "dosing": "1-0-1",
+              "days": "5"
+            }
+          ],
+          "nextVisit": "2026-09-25"
+        },
+        {
+          "_id": "rx_1789881472642",
+          "date": "2026-09-20T05:17:52.642Z",
+          "doctorId": "doc_123",
+          "doctorName": "Dr. Rajesh Kumar",
+          "disease": "fevrer",
+          "medicines": [
+            {
+              "name": "dol12",
+              "dosing": "1-0-1",
+              "days": "5"
+            }
+          ],
+          "nextVisit": "2026-09-26"
+        },
+        {
+          "_id": "rx_1789881500328",
+          "date": "2026-09-20T05:18:20.328Z",
+          "doctorId": "doc_123",
+          "doctorName": "Dr. Rajesh Kumar",
+          "disease": "fevrer",
+          "medicines": [
+            {
+              "name": "dol12",
+              "dosing": "1-1-1",
+              "days": "5"
+            }
+          ],
+          "nextVisit": "2026-09-26"
+        },
+        {
+          "_id": "rx_1789883807092",
+          "date": "2026-09-20T05:56:47.092Z",
+          "doctorId": "doc_123",
+          "doctorName": "Dr. Rajesh Kumar",
+          "disease": "fevrer",
+          "medicines": [
+            {
+              "name": "dol12",
+              "dosing": "1-0-1",
+              "days": "5"
+            }
+          ],
+          "nextVisit": "2026-09-18"
+        },
+        {
+          "_id": "rx_1789885349596",
+          "date": "2026-09-20T06:22:29.596Z",
+          "doctorId": "doc_123",
+          "doctorName": "Dr. Rajesh Kumar",
+          "disease": "fevrer",
+          "medicines": [
+            {
+              "name": "dol12",
+              "dosing": "1-0-1",
+              "days": "5"
+            }
+          ],
+          "nextVisit": "2026-09-25"
+        },
+        {
+          "_id": "rx_1789888278730",
+          "date": "2026-09-20T07:11:18.730Z",
+          "doctorId": "doc_123",
+          "doctorName": "Dr. Rajesh Kumar",
+          "disease": "fevrer",
+          "medicines": [
+            {
+              "name": "doll123",
+              "dosing": "1-0-1",
+              "days": "5"
+            }
+          ],
+          "nextVisit": "2026-09-26"
+        },
+        {
+          "_id": "rx_1789888962306",
+          "date": "2026-09-20T07:22:42.306Z",
+          "doctorId": "doc_123",
+          "doctorName": "Dr. Rajesh Kumar",
+          "disease": "fevrer",
+          "medicines": [
+            {
+              "name": "dol12",
+              "dosing": "1-0-1",
+              "days": "5"
+            }
+          ],
+          "nextVisit": "2026-09-26"
+        },
+        {
+          "_id": "rx_1789889228870",
+          "date": "2026-09-20T07:27:08.870Z",
+          "doctorId": "doc_123",
+          "doctorName": "Dr. Rajesh Kumar",
+          "disease": "fevrer",
+          "medicines": [
+            {
+              "name": "doll123",
+              "dosing": "1-0-1",
+              "days": "5"
+            },
+            {
+              "name": "dol12",
+              "dosing": "1-0-1",
+              "days": "5"
+            },
+            {
+              "name": "doll111",
+              "dosing": "1-1-1",
+              "days": "5"
+            }
+          ],
+          "nextVisit": "2026-09-24"
+        },
+        {
+          "_id": "rx_1790004768437",
+          "date": "2026-09-21T15:32:48.437Z",
+          "doctorId": "doc_123",
+          "doctorName": "Dr. Rajesh Kumar",
+          "disease": "fevrer",
+          "medicines": [
+            {
+              "name": "doll123",
+              "dosing": "1-0-1",
+              "days": "5"
+            }
+          ],
+          "nextVisit": "2026-09-22"
+        }
+      ],
+      "createdBy": "staff_1",
+      "createdAt": "2026-09-20T04:29:10.203Z",
+      "disease": "fevrer",
+      "financialBills": [
+        {
+          "_id": "finbill_1789883809034",
+          "date": "2026-09-20T05:56:49.034Z",
+          "items": [
+            {
+              "name": "dol12",
+              "dosing": "1-0-1",
+              "days": "5",
+              "batchNo": "b123",
+              "expDate": "29/31",
+              "amount": "150.00",
+              "quantity": 10
+            }
+          ],
+          "subtotal": 150,
+          "gstAmount": 0,
+          "totalAmount": 150,
+          "generatedBy": "Dr. Rajesh Kumar"
+        },
+        {
+          "_id": "finbill_1789885351651",
+          "date": "2026-09-20T06:22:31.651Z",
+          "items": [
+            {
+              "name": "dol12",
+              "dosing": "1-0-1",
+              "days": "5",
+              "batchNo": "b123",
+              "expDate": "29/31",
+              "amount": "150.00",
+              "quantity": 10
+            }
+          ],
+          "subtotal": 150,
+          "gstAmount": 0,
+          "totalAmount": 150,
+          "generatedBy": "Dr. Rajesh Kumar"
+        },
+        {
+          "_id": "finbill_1789888280576",
+          "date": "2026-09-20T07:11:20.576Z",
+          "items": [
+            {
+              "name": "doll123",
+              "dosing": "1-0-1",
+              "days": "5",
+              "batchNo": "b123",
+              "expDate": "29/31",
+              "amount": "500.00",
+              "quantity": 10
+            }
+          ],
+          "subtotal": 500,
+          "gstAmount": 0,
+          "totalAmount": 500,
+          "generatedBy": "Dr. Rajesh Kumar"
+        },
+        {
+          "_id": "finbill_1789888963704",
+          "date": "2026-09-20T07:22:43.704Z",
+          "items": [
+            {
+              "name": "dol12",
+              "dosing": "1-0-1",
+              "days": "5",
+              "batchNo": "b123",
+              "expDate": "29/31",
+              "amount": "150.00",
+              "quantity": 10
+            }
+          ],
+          "subtotal": 150,
+          "gstAmount": 0,
+          "totalAmount": 150,
+          "generatedBy": "Dr. Rajesh Kumar"
+        },
+        {
+          "_id": "finbill_1789889235952",
+          "date": "2026-09-20T07:27:15.952Z",
+          "items": [
+            {
+              "name": "doll123",
+              "dosing": "1-0-1",
+              "days": "5",
+              "batchNo": "b123",
+              "expDate": "29/31",
+              "amount": "500.00",
+              "quantity": 10
+            },
+            {
+              "name": "dol12",
+              "dosing": "1-0-1",
+              "days": "5",
+              "batchNo": "b123",
+              "expDate": "29/31",
+              "amount": "150.00",
+              "quantity": 10
+            },
+            {
+              "name": "doll111",
+              "dosing": "1-1-1",
+              "days": "5",
+              "batchNo": "b123",
+              "expDate": "31/29",
+              "amount": "150",
+              "quantity": 15
+            }
+          ],
+          "subtotal": 800,
+          "gstAmount": 0,
+          "totalAmount": 800,
+          "generatedBy": "Dr. Rajesh Kumar"
+        },
+        {
+          "_id": "finbill_1790004769848",
+          "date": "2026-09-21T15:32:49.848Z",
+          "items": [
+            {
+              "name": "doll123",
+              "dosing": "1-0-1",
+              "days": "5",
+              "batchNo": "b123",
+              "expDate": "29/31",
+              "amount": "500.00",
+              "quantity": 10
+            }
+          ],
+          "subtotal": 500,
+          "gstAmount": 0,
+          "totalAmount": 500,
+          "generatedBy": "Dr. Rajesh Kumar"
+        }
+      ]
+    },
+    {
+      "_id": "pat_1789878036913",
+      "pid": "P010",
+      "name": "Akash ",
+      "careOf": "gafar",
+      "age": "25",
+      "gender": "Male",
+      "contact": "126547895",
+      "location": "DS",
+      "doctorName": "DR SUba",
+      "dateOfVisit": "2026-09-20",
+      "remarks": "",
+      "history": [],
+      "bills": [],
+      "prescriptions": [
+        {
+          "_id": "rx_1789881231444",
+          "date": "2026-09-20T05:13:51.444Z",
+          "doctorId": "doc_123",
+          "doctorName": "Dr. Rajesh Kumar",
+          "disease": "cold",
+          "medicines": [
+            {
+              "name": "doll123",
+              "dosing": "1-0-1",
+              "days": "5"
+            }
+          ],
+          "nextVisit": "2026-09-25"
+        },
+        {
+          "_id": "rx_1789881307922",
+          "date": "2026-09-20T05:15:07.922Z",
+          "doctorId": "doc_123",
+          "doctorName": "Dr. Rajesh Kumar",
+          "disease": "cold",
+          "medicines": [
+            {
+              "name": "doll123",
+              "dosing": "1-0-1",
+              "days": "5"
+            }
+          ],
+          "nextVisit": "2026-09-26"
+        }
+      ],
+      "createdBy": "staff_1",
+      "createdAt": "2026-09-20T04:20:36.913Z",
+      "disease": "cold",
+      "financialBills": [
+        {
+          "_id": "finbill_1789881340688",
+          "date": "2026-09-20T05:15:40.688Z",
+          "items": [
+            {
+              "name": "doll123",
+              "dosing": "1-0-1",
+              "days": "5",
+              "batchNo": "b123",
+              "expDate": "29/31",
+              "amount": "500.00",
+              "quantity": 10
+            }
+          ],
+          "subtotal": 500,
+          "gstAmount": 0,
+          "totalAmount": 500,
+          "generatedBy": "Dr. Rajesh Kumar"
+        }
+      ]
+    },
+    {
+      "_id": "pat_1789877202240",
+      "pid": "P009",
+      "name": "rehu",
+      "careOf": "ss",
+      "age": "20",
+      "gender": "Male",
+      "contact": "1236547891",
+      "location": "HR deparment",
+      "doctorName": "Dr.subba",
+      "dateOfVisit": "2026-09-20",
+      "remarks": "",
+      "history": [],
+      "bills": [],
+      "prescriptions": [
+        {
+          "_id": "rx_1789881400182",
+          "date": "2026-09-20T05:16:40.182Z",
+          "doctorId": "doc_123",
+          "doctorName": "Dr. Rajesh Kumar",
+          "disease": "cold",
+          "medicines": [
+            {
+              "name": "dol12",
+              "dosing": "1-0-1",
+              "days": "5"
+            }
+          ],
+          "nextVisit": "2026-09-26"
+        }
+      ],
+      "createdBy": "staff_1",
+      "createdAt": "2026-09-20T04:06:42.240Z",
+      "disease": "cold"
+    },
+    {
+      "_id": "pat_1789876024532",
+      "pid": "P008",
+      "name": "ss",
+      "age": "25",
+      "gender": "Male",
+      "contact": "9353194797",
+      "location": "HR deparment",
+      "doctorName": "ss",
+      "dateOfVisit": "2026-09-20",
+      "remarks": "",
+      "history": [],
+      "bills": [],
+      "prescriptions": [
+        {
+          "_id": "rx_1789891450221",
+          "date": "2026-09-20T08:04:10.229Z",
+          "doctorId": "doc_123",
+          "doctorName": "Dr. Rajesh Kumar",
+          "disease": "cold",
+          "medicines": [
+            {
+              "name": "dol12",
+              "dosing": "1-0-1",
+              "days": "5"
+            }
+          ],
+          "nextVisit": "2026-09-25"
+        },
+        {
+          "_id": "rx_1789891575433",
+          "date": "2026-09-20T08:06:15.433Z",
+          "doctorId": "doc_123",
+          "doctorName": "Dr. Rajesh Kumar",
+          "disease": "cold",
+          "medicines": [
+            {
+              "name": "dol12",
+              "dosing": "1-0-1",
+              "days": "5"
+            },
+            {
+              "name": "doll123",
+              "dosing": "1-0-1",
+              "days": "5"
+            },
+            {
+              "name": "dol12",
+              "dosing": "1-0-1",
+              "days": "5"
+            },
+            {
+              "name": "dol12",
+              "dosing": "1-0-1",
+              "days": "5"
+            },
+            {
+              "name": "dol12",
+              "dosing": "1-0-1",
+              "days": "5"
+            },
+            {
+              "name": "doll123",
+              "dosing": "1-0-1",
+              "days": "5"
+            }
+          ],
+          "nextVisit": "2026-09-26"
+        },
+        {
+          "_id": "rx_1790008752655",
+          "date": "2026-09-21T16:39:12.656Z",
+          "doctorId": "doc_123",
+          "doctorName": "Dr. Rajesh Kumar",
+          "disease": "cold",
+          "medicines": [
+            {
+              "name": "dol12",
+              "dosing": "1-0-1",
+              "days": "5"
+            }
+          ],
+          "nextVisit": "2026-09-26"
+        }
+      ],
+      "createdBy": "staff_1",
+      "createdAt": "2026-09-20T03:47:04.532Z",
+      "disease": "cold",
+      "financialBills": [
+        {
+          "_id": "finbill_1789891452473",
+          "date": "2026-09-20T08:04:12.473Z",
+          "items": [
+            {
+              "name": "dol12",
+              "dosing": "1-0-1",
+              "days": "5",
+              "batchNo": "b123",
+              "expDate": "29/31",
+              "amount": "150.00",
+              "quantity": 10
+            }
+          ],
+          "subtotal": 150,
+          "gstAmount": 0,
+          "totalAmount": 150,
+          "generatedBy": "Dr. Rajesh Kumar"
+        },
+        {
+          "_id": "finbill_1789891578032",
+          "date": "2026-09-20T08:06:18.033Z",
+          "items": [
+            {
+              "name": "dol12",
+              "dosing": "1-0-1",
+              "days": "5",
+              "batchNo": "b123",
+              "expDate": "29/31",
+              "amount": "150.00",
+              "quantity": 10
+            },
+            {
+              "name": "doll123",
+              "dosing": "1-0-1",
+              "days": "5",
+              "batchNo": "b123",
+              "expDate": "29/31",
+              "amount": "500.00",
+              "quantity": 10
+            },
+            {
+              "name": "dol12",
+              "dosing": "1-0-1",
+              "days": "5",
+              "batchNo": "b123",
+              "expDate": "29/31",
+              "amount": "150.00",
+              "quantity": 10
+            },
+            {
+              "name": "dol12",
+              "dosing": "1-0-1",
+              "days": "5",
+              "batchNo": "b123",
+              "expDate": "29/31",
+              "amount": "150.00",
+              "quantity": 10
+            },
+            {
+              "name": "dol12",
+              "dosing": "1-0-1",
+              "days": "5",
+              "batchNo": "b123",
+              "expDate": "29/31",
+              "amount": "150.00",
+              "quantity": 10
+            },
+            {
+              "name": "doll123",
+              "dosing": "1-0-1",
+              "days": "5",
+              "batchNo": "b123",
+              "expDate": "29/31",
+              "amount": "500.00",
+              "quantity": 10
+            }
+          ],
+          "subtotal": 1600,
+          "gstAmount": 0,
+          "totalAmount": 1600,
+          "generatedBy": "Dr. Rajesh Kumar"
+        },
+        {
+          "_id": "finbill_1790008754284",
+          "date": "2026-09-21T16:39:14.284Z",
+          "items": [
+            {
+              "name": "dol12",
+              "dosing": "1-0-1",
+              "days": "5",
+              "batchNo": "b123",
+              "expDate": "29/31",
+              "amount": "150.00",
+              "quantity": 10
+            }
+          ],
+          "subtotal": 150,
+          "gstAmount": 0,
+          "totalAmount": 150,
+          "generatedBy": "Dr. Rajesh Kumar"
+        }
+      ]
+    },
+    {
+      "_id": "pat_1789875922761",
+      "pid": "P007",
+      "name": "Gafar H",
+      "age": "22",
+      "gender": "Male",
+      "contact": "9353194797",
+      "location": "kundapura",
+      "doctorName": "Dr.subba",
+      "dateOfVisit": "2026-09-20",
+      "remarks": "",
+      "history": [],
+      "bills": [],
+      "prescriptions": [],
+      "createdBy": "staff_1",
+      "createdAt": "2026-09-20T03:45:22.761Z"
+    },
+    {
+      "_id": "pat_1789824302066",
+      "pid": "P006",
+      "name": "Gafar H",
+      "age": "25",
+      "gender": "Male",
+      "contact": "9353194797",
+      "location": "kundapura",
+      "doctorName": "Dr.subba",
+      "dateOfVisit": "2026-09-19",
+      "remarks": "",
+      "history": [],
+      "bills": [],
+      "prescriptions": [
+        {
+          "_id": "rx_1789824652129",
+          "date": "2026-09-19T13:30:52.129Z",
+          "doctorId": "doc_123",
+          "doctorName": "Dr. Rajesh Kumar",
+          "disease": "jhjvhb",
+          "medicines": [
+            {
+              "name": "doll11",
+              "dosing": "1-0-1",
+              "days": "3"
+            }
+          ],
+          "nextVisit": "2026-10-21"
+        },
+        {
+          "_id": "rx_1789824686601",
+          "date": "2026-09-19T13:31:26.601Z",
+          "doctorId": "doc_123",
+          "doctorName": "Dr. Rajesh Kumar",
+          "disease": "jhjvhb",
+          "medicines": [
+            {
+              "name": "doll12",
+              "dosing": "1-0-1",
+              "days": "5"
+            },
+            {
+              "name": "doll11",
+              "dosing": "1-0-1",
+              "days": "5"
+            }
+          ],
+          "nextVisit": ""
+        },
+        {
+          "_id": "rx_1789873486641",
+          "date": "2026-09-20T03:04:46.641Z",
+          "doctorId": "doc_123",
+          "doctorName": "Dr. Rajesh Kumar",
+          "disease": "jhjvhb",
+          "medicines": [
+            {
+              "name": "doll11",
+              "dosing": "1-0-1",
+              "days": "5"
+            },
+            {
+              "name": "doll12",
+              "dosing": "1-0-1",
+              "days": "5"
+            },
+            {
+              "name": "doll12",
+              "dosing": "1-0-1",
+              "days": "5"
+            },
+            {
+              "name": "doll11",
+              "dosing": "1-0-1",
+              "days": "5"
+            },
+            {
+              "name": "doll12",
+              "dosing": "1-0-1",
+              "days": "5"
+            },
+            {
+              "name": "doll11",
+              "dosing": "1-0-1",
+              "days": "5"
+            }
+          ],
+          "nextVisit": ""
+        }
+      ],
+      "createdBy": "staff_1",
+      "createdAt": "2026-09-19T13:25:02.066Z",
+      "disease": "jhjvhb",
+      "financialBills": [
+        {
+          "_id": "finbill_1789824716141",
+          "date": "2026-09-19T13:31:56.141Z",
+          "items": [
+            {
+              "name": "doll12",
+              "dosing": "1-0-1",
+              "days": "5",
+              "batchNo": "123",
+              "expDate": "3/29",
+              "amount": "410.80",
+              "quantity": 10
+            },
+            {
+              "name": "doll11",
+              "dosing": "1-0-1",
+              "days": "5",
+              "batchNo": "124",
+              "expDate": "3/29",
+              "amount": "220.50",
+              "quantity": 10
+            }
+          ],
+          "subtotal": 631.3,
+          "gstAmount": 0,
+          "totalAmount": 631.3,
+          "generatedBy": "Dr. Rajesh Kumar"
+        },
+        {
+          "_id": "finbill_1789873489178",
+          "date": "2026-09-20T03:04:49.178Z",
+          "items": [
+            {
+              "name": "doll11",
+              "dosing": "1-0-1",
+              "days": "5",
+              "batchNo": "124",
+              "expDate": "3/29",
+              "amount": "220.50",
+              "quantity": 10
+            },
+            {
+              "name": "doll12",
+              "dosing": "1-0-1",
+              "days": "5",
+              "batchNo": "123",
+              "expDate": "3/29",
+              "amount": "410.80",
+              "quantity": 10
+            },
+            {
+              "name": "doll12",
+              "dosing": "1-0-1",
+              "days": "5",
+              "batchNo": "123",
+              "expDate": "3/29",
+              "amount": "410.80",
+              "quantity": 10
+            },
+            {
+              "name": "doll11",
+              "dosing": "1-0-1",
+              "days": "5",
+              "batchNo": "124",
+              "expDate": "3/29",
+              "amount": "220.50",
+              "quantity": 10
+            },
+            {
+              "name": "doll12",
+              "dosing": "1-0-1",
+              "days": "5",
+              "batchNo": "123",
+              "expDate": "3/29",
+              "amount": "410.80",
+              "quantity": 10
+            },
+            {
+              "name": "doll11",
+              "dosing": "1-0-1",
+              "days": "5",
+              "batchNo": "124",
+              "expDate": "3/29",
+              "amount": "220.50",
+              "quantity": 10
+            }
+          ],
+          "subtotal": 1893.8999999999999,
+          "gstAmount": 0,
+          "totalAmount": 1893.8999999999999,
+          "generatedBy": "Dr. Rajesh Kumar"
+        }
+      ]
+    },
+    {
+      "_id": "pat_1789800773939",
+      "pid": "P005",
+      "name": "jafar H",
+      "age": "25",
+      "gender": "Male",
+      "contact": "1236547891",
+      "doctorName": "Mahima ",
+      "dateOfVisit": "2026-09-19",
+      "remarks": "",
+      "history": [],
+      "bills": [],
+      "prescriptions": [
+        {
+          "_id": "rx_1789800810445",
+          "date": "2026-09-19T06:53:30.445Z",
+          "doctorId": "doc_123",
+          "doctorName": "Dr. Rajesh Kumar",
+          "disease": "viral fever ",
+          "medicines": [
+            {
+              "name": "doll 65",
+              "dosing": "1-0-1",
+              "days": "4"
+            }
+          ],
+          "nextVisit": "2026-09-22"
+        },
+        {
+          "_id": "rx_1789800860675",
+          "date": "2026-09-19T06:54:20.675Z",
+          "doctorId": "doc_123",
+          "doctorName": "Dr. Rajesh Kumar",
+          "disease": "viral fever ",
+          "medicines": [
+            {
+              "name": "doll11",
+              "dosing": "1-0-1",
+              "days": "10"
+            }
+          ],
+          "nextVisit": "2026-09-26"
+        }
+      ],
+      "createdBy": "staff_1",
+      "createdAt": "2026-09-19T06:52:53.939Z",
+      "disease": "viral fever ",
+      "financialBills": [
+        {
+          "_id": "finbill_1789800865263",
+          "date": "2026-09-19T06:54:25.263Z",
+          "items": [
+            {
+              "name": "doll11",
+              "dosing": "1-0-1",
+              "days": "10",
+              "batchNo": "124",
+              "expDate": "3/29",
+              "amount": "441.00",
+              "quantity": 20
+            }
+          ],
+          "subtotal": 441,
+          "gstAmount": 0,
+          "totalAmount": 441,
+          "generatedBy": "Dr. Rajesh Kumar"
+        }
+      ]
+    },
+    {
+      "_id": "pat_1789799047173",
+      "pid": "P004",
+      "name": "heena",
+      "age": "30",
+      "gender": "Female",
+      "contact": "1236547954",
+      "doctorName": "Mahima ",
+      "dateOfVisit": "2026-09-19",
+      "remarks": "",
+      "history": [],
+      "bills": [],
+      "prescriptions": [
+        {
+          "_id": "rx_1789799101383",
+          "date": "2026-09-19T06:25:01.383Z",
+          "doctorId": "doc_123",
+          "doctorName": "Dr. Rajesh Kumar",
+          "disease": "fever ",
+          "medicines": [
+            {
+              "name": "doll 65",
+              "dosing": "1-0-1",
+              "days": "7"
+            }
+          ],
+          "nextVisit": "2026-09-26"
+        },
+        {
+          "_id": "rx_1789799760121",
+          "date": "2026-09-19T06:36:00.121Z",
+          "doctorId": "doc_123",
+          "doctorName": "Dr. Rajesh Kumar",
+          "disease": "fever ",
+          "medicines": [
+            {
+              "name": "doll 65",
+              "dosing": "1-0-1",
+              "days": "5"
+            }
+          ],
+          "nextVisit": "2026-09-24"
+        }
+      ],
+      "createdBy": "staff_1",
+      "createdAt": "2026-09-19T06:24:07.173Z",
+      "disease": "fever ",
+      "financialBills": [
+        {
+          "_id": "finbill_1789799772271",
+          "date": "2026-09-19T06:36:12.271Z",
+          "items": [
+            {
+              "name": "doll 65",
+              "dosing": "1-0-1",
+              "days": "5",
+              "batchNo": "b-123",
+              "expDate": "31/45",
+              "amount": "52",
+              "quantity": 10
+            }
+          ],
+          "subtotal": 52,
+          "gstAmount": 0,
+          "totalAmount": 52,
+          "generatedBy": "Dr. Rajesh Kumar"
+        }
+      ]
+    },
+    {
+      "_id": "pat_1789747382663",
+      "pid": "P003",
+      "name": "ganni",
+      "age": "30",
+      "gender": "Male",
+      "contact": "9353194797",
+      "doctorName": "DR subha",
+      "dateOfVisit": "2026-09-18",
+      "remarks": "",
+      "history": [],
+      "bills": [],
+      "prescriptions": [
+        {
+          "_id": "rx_1789748092534",
+          "date": "2026-09-18T16:14:52.534Z",
+          "doctorId": "doc_123",
+          "doctorName": "Dr. Rajesh Kumar",
+          "disease": "www",
+          "medicines": [
+            {
+              "name": "parama ",
+              "dosing": "1-0-1",
+              "days": "30"
+            }
+          ],
+          "nextVisit": "2026-10-18"
+        },
+        {
+          "_id": "rx_1789800236061",
+          "date": "2026-09-19T06:43:56.061Z",
+          "doctorId": "doc_123",
+          "doctorName": "Dr. Rajesh Kumar",
+          "disease": "www",
+          "medicines": [
+            {
+              "name": "new",
+              "dosing": "1-0-1",
+              "days": "5"
+            }
+          ],
+          "nextVisit": "2026-09-24"
+        }
+      ],
+      "createdBy": "staff_1",
+      "createdAt": "2026-09-18T16:03:02.663Z",
+      "disease": "www"
+    },
+    {
+      "_id": "pat_1789747324881",
+      "pid": "P002",
+      "name": "sathis ",
+      "age": "25",
+      "gender": "Male",
+      "contact": "9353194797",
+      "doctorName": "DR subha",
+      "dateOfVisit": "2026-09-18",
+      "remarks": "",
+      "history": [],
+      "bills": [],
+      "prescriptions": [
+        {
+          "_id": "rx_1789747504840",
+          "date": "2026-09-18T16:05:04.840Z",
+          "doctorId": "doc_123",
+          "doctorName": "Dr. Rajesh Kumar",
+          "disease": "fever ",
+          "medicines": [
+            {
+              "name": "dollo 87",
+              "dosing": "1-1-1",
+              "days": "10"
+            }
+          ],
+          "nextVisit": "2026-09-25"
+        }
+      ],
+      "createdBy": "staff_1",
+      "createdAt": "2026-09-18T16:02:04.881Z",
+      "disease": "fever "
+    },
+    {
+      "_id": "pat_1789661945819",
+      "pid": "P001",
+      "name": "Gafar H",
+      "age": "25",
+      "gender": "Male",
+      "contact": "1236547891",
+      "doctorName": "new",
+      "dateOfVisit": "2026-09-17",
+      "remarks": "new",
+      "history": [],
+      "bills": [
+        {
+          "_id": "bill_1789747821283",
+          "patientId": "pat_1789661945819",
+          "billType": "General Report",
+          "filePath": "/uploads/bills/file-1789747821273.jpeg",
+          "originalName": "WhatsApp Image 2026-09-17 at 08.46.50.jpeg",
+          "createdAt": "2026-09-18T16:10:21.283Z"
+        }
+      ],
+      "prescriptions": [
+        {
+          "_id": "rx_1789662006916",
+          "date": "2026-09-17T16:20:06.917Z",
+          "doctorId": "doc_123",
+          "doctorName": "Dr. Rajesh Kumar",
+          "disease": "new",
+          "medicines": [
+            {
+              "name": "new one",
+              "dosing": "1-0-1",
+              "days": "5"
+            }
+          ],
+          "nextVisit": "2026-09-24"
+        },
+        {
+          "_id": "rx_1789664674557",
+          "date": "2026-09-17T17:04:34.557Z",
+          "doctorId": "doc_123",
+          "doctorName": "Dr. Rajesh Kumar",
+          "disease": "new",
+          "medicines": [
+            {
+              "name": "doll65",
+              "dosing": "1-0-1",
+              "days": "5"
+            }
+          ],
+          "nextVisit": ""
+        },
+        {
+          "_id": "rx_1789664932629",
+          "date": "2026-09-17T17:08:52.629Z",
+          "doctorId": "doc_123",
+          "doctorName": "Dr. Rajesh Kumar",
+          "disease": "new",
+          "medicines": [
+            {
+              "name": "doll54 ",
+              "dosing": "1-0-1",
+              "days": "5"
+            }
+          ],
+          "nextVisit": ""
+        },
+        {
+          "_id": "rx_1789747887506",
+          "date": "2026-09-18T16:11:27.506Z",
+          "doctorId": "doc_123",
+          "doctorName": "Dr. Rajesh Kumar",
+          "disease": "new",
+          "medicines": [
+            {
+              "name": "doll 65",
+              "dosing": "1-0-1",
+              "days": "7"
+            }
+          ],
+          "nextVisit": "2026-11-10"
+        },
+        {
+          "_id": "rx_1789747979635",
+          "date": "2026-09-18T16:12:59.635Z",
+          "doctorId": "doc_123",
+          "doctorName": "Dr. Rajesh Kumar",
+          "disease": "new",
+          "medicines": [
+            {
+              "name": "doll 65",
+              "dosing": "1-0-1",
+              "days": "5"
+            }
+          ],
+          "nextVisit": "2026-12-08"
+        }
+      ],
+      "createdBy": "staff_1",
+      "createdAt": "2026-09-17T16:19:05.819Z",
+      "disease": "new",
+      "financialBills": [
+        {
+          "_id": "finbill_1789662032829",
+          "date": "2026-09-17T16:20:32.829Z",
+          "items": [
+            {
+              "name": "new one",
+              "dosing": "1-0-1",
+              "days": "5",
+              "batchNo": "b123",
+              "expDate": "30/45",
+              "amount": "58"
+            }
+          ],
+          "subtotal": 58,
+          "gstAmount": 2.9,
+          "totalAmount": 60.9,
+          "generatedBy": "Reception Desk"
+        },
+        {
+          "_id": "finbill_1789665615468",
+          "date": "2026-09-17T17:20:15.468Z",
+          "items": [
+            {
+              "name": "doll54 ",
+              "dosing": "1-0-1",
+              "days": "5",
+              "batchNo": "j123",
+              "expDate": "32/45",
+              "amount": "59"
+            }
+          ],
+          "subtotal": 59,
+          "gstAmount": 0,
+          "totalAmount": 59,
+          "generatedBy": "Reception Desk"
+        },
+        {
+          "_id": "finbill_1789665668080",
+          "date": "2026-09-17T17:21:08.080Z",
+          "items": [
+            {
+              "name": "doll54 ",
+              "dosing": "1-0-1",
+              "days": "5",
+              "batchNo": "b12",
+              "expDate": "31/45",
+              "amount": "80"
+            }
+          ],
+          "subtotal": 80,
+          "gstAmount": 0,
+          "totalAmount": 80,
+          "generatedBy": "Reception Desk"
+        },
+        {
+          "_id": "finbill_1789665882762",
+          "date": "2026-09-17T17:24:42.763Z",
+          "items": [
+            {
+              "name": "doll54 ",
+              "dosing": "1-0-1",
+              "days": "5",
+              "batchNo": "",
+              "expDate": "",
+              "amount": "58"
+            }
+          ],
+          "subtotal": 58,
+          "gstAmount": 0,
+          "totalAmount": 58,
+          "generatedBy": "Reception Desk"
+        },
+        {
+          "_id": "finbill_1789666054757",
+          "date": "2026-09-17T17:27:34.757Z",
+          "items": [
+            {
+              "name": "doll54 ",
+              "dosing": "1-0-1",
+              "days": "5",
+              "batchNo": "b-12",
+              "expDate": "30/45",
+              "amount": "65"
+            }
+          ],
+          "subtotal": 65,
+          "gstAmount": 0,
+          "totalAmount": 65,
+          "generatedBy": "Reception Desk"
+        },
+        {
+          "_id": "finbill_1789666315192",
+          "date": "2026-09-17T17:31:55.192Z",
+          "items": [
+            {
+              "name": "doll54 ",
+              "dosing": "1-0-1",
+              "days": "5",
+              "batchNo": "v-12",
+              "expDate": "31/25",
+              "amount": "58"
+            }
+          ],
+          "subtotal": 58,
+          "gstAmount": 0,
+          "totalAmount": 58,
+          "generatedBy": "Reception Desk"
+        },
+        {
+          "_id": "finbill_1789666565867",
+          "date": "2026-09-17T17:36:05.867Z",
+          "items": [
+            {
+              "name": "doll54 ",
+              "dosing": "1-0-1",
+              "days": "5",
+              "batchNo": "b-12",
+              "expDate": "31/58",
+              "amount": "58"
+            }
+          ],
+          "subtotal": 58,
+          "gstAmount": 0,
+          "totalAmount": 58,
+          "generatedBy": "Reception Desk"
+        }
+      ]
+    }
+  ],
+  "appointments": [
+    {
+      "_id": "app_1789661952598",
+      "name": "Gafar H",
+      "phone": "09353194797",
+      "date": "2026-09-17",
+      "timeSlot": "03:30 PM",
+      "tokenNumber": 1,
+      "status": "Scheduled",
+      "createdAt": "2026-09-17T16:19:12.598Z"
+    },
+    {
+      "_id": "app_1789747337984",
+      "name": "ganii",
+      "phone": "1234567890",
+      "date": "2026-09-18",
+      "timeSlot": "11:00 AM",
+      "tokenNumber": 1,
+      "status": "Scheduled",
+      "createdAt": "2026-09-18T16:02:17.984Z"
+    },
+    {
+      "_id": "app_1789824279051",
+      "name": "Gafar H",
+      "phone": "1234567890",
+      "date": "2026-09-19",
+      "timeSlot": "11:00 AM",
+      "tokenNumber": 1,
+      "status": "Scheduled",
+      "createdAt": "2026-09-19T13:24:39.051Z"
+    },
+    {
+      "_id": "app_1789877996395",
+      "name": "Akash ",
+      "phone": "54698745123",
+      "date": "2026-09-20",
+      "timeSlot": "10:00 AM",
+      "tokenNumber": 1,
+      "status": "Scheduled",
+      "createdAt": "2026-09-20T04:19:56.395Z"
+    },
+    {
+      "_id": "app_1789878508724",
+      "name": "subu",
+      "phone": "7331458965",
+      "date": "2026-09-20",
+      "timeSlot": "10:00 AM",
+      "tokenNumber": 2,
+      "status": "Scheduled",
+      "createdAt": "2026-09-20T04:28:28.724Z"
+    }
+  ],
+  "medicines": [
+    {
+      "_id": "med_178988137768088",
+      "name": "dol12",
+      "pack": "12",
+      "batch": "b123",
+      "exp": "29/31",
+      "stock": 40,
+      "vendor": "Manual Entry",
+      "mrp": "15",
+      "rate": "",
+      "sgstPercent": 2.5,
+      "cgstPercent": 2.5,
+      "lastRestocked": "2026-09-20T05:16:17.680Z"
+    },
+    {
+      "_id": "med_1789880980262335",
+      "name": "doll123",
+      "pack": "12",
+      "batch": "b123",
+      "exp": "29/31",
+      "stock": 0,
+      "vendor": "Manual Entry",
+      "mrp": "50",
+      "rate": "",
+      "sgstPercent": 2.5,
+      "cgstPercent": 2.5,
+      "lastRestocked": "2026-09-20T05:09:40.262Z"
+    },
+    {
+      "_id": "med_1789880268983263",
+      "name": "doll111",
+      "pack": "10",
+      "batch": "b123",
+      "exp": "31/29",
+      "stock": 43,
+      "vendor": "Manual Entry",
+      "mrp": "",
+      "rate": "",
+      "sgstPercent": 0,
+      "cgstPercent": 0,
+      "lastRestocked": "2026-09-20T04:57:48.983Z"
+    },
+    {
+      "_id": "med_1789664624559",
+      "name": "doll 65",
+      "vendor": "suma enterpise",
+      "stock": 42,
+      "lastRestocked": "2026-09-17T17:03:44.559Z"
+    },
+    {
+      "_id": "med_1789664647883",
+      "name": "doll54 ",
+      "vendor": "sumna vendor",
+      "stock": 52,
+      "lastRestocked": "2026-09-17T17:04:07.883Z"
+    },
+    {
+      "_id": "med_1789665265567",
+      "name": "parama ",
+      "vendor": "ganehsn",
+      "stock": 58,
+      "lastRestocked": "2026-09-17T17:14:25.567Z"
+    },
+    {
+      "_id": "med_1789747689638",
+      "name": "parasetmal",
+      "vendor": "summa",
+      "stock": 58,
+      "lastRestocked": "2026-09-18T16:08:09.638Z"
+    },
+    {
+      "_id": "med_1789793152645613",
+      "name": "doll65",
+      "vendor": "suma",
+      "stock": 50,
+      "batch": "35",
+      "exp": "01/31",
+      "mrp": "58",
+      "rate": "25",
+      "pack": "1",
+      "lastRestocked": "2026-09-19T04:45:52.645Z"
+    },
+    {
+      "_id": "med_1789793152645932",
+      "name": "doll12",
+      "vendor": "Bharathi ",
+      "stock": 93,
+      "batch": "123",
+      "exp": "3/29",
+      "mrp": "41.08",
+      "rate": "23.00",
+      "pack": "500ML",
+      "lastRestocked": "2026-09-19T06:03:33.740Z"
+    },
+    {
+      "_id": "med_1789797813740607",
+      "name": "doll11",
+      "vendor": "Bharathi ",
+      "stock": 40,
+      "batch": "124",
+      "exp": "3/29",
+      "mrp": "22.05",
+      "rate": "12",
+      "pack": "100ML",
+      "lastRestocked": "2026-09-19T06:03:33.740Z"
+    },
+    {
+      "_id": "med_1789825353453150",
+      "name": "LIFE DNS INJ 500ML",
+      "vendor": "summna ",
+      "stock": 125,
+      "batch": "F26DC2019",
+      "exp": "3/29",
+      "mrp": "41.08",
+      "rate": "23.00",
+      "pack": "500ML",
+      "sgstPercent": "2.5",
+      "cgstPercent": "2.5",
+      "lastRestocked": "2026-09-19T13:42:33.453Z"
+    },
+    {
+      "_id": "med_1789825353453207",
+      "name": "LIFE METRO INJ 100ML",
+      "vendor": "summna ",
+      "stock": 100,
+      "batch": "F29FK1009",
+      "exp": "5/29",
+      "mrp": "22.05",
+      "rate": "12.00",
+      "pack": "100ML ",
+      "sgstPercent": "2.5",
+      "cgstPercent": "2.5",
+      "lastRestocked": "2026-09-19T13:42:33.453Z"
+    }
+  ],
+  "purchases": [
+    {
+      "_id": "inv_1789797813740929",
+      "invoiceNo": "",
+      "invoiceDate": "2026-09-19",
+      "vendor": "Bharathi ",
+      "items": [
+        {
+          "qty": "125",
+          "free": "0",
+          "mfr": "LIFE",
+          "pack": "500ML",
+          "name": "doll12",
+          "batch": "123",
+          "exp": "3/29",
+          "hsn": "123",
+          "mrp": "41.08",
+          "rate": "23.00",
+          "dis": "00",
+          "sgstPercent": "2.5",
+          "cgstPercent": "2.5",
+          "sgstValue": "71.88",
+          "cgstValue": "71.88",
+          "amount": "2875.00"
+        },
+        {
+          "qty": "100",
+          "free": "0",
+          "mfr": "LIFE",
+          "pack": "100ML",
+          "name": "doll11",
+          "batch": "124",
+          "exp": "3/29",
+          "hsn": "124",
+          "mrp": "22.05",
+          "rate": "12",
+          "dis": "0.0",
+          "sgstPercent": "2.5",
+          "cgstPercent": "2.5",
+          "sgstValue": "30.00",
+          "cgstValue": "30.00",
+          "amount": "1200.00"
+        }
+      ],
+      "summary": {
+        "totalAmount": "4075.00",
+        "disAmt": "0.00",
+        "sgstPayable": "101.88",
+        "cgstPayable": "101.88",
+        "grandTotal": "4278.76"
+      },
+      "createdAt": "2026-09-19T06:03:33.740Z",
+      "status": "Paid"
+    },
+    {
+      "_id": "inv_1789825353453915",
+      "invoiceNo": "invo123",
+      "invoiceDate": "2026-09-19",
+      "vendor": "summna ",
+      "items": [
+        {
+          "qty": "125",
+          "free": "",
+          "mfr": "LIFE",
+          "pack": "500ML",
+          "name": "LIFE DNS INJ 500ML",
+          "batch": "F26DC2019",
+          "exp": "3/29",
+          "hsn": "30049099",
+          "mrp": "41.08",
+          "rate": "23.00",
+          "dis": "0.00",
+          "sgstPercent": "2.5",
+          "cgstPercent": "2.5",
+          "sgstValue": "71.88",
+          "cgstValue": "71.88",
+          "amount": "2875.00"
+        },
+        {
+          "qty": "100",
+          "free": "",
+          "mfr": "LIFE",
+          "pack": "100ML ",
+          "name": "LIFE METRO INJ 100ML",
+          "batch": "F29FK1009",
+          "exp": "5/29",
+          "hsn": "300490099",
+          "mrp": "22.05",
+          "rate": "12.00",
+          "dis": "0.00",
+          "sgstPercent": "2.5",
+          "cgstPercent": "2.5",
+          "sgstValue": "30.00",
+          "cgstValue": "30.00",
+          "amount": "1200.00"
+        }
+      ],
+      "summary": {
+        "totalAmount": "4075.00",
+        "disAmt": "0.00",
+        "sgstPayable": "101.88",
+        "cgstPayable": "101.88",
+        "grandTotal": "4278.76"
+      },
+      "createdAt": "2026-09-19T13:42:33.453Z",
+      "status": "Paid"
+    }
+  ]
+}

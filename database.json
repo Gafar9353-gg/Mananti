@@ -1,0 +1,20 @@
+{
+  "users": [
+    {
+      "_id": "doc_123",
+      "name": "Dr. Rajesh Kumar",
+      "email": "doctor",
+      "password": "$2b$10$RHTR0x8bZLBJLWwkC0YcWuO2fqujGsb/THWhky2Zjpw3B1mIiQdXq",
+      "role": "doctor"
+    },
+    {
+      "_id": "staff_1",
+      "name": "Reception Desk",
+      "email": "staff",
+      "password": "$2b$10$MFmfVJRelIl8pj8P3XEOhezEsukBLEKGEKvhAfLM4NuKxQgeD5KKC",
+      "role": "staff"
+    }
+  ],
+  "patients": [],
+  "appointments": []
+}
