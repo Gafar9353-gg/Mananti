@@ -41,7 +41,7 @@ const StockManagement = () => {
   const fetchMedicines = async () => {
     try {
       const config = { headers: { Authorization: `Bearer ${doctor.token}` } };
-      const { data } = await axios.get(`${import.meta.env.VITE_API_URL}/api/medicines`, config);
+      const { data } = await axios.get(`${import.meta.env.VITE_API_URL || 'http://localhost:5005'}/api/medicines`, config);
       setMedicines(data);
     } catch (error) {
       console.error(error);
@@ -53,7 +53,7 @@ const StockManagement = () => {
   const fetchPurchases = async () => {
     try {
       const config = { headers: { Authorization: `Bearer ${doctor.token}` } };
-      const { data } = await axios.get(`${import.meta.env.VITE_API_URL}/api/medicines/purchases`, config);
+      const { data } = await axios.get(`${import.meta.env.VITE_API_URL || 'http://localhost:5005'}/api/medicines/purchases`, config);
       setPurchases(data);
     } catch (error) {
       console.error(error);
@@ -89,9 +89,9 @@ const StockManagement = () => {
       };
 
       if (editingMed) {
-        res = await axios.put(`${import.meta.env.VITE_API_URL}/api/medicines/${editingMed._id}`, payload, config);
+        res = await axios.put(`${import.meta.env.VITE_API_URL || 'http://localhost:5005'}/api/medicines/${editingMed._id}`, payload, config);
       } else {
-        res = await axios.post(`${import.meta.env.VITE_API_URL}/api/medicines`, payload, config);
+        res = await axios.post(`${import.meta.env.VITE_API_URL || 'http://localhost:5005'}/api/medicines`, payload, config);
       }
       setMedicines(res.data);
       setIsMedModalOpen(false);
@@ -104,7 +104,7 @@ const StockManagement = () => {
     if (!paymentModal) return;
     try {
       const config = { headers: { Authorization: `Bearer ${doctor.token}` } };
-      const { data } = await axios.put(`${import.meta.env.VITE_API_URL}/api/medicines/purchase/${paymentModal._id}/pay`, {}, config);
+      const { data } = await axios.put(`${import.meta.env.VITE_API_URL || 'http://localhost:5005'}/api/medicines/purchase/${paymentModal._id}/pay`, {}, config);
       
       setPurchases(purchases.map(p => p._id === data._id ? data : p));
       setPaymentModal(null);
@@ -189,7 +189,7 @@ const StockManagement = () => {
     
     try {
       const config = { headers: { Authorization: `Bearer ${doctor.token}` } };
-      const { data } = await axios.post(`${import.meta.env.VITE_API_URL}/api/medicines/purchase`, {
+      const { data } = await axios.post(`${import.meta.env.VITE_API_URL || 'http://localhost:5005'}/api/medicines/purchase`, {
         invoiceNo,
         invoiceDate,
         vendor,

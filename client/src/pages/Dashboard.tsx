@@ -25,8 +25,8 @@ const Dashboard = () => {
       const config = { headers: { Authorization: `Bearer ${doctor.token}` } };
       
       const [patientRes, apptRes] = await Promise.all([
-        axios.get(`${import.meta.env.VITE_API_URL}/api/patients`, config),
-        axios.get(`${import.meta.env.VITE_API_URL}/api/appointments`, config)
+        axios.get(`${import.meta.env.VITE_API_URL || 'http://localhost:5005'}/api/patients`, config),
+        axios.get(`${import.meta.env.VITE_API_URL || 'http://localhost:5005'}/api/appointments`, config)
       ]);
       
       setPatients(patientRes.data);

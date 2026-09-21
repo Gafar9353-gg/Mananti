@@ -21,7 +21,7 @@ const BillingForm = ({ patient, onClose, initialPrescription }) => {
     const fetchMedicines = async () => {
       try {
         const config = { headers: { Authorization: `Bearer ${doctor.token}` } };
-        const { data } = await axios.get(`${import.meta.env.VITE_API_URL}/api/medicines`, config);
+        const { data } = await axios.get(`${import.meta.env.VITE_API_URL || 'http://localhost:5005'}/api/medicines`, config);
         setStockMedicines(data);
 
         setItems(prevItems => {
@@ -127,7 +127,7 @@ const BillingForm = ({ patient, onClose, initialPrescription }) => {
     setLoading(true);
     try {
       const config = { headers: { Authorization: `Bearer ${doctor.token}` } };
-      await axios.post(`${import.meta.env.VITE_API_URL}/api/bills/generate`, {
+      await axios.post(`${import.meta.env.VITE_API_URL || 'http://localhost:5005'}/api/bills/generate`, {
         patientId: patient._id,
         items,
         subtotal,
