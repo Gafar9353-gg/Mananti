@@ -2,7 +2,7 @@
   "users": [
     {
       "_id": "doc_123",
-      "name": "Dr. Rajesh Kumar",
+      "name": "Dr.mahima ",
       "email": "doctor",
       "password": "$2b$10$8wwYPrDk5fKOrmXXc3vZG.gdsW/kfklc.mRsOl0xqlW2nqBXOaqDm",
       "role": "doctor"

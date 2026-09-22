@@ -10,14 +10,14 @@ const seedDefaultUsers = async () => {
       await User.create([
         {
           _id: 'doc_123',
-          name: 'Dr. Rajesh Kumar',
+          name: 'Dr. Mahima Acharya MBBS, MD Psychiatrist',
           email: 'doctor',
           password: bcrypt.hashSync('doctor123', 10),
           role: 'doctor'
         },
         {
           _id: 'staff_1',
-          name: 'Reception Desk',
+          name: 'Staff - Mananti Portal',
           email: 'staff',
           password: bcrypt.hashSync('staff123', 10),
           role: 'staff'
