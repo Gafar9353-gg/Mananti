@@ -18,8 +18,8 @@ dotenv.config();
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-// Removed connectDB to run without MongoDB
-// connectDB();
+// Connect to MongoDB
+connectDB();
 
 const app = express();
 const server = http.createServer(app);

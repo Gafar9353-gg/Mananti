@@ -1,27 +1,35 @@
-import { db } from './authController.js';
+import { Appointment } from '../models/index.js';
 
 export const bookAppointment = async (req, res) => {
-  const { name, phone, date, timeSlot } = req.body;
-  
-  // First come first serve token based on the selected date
-  const appointmentsOnDate = db.appointments.filter(a => a.date === date);
-  const tokenNumber = appointmentsOnDate.length + 1;
+  try {
+    const { name, phone, date, timeSlot } = req.body;
+    
+    // First come first serve token based on the selected date
+    const appointmentsOnDate = await Appointment.countDocuments({ date });
+    const tokenNumber = appointmentsOnDate + 1;
 
-  const newAppointment = {
-    _id: 'app_' + Date.now(),
-    name,
-    phone,
-    date,
-    timeSlot,
-    tokenNumber,
-    status: 'Scheduled',
-    createdAt: new Date().toISOString()
-  };
+    const newAppointment = await Appointment.create({
+      _id: 'app_' + Date.now(),
+      name,
+      phone,
+      date,
+      timeSlot,
+      tokenNumber,
+      status: 'Scheduled',
+      createdAt: new Date().toISOString()
+    });
 
-  db.appointments.push(newAppointment);
-  res.status(201).json(newAppointment);
+    res.status(201).json(newAppointment);
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
 };
 
 export const getAppointments = async (req, res) => {
-  res.json(db.appointments);
+  try {
+    const appointments = await Appointment.find().sort({ createdAt: -1 });
+    res.json(appointments);
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
 };
