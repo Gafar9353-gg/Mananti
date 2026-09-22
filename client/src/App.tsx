@@ -19,7 +19,7 @@ const ProtectedRoute = ({ children }) => {
 
 import { Menu, X } from 'lucide-react';
 
-const Sidebar = ({ isOpen, setIsOpen }) => {
+const Sidebar = ({ isOpen, setIsOpen, setShowLogoutConfirm }) => {
   const location = useLocation();
   const { doctor, logout } = useContext(AuthContext);
 
@@ -67,7 +67,7 @@ const Sidebar = ({ isOpen, setIsOpen }) => {
         </div>
 
         <div className="p-4 border-t border-slate-200 bg-slate-50">
-          <button onClick={logout} className="flex items-center gap-3 px-4 py-3 w-full rounded-xl text-sm font-medium text-slate-600 hover:bg-red-50 hover:text-red-600 transition-colors">
+          <button onClick={() => setShowLogoutConfirm(true)} className="flex items-center gap-3 px-4 py-3 w-full rounded-xl text-sm font-medium text-slate-600 hover:bg-red-50 hover:text-red-600 transition-colors">
             <LogOut className="h-5 w-5" /> Logout
           </button>
         </div>
@@ -76,17 +76,18 @@ const Sidebar = ({ isOpen, setIsOpen }) => {
   );
 };
 
-const Topbar = ({ setIsOpen }) => {
+const Topbar = ({ setIsOpen, setShowLogoutConfirm }) => {
   const { doctor } = useContext(AuthContext);
   const isDoctor = doctor?.role === 'doctor';
+  const [showProfile, setShowProfile] = React.useState(false);
   
   return (
     <div className="h-20 bg-white border-b border-slate-200 flex items-center justify-between px-4 md:px-8 sticky top-0 z-30 shadow-sm w-full">
       <button className="md:hidden p-2 text-slate-600 hover:bg-slate-100 rounded-lg" onClick={() => setIsOpen(true)}>
         <Menu className="w-6 h-6" />
       </button>
-      <div className="flex-1 flex justify-end">
-        <div className="flex items-center gap-3 cursor-pointer">
+      <div className="flex-1 flex justify-end relative">
+        <div className="flex items-center gap-3 cursor-pointer select-none" onClick={() => setShowProfile(!showProfile)}>
           <div className="h-10 w-10 bg-blue-50 text-blue-600 rounded-full flex items-center justify-center font-bold border border-blue-100">
             {isDoctor ? 'DR' : 'ST'}
           </div>
@@ -96,6 +97,21 @@ const Topbar = ({ setIsOpen }) => {
           </div>
           <ChevronDown className="h-4 w-4 text-slate-400" />
         </div>
+        
+        {showProfile && (
+          <div className="absolute top-14 right-0 w-48 bg-white border border-slate-200 rounded-xl shadow-lg py-2 z-50">
+            <div className="px-4 py-2 border-b border-slate-100 mb-1">
+              <p className="text-sm font-bold text-slate-800">{doctor?.name || (isDoctor ? 'Doctor' : 'Staff')}</p>
+              <p className="text-xs text-slate-500">{doctor?.email || 'Portal User'}</p>
+            </div>
+            <button 
+              onClick={() => { setShowProfile(false); setShowLogoutConfirm(true); }} 
+              className="w-full text-left px-4 py-2 text-sm text-red-600 hover:bg-red-50 flex items-center gap-2 transition-colors"
+            >
+              <LogOut className="h-4 w-4" /> Logout
+            </button>
+          </div>
+        )}
       </div>
     </div>
   );
@@ -103,16 +119,34 @@ const Topbar = ({ setIsOpen }) => {
 
 const Layout = ({ children }) => {
   const [sidebarOpen, setSidebarOpen] = React.useState(false);
+  const [showLogoutConfirm, setShowLogoutConfirm] = React.useState(false);
+  const { logout } = useContext(AuthContext);
+
   return (
-    <div className="min-h-screen bg-[#F8FAFC] flex font-sans w-full overflow-x-hidden">
-      <Sidebar isOpen={sidebarOpen} setIsOpen={setSidebarOpen} />
-      <div className="flex-1 md:ml-64 flex flex-col h-screen overflow-hidden w-full">
-        <Topbar setIsOpen={setSidebarOpen} />
-        <main className="flex-1 p-4 md:p-8 overflow-y-auto w-full">
-          {children}
-        </main>
+    <>
+      <div className="min-h-screen bg-[#F8FAFC] flex font-sans w-full overflow-x-hidden">
+        <Sidebar isOpen={sidebarOpen} setIsOpen={setSidebarOpen} setShowLogoutConfirm={setShowLogoutConfirm} />
+        <div className="flex-1 md:ml-64 flex flex-col h-screen overflow-hidden w-full">
+          <Topbar setIsOpen={setSidebarOpen} setShowLogoutConfirm={setShowLogoutConfirm} />
+          <main className="flex-1 p-4 md:p-8 overflow-y-auto w-full">
+            {children}
+          </main>
+        </div>
       </div>
-    </div>
+      
+      {showLogoutConfirm && (
+        <div className="fixed inset-0 bg-black/60 z-[100] flex items-center justify-center p-4">
+          <div className="bg-white rounded-2xl p-6 w-full max-w-sm shadow-xl">
+            <h3 className="text-xl font-bold text-slate-800 mb-2">Logout</h3>
+            <p className="text-slate-600 mb-6">Are you sure you want to log out of MANANTI Portal?</p>
+            <div className="flex gap-3">
+              <button onClick={() => setShowLogoutConfirm(false)} className="flex-1 py-2.5 rounded-xl font-semibold text-slate-600 bg-slate-100 hover:bg-slate-200 transition-colors">Cancel</button>
+              <button onClick={() => { setShowLogoutConfirm(false); logout(); }} className="flex-1 py-2.5 rounded-xl font-semibold text-white bg-red-600 hover:bg-red-700 transition-colors shadow-sm shadow-red-200">Logout</button>
+            </div>
+          </div>
+        </div>
+      )}
+    </>
   );
 };
 
