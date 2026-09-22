@@ -4,6 +4,7 @@ import cors from 'cors';
 import dotenv from 'dotenv';
 import path from 'path';
 import { fileURLToPath } from 'url';
+import mongoose from 'mongoose';
 import { Server } from 'socket.io';
 
 import connectDB from './config/db.js';
@@ -48,6 +49,16 @@ app.use('/api/patients', patientRoutes);
 app.use('/api/bills', billRoutes);
 app.use('/api/appointments', appointmentRoutes);
 app.use('/api/medicines', medicineRoutes);
+
+app.get('/api/health', (req, res) => {
+  const state = mongoose.connection.readyState;
+  const states = { 0: 'Disconnected', 1: 'Connected', 2: 'Connecting', 3: 'Disconnecting' };
+  res.json({
+    status: 'API is running',
+    mongoDB_Status: states[state] || 'Unknown',
+    mongoDB_URI_Set: !!process.env.MONGO_URI
+  });
+});
 
 app.get('/', (req, res) => {
   res.send('Patient Management API is running...');
