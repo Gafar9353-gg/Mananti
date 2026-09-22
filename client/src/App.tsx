@@ -126,7 +126,7 @@ const Layout = ({ children }) => {
     <>
       <div className="min-h-screen bg-[#F8FAFC] flex font-sans w-full overflow-x-hidden">
         <Sidebar isOpen={sidebarOpen} setIsOpen={setSidebarOpen} setShowLogoutConfirm={setShowLogoutConfirm} />
-        <div className="flex-1 md:ml-64 flex flex-col h-screen overflow-hidden w-full">
+        <div className="flex-1 md:ml-64 flex flex-col h-screen overflow-hidden min-w-0 w-full">
           <Topbar setIsOpen={setSidebarOpen} setShowLogoutConfirm={setShowLogoutConfirm} />
           <main className="flex-1 p-4 md:p-8 overflow-y-auto w-full">
             {children}

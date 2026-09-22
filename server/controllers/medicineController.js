@@ -39,22 +39,20 @@ export const purchaseEntry = async (req, res) => {
     
     if (totalQty <= 0) return;
 
-    const existingIndex = db.medicines.findIndex(m => m.name.toLowerCase() === item.name.toLowerCase());
+    // Find if the medicine with the exact same name AND same batch exists
+    const existingIndex = db.medicines.findIndex(m => 
+      m.name.toLowerCase() === item.name.toLowerCase() && 
+      (m.batch || '') === (item.batch || '')
+    );
     
     if (existingIndex !== -1) {
-      // Update existing medicine stock
+      // Update existing medicine stock (same batch)
       db.medicines[existingIndex].stock += totalQty;
       db.medicines[existingIndex].vendor = vendor || db.medicines[existingIndex].vendor;
-      db.medicines[existingIndex].batch = item.batch || db.medicines[existingIndex].batch;
-      db.medicines[existingIndex].exp = item.exp || db.medicines[existingIndex].exp;
-      db.medicines[existingIndex].mrp = item.mrp || db.medicines[existingIndex].mrp;
-      db.medicines[existingIndex].rate = item.rate || db.medicines[existingIndex].rate;
-      db.medicines[existingIndex].pack = item.pack || db.medicines[existingIndex].pack;
-      db.medicines[existingIndex].sgstPercent = item.sgstPercent || db.medicines[existingIndex].sgstPercent || 0;
-      db.medicines[existingIndex].cgstPercent = item.cgstPercent || db.medicines[existingIndex].cgstPercent || 0;
+      // We don't overwrite mrp/exp because it's the same batch
       db.medicines[existingIndex].lastRestocked = new Date().toISOString();
     } else {
-      // Add new medicine
+      // Add new medicine (or new batch of existing medicine)
       const newMed = {
         _id: 'med_' + Date.now() + Math.floor(Math.random() * 1000),
         name: item.name,

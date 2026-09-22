@@ -67,7 +67,7 @@ const Dashboard = () => {
   }
 
   return (
-    <div className="h-full flex gap-6">
+    <div className="h-full flex flex-col lg:flex-row gap-6">
       <div className="flex-1 flex flex-col min-w-0">
         <div className="mb-8">
           <h1 className="text-3xl font-bold text-[#1B2559]">{greeting}, {finalName}</h1>
@@ -213,7 +213,7 @@ const Dashboard = () => {
       </div>
 
       {/* Right Sidebar (Schedule) */}
-      <div className="w-[340px] flex flex-col gap-6">
+      <div className="w-full lg:w-[340px] flex flex-col gap-6">
         <div className="bg-white border border-slate-200 rounded-2xl shadow-sm p-6 flex-1 flex flex-col">
           <div className="flex justify-between items-center mb-6">
             <h2 className="font-bold text-lg text-[#1B2559] flex items-center gap-2">

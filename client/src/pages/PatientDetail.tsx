@@ -63,9 +63,9 @@ const PatientDetail = () => {
         <ArrowLeft className="h-4 w-4" /> Back to Directory
       </button>
 
-      <div className="flex justify-between items-start mb-6">
+      <div className="flex flex-col sm:flex-row justify-between items-start gap-4 sm:gap-0 mb-6">
         <div>
-          <h1 className="text-3xl font-bold text-slate-800 flex items-center gap-3">
+          <h1 className="text-3xl font-bold text-slate-800 flex flex-wrap items-center gap-3">
             {patient.name}
             <span className="text-sm px-3 py-1 bg-blue-100 text-[#004f6e] rounded-full font-semibold">
               {patient.pid} • {patient.age} yrs • {patient.gender}
@@ -73,7 +73,7 @@ const PatientDetail = () => {
           </h1>
           <p className="text-slate-500 mt-1">Doctor Assigned: {patient.doctorName || '-'}</p>
         </div>
-        <div className="flex gap-3">
+        <div className="flex flex-wrap gap-3">
           {doctor?.role === 'doctor' && (
             <>
               <button onClick={() => setShowPrescription(true)} className="bg-purple-600 text-white hover:bg-purple-700 px-4 py-2 rounded-xl font-medium flex items-center gap-2 shadow-sm">
@@ -129,7 +129,7 @@ const PatientDetail = () => {
                       </div>
                       <span className="text-xs text-slate-500">Dr. {rx.doctorName || 'Doctor'}</span>
                     </div>
-                    <div className="p-3 bg-white">
+                    <div className="p-3 bg-white overflow-x-auto">
                       <table className="w-full text-sm text-left">
                         <thead>
                           <tr className="text-slate-500 border-b border-slate-50">
