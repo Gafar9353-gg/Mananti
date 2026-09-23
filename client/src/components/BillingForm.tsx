@@ -173,7 +173,7 @@ const BillingForm = ({ patient, onClose, initialPrescription }) => {
           {/* Header */}
           <div className="flex justify-center items-center mb-4 text-center">
             <div>
-              <h1 className="text-2xl print:text-xl font-extrabold text-black tracking-wide uppercase">N. R. Acharya Hospital</h1>
+              <h1 className="text-2xl print:text-xl font-extrabold text-black tracking-wide uppercase">Dr. N.R. Acharya Memorial Hospital</h1>
               <p className="text-black font-bold text-base print:text-sm mt-1">Dr. Mahima Acharya</p>
               <p className="text-slate-600 text-xs print:text-[10px]">MBBS, MD Psychiatrist</p>
             </div>
