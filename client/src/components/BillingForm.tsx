@@ -182,7 +182,7 @@ const BillingForm = ({ patient, onClose, initialPrescription }) => {
           {/* Title Banner */}
           <div className="flex justify-center mb-4">
             <div className="bg-white px-8 py-2 rounded-xl border-2 border-slate-800 text-center inline-block">
-              <h2 className="text-lg print:text-base font-bold text-black tracking-wider m-0">MEDICAL BILL</h2>
+              <h2 className="text-lg print:text-base font-bold text-black tracking-wider m-0">MEDICINE BILL</h2>
               <div className="flex items-center gap-2 justify-center">
                 <div className="h-px w-8 bg-black"></div>
                 <p className="text-black text-[10px] font-semibold tracking-widest uppercase m-0">Patient Payment Receipt</p>
