@@ -29,8 +29,6 @@ const seedDefaultUsers = async () => {
     console.error('Error seeding users:', err);
   }
 };
-// Run seed on startup (safe because it checks count)
-seedDefaultUsers();
 
 const generateToken = (id) => {
   return jwt.sign({ id }, process.env.JWT_SECRET || 'fallback_secret', { expiresIn: '30d' });
