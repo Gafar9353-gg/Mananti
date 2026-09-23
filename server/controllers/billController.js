@@ -36,7 +36,7 @@ export const uploadBill = async (req, res) => {
 
 export const generateBill = async (req, res) => {
   try {
-    const { patientId, items, subtotal, gstAmount, totalAmount } = req.body;
+    const { patientId, items, subtotal, gstAmount, totalAmount, consultationCharges } = req.body;
     
     let maxBillNo = 0;
     const allPatients = await Patient.find({});
@@ -59,23 +59,23 @@ export const generateBill = async (req, res) => {
       date: new Date().toISOString(),
       items,
       subtotal,
+      consultationCharges: consultationCharges || 0,
       gstAmount,
       totalAmount,
       generatedBy: req.user.name
     };
 
-    // Deduct stock for each item
+    // Deduct stock for each item using findOneAndUpdate to bypass Mongoose strict schema limitations
     for (const item of items) {
-      const medName = item.name || item.medicine;
+      const medName = String(item.name || item.medicine || '').trim();
       if (!medName) continue;
       
       const qty = item.quantity ? parseInt(item.quantity) : 1;
       
-      // Case-insensitive update using mongoose
       const med = await Medicine.findOne({ name: { $regex: new RegExp('^' + medName + '$', 'i') } });
       if (med) {
-        med.stock = Math.max(0, (med.stock || 0) - qty);
-        await med.save();
+        const newStock = Math.max(0, (parseInt(med.stock) || 0) - qty);
+        await Medicine.updateOne({ _id: med._id }, { $set: { stock: newStock } });
       }
     }
 
