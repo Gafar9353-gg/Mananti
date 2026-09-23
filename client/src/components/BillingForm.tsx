@@ -16,6 +16,7 @@ const BillingForm = ({ patient, onClose, initialPrescription }) => {
 
   const [items, setItems] = useState([]);
   const [gstPercent, setGstPercent] = useState(5);
+  const [consultationCharges, setConsultationCharges] = useState('');
 
   useEffect(() => {
     const fetchMedicines = async () => {
@@ -118,8 +119,8 @@ const BillingForm = ({ patient, onClose, initialPrescription }) => {
     setItems(newItems);
   };
 
-  const totalAmount = items.reduce((sum, item) => sum + (parseFloat(item.amount) || 0), 0);
-  const subtotal = totalAmount; // Legacy support for backend
+  const subtotal = items.reduce((sum, item) => sum + (parseFloat(item.amount) || 0), 0);
+  const totalAmount = subtotal + (parseFloat(consultationCharges) || 0);
   const gstAmount = 0; // Legacy support for backend
 
   const handleSubmit = async (e) => {
@@ -132,6 +133,7 @@ const BillingForm = ({ patient, onClose, initialPrescription }) => {
         items,
         subtotal,
         gstAmount,
+        consultationCharges: parseFloat(consultationCharges) || 0,
         totalAmount
       }, config);
       setPrintMode(true);
@@ -218,7 +220,7 @@ const BillingForm = ({ patient, onClose, initialPrescription }) => {
               <thead>
                 <tr className="bg-slate-100 text-black border-b-2 border-slate-800">
                   <th className="p-1.5 border-r border-slate-800 font-bold text-center w-8">Sl.</th>
-                  <th className="p-1.5 border-r border-slate-800 font-bold text-center">Medicine Name + mg.</th>
+                  <th className="p-1.5 border-r border-slate-800 font-bold text-center">Medicine</th>
                   <th className="p-1.5 border-r border-slate-800 font-bold text-center w-14">Dosing</th>
                   <th className="p-1.5 border-r border-slate-800 font-bold text-center w-10">Days</th>
                   <th className="p-1.5 border-r border-slate-800 font-bold text-center w-8">Qty</th>
@@ -245,15 +247,17 @@ const BillingForm = ({ patient, onClose, initialPrescription }) => {
             
             {/* Totals Section */}
             <div className="flex justify-end border-t-2 border-slate-800">
-              <div className="w-40 print:w-32 border-l-2 border-slate-800">
+              <div className="w-48 print:w-40 border-l-2 border-slate-800">
                 <div className="flex justify-between p-1.5 border-b border-slate-300 text-xs print:text-[10px] text-black">
                   <span>Subtotal</span>
-                  <span>₹ {totalAmount.toFixed(2)}</span>
+                  <span>₹ {subtotal.toFixed(2)}</span>
                 </div>
+                {(parseFloat(consultationCharges) > 0) && (
                 <div className="flex justify-between p-1.5 border-b border-slate-300 text-xs print:text-[10px] text-black">
-                  <span>Discount</span>
-                  <span>₹ 0.00</span>
+                  <span>Consultation Fees</span>
+                  <span>₹ {parseFloat(consultationCharges).toFixed(2)}</span>
                 </div>
+                )}
                 <div className="flex justify-between p-1.5 bg-slate-100 font-bold text-black text-sm print:text-xs">
                   <span>Total</span>
                   <span>₹ {totalAmount.toFixed(2)}</span>
@@ -339,8 +343,24 @@ const BillingForm = ({ patient, onClose, initialPrescription }) => {
           </div>
 
           <div className="mt-6 flex justify-end">
-            <div className="w-72 bg-slate-50 p-4 rounded-xl border border-slate-200 space-y-3 text-sm">
-              <div className="flex justify-between items-center">
+            <div className="w-80 bg-slate-50 p-4 rounded-xl border border-slate-200 space-y-3 text-sm">
+              <div className="flex justify-between items-center text-slate-600">
+                <span>Subtotal</span>
+                <span className="font-semibold">₹{subtotal.toFixed(2)}</span>
+              </div>
+              <div className="flex justify-between items-center text-slate-600">
+                <span>Consultation Fees</span>
+                <input 
+                  type="number" 
+                  min="0"
+                  step="0.01"
+                  placeholder="0.00"
+                  value={consultationCharges}
+                  onChange={(e) => setConsultationCharges(e.target.value)}
+                  className="w-24 px-2 py-1 border rounded outline-none focus:border-orange-400 text-right font-medium"
+                />
+              </div>
+              <div className="border-t border-slate-200 pt-3 flex justify-between items-center">
                 <span className="font-bold text-slate-800 text-lg">Total</span>
                 <span className="font-bold text-orange-600 text-xl">₹{totalAmount.toFixed(2)}</span>
               </div>

@@ -79,7 +79,7 @@ const ViewBillModal = ({ bill, patient, doctor, onClose }) => {
             <thead>
               <tr className="bg-slate-100 text-black border-b-2 border-slate-800">
                 <th className="p-1.5 border-r border-slate-800 font-bold text-center w-8">Sl.</th>
-                <th className="p-1.5 border-r border-slate-800 font-bold text-center">Medicine Name + mg.</th>
+                <th className="p-1.5 border-r border-slate-800 font-bold text-center">Medicine</th>
                 <th className="p-1.5 border-r border-slate-800 font-bold text-center w-14">Dosing</th>
                 <th className="p-1.5 border-r border-slate-800 font-bold text-center w-10">Days</th>
                 <th className="p-1.5 border-r border-slate-800 font-bold text-center w-8">Qty</th>
@@ -106,18 +106,20 @@ const ViewBillModal = ({ bill, patient, doctor, onClose }) => {
           
           {/* Totals Section */}
           <div className="flex justify-end border-t-2 border-slate-800">
-            <div className="w-40 print:w-32 border-l-2 border-slate-800">
+            <div className="w-48 print:w-40 border-l-2 border-slate-800">
               <div className="flex justify-between p-1.5 border-b border-slate-300 text-xs print:text-[10px] text-black">
                 <span>Subtotal</span>
-                <span>₹ {parseFloat(totalAmount).toFixed(2)}</span>
+                <span>₹ {parseFloat(bill.subtotal || totalAmount).toFixed(2)}</span>
               </div>
+              {(parseFloat(bill.consultationCharges) > 0) && (
               <div className="flex justify-between p-1.5 border-b border-slate-300 text-xs print:text-[10px] text-black">
-                <span>Discount</span>
-                <span>₹ 0.00</span>
+                <span>Consultation Fees</span>
+                <span>₹ {parseFloat(bill.consultationCharges).toFixed(2)}</span>
               </div>
+              )}
               <div className="flex justify-between p-1.5 bg-slate-100 font-bold text-black text-sm print:text-xs">
                 <span>Total</span>
-                <span>₹ {parseFloat(totalAmount).toFixed(2)}</span>
+                <span>₹ {parseFloat(bill.totalAmount || totalAmount).toFixed(2)}</span>
               </div>
             </div>
           </div>
