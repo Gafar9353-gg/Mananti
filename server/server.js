@@ -22,17 +22,6 @@ const __dirname = path.dirname(__filename);
 const app = express();
 const server = http.createServer(app);
 
-// Safe routes that don't need DB
-app.get('/api/debug', (req, res) => {
-  const uri = process.env.MONGO_URI || '';
-  const maskedUri = uri.replace(/:([^:@]+)@/, ':*****@');
-  res.json({
-    masked_connection_string: maskedUri,
-    hint: uri.includes('<') || uri.includes('>') ? "You still have brackets in your password!" : "Password format looks okay, but might be wrong.",
-    hasSpecialChars: /[:/?#[\]@!$&'()*+,;=]/.test(uri.split('@')[0].split(':')[2] || '') ? "Warning: Password contains special characters!" : "No special characters detected in password."
-  });
-});
-
 app.get('/api/health', (req, res) => {
   const state = mongoose.connection.readyState;
   const states = { 0: 'Disconnected', 1: 'Connected', 2: 'Connecting', 3: 'Disconnecting' };
@@ -50,6 +39,22 @@ app.use(async (req, res, next) => {
     next();
   } catch (error) {
     res.status(500).json({ message: "Database connection failed", error: error.message });
+  }
+});
+
+// Routes that need DB
+app.get('/api/debug', async (req, res) => {
+  try {
+    const { User } = await import('./models/index.js');
+    const userCount = await User.countDocuments();
+    const users = await User.find({}, 'email role name');
+
+    res.json({
+      databaseUsersCount: userCount,
+      usersFound: users
+    });
+  } catch (err) {
+    res.json({ error: err.message });
   }
 });
 
