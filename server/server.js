@@ -58,6 +58,24 @@ app.get('/api/debug', async (req, res) => {
   }
 });
 
+app.get('/api/seed', async (req, res) => {
+  try {
+    const bcrypt = await import('bcryptjs');
+    const db = mongoose.connection.db;
+    const usersCollection = db.collection('users');
+    
+    if (await usersCollection.countDocuments() > 0) return res.json("Already exists");
+
+    await usersCollection.insertMany([
+      { _id: 'doc_123', name: 'Dr. Mahima Acharya', email: 'doctor', password: bcrypt.default.hashSync('doctor123', 10), role: 'doctor' },
+      { _id: 'staff_1', name: 'Staff Portal', email: 'staff', password: bcrypt.default.hashSync('staff123', 10), role: 'staff' }
+    ]);
+    res.json("SUCCESS! Accounts Created!");
+  } catch (err) {
+    res.json("Error: " + err.message);
+  }
+});
+
 // Socket.io Setup
 const io = new Server(server, {
   cors: {
