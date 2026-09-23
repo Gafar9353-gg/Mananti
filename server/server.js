@@ -19,11 +19,18 @@ dotenv.config();
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-// Connect to MongoDB
-connectDB();
-
 const app = express();
 const server = http.createServer(app);
+
+// Force DB connection before handling ANY request (Vercel Serverless Fix)
+app.use(async (req, res, next) => {
+  try {
+    await connectDB();
+    next();
+  } catch (error) {
+    res.status(500).json({ message: "Database connection failed", error: error.message });
+  }
+});
 
 // Socket.io Setup
 const io = new Server(server, {

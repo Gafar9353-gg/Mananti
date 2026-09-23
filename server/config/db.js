@@ -1,19 +1,33 @@
 import mongoose from 'mongoose';
 
+mongoose.set('bufferCommands', false);
+
+let cached = global.mongoose;
+
+if (!cached) {
+  cached = global.mongoose = { conn: null, promise: null };
+}
+
 const connectDB = async () => {
-  try {
-    // Disable buffering so it fails immediately instead of hanging for 10000ms
-    mongoose.set('bufferCommands', false);
-    
-    const conn = await mongoose.connect(process.env.MONGO_URI || 'mongodb://localhost:27017/patient_management', {
-      serverSelectionTimeoutMS: 5000 // Fail faster if IP is blocked
-    });
-    console.log(`MongoDB Connected: ${conn.connection.host}`);
-  } catch (error) {
-    console.error(`MongoDB Connection Error FATAL: ${error.message}`);
-    console.error(`Did you whitelist 0.0.0.0/0 in MongoDB Atlas?`);
-    console.error(`Are you sure your password in MONGO_URI is exactly correct?`);
+  if (cached.conn) {
+    return cached.conn;
   }
+
+  if (!cached.promise) {
+    const opts = {
+      serverSelectionTimeoutMS: 5000
+    };
+    cached.promise = mongoose.connect(process.env.MONGO_URI || 'mongodb://localhost:27017/patient_management', opts).then((mongoose) => {
+      console.log(`MongoDB Connected: ${mongoose.connection.host}`);
+      return mongoose;
+    }).catch(err => {
+      console.error(`MongoDB Connection Error FATAL: ${err.message}`);
+      throw err;
+    });
+  }
+  
+  cached.conn = await cached.promise;
+  return cached.conn;
 };
 
 export default connectDB;
