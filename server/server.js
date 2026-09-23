@@ -57,6 +57,17 @@ app.use('/api/bills', billRoutes);
 app.use('/api/appointments', appointmentRoutes);
 app.use('/api/medicines', medicineRoutes);
 
+app.get('/api/debug', (req, res) => {
+  const uri = process.env.MONGO_URI || '';
+  // Mask the password so it's safe to display
+  const maskedUri = uri.replace(/:([^:@]+)@/, ':*****@');
+  res.json({
+    masked_connection_string: maskedUri,
+    hint: uri.includes('<') || uri.includes('>') ? "You still have brackets in your password!" : "Password format looks okay, but might be wrong.",
+    hasSpecialChars: /[:/?#[\]@!$&'()*+,;=]/.test(uri.split('@')[0].split(':')[2] || '') ? "Warning: Password contains special characters!" : "No special characters detected in password."
+  });
+});
+
 app.get('/api/health', (req, res) => {
   const state = mongoose.connection.readyState;
   const states = { 0: 'Disconnected', 1: 'Connected', 2: 'Connecting', 3: 'Disconnecting' };
