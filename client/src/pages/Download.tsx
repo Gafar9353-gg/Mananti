@@ -64,18 +64,16 @@ const Download: React.FC = () => {
       <header className="w-full bg-white/80 backdrop-blur-md border-b border-slate-200 sticky top-0 z-40">
         <div className="max-w-5xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between">
           <Link to="/" className="flex items-center gap-3">
-            <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-[#004f6e] to-[#023047] flex items-center justify-center text-white shadow-md shadow-[#004f6e]/20">
-              <Stethoscope className="w-5 h-5 text-emerald-400" />
-            </div>
+            <img src="/mananti-app-icon.png" alt="MANANTI" className="w-10 h-10 rounded-xl object-contain shadow-md border border-slate-100" />
             <div>
               <span className="font-extrabold text-lg text-slate-900 leading-none block">MANANTI</span>
-              <span className="text-[10px] font-semibold text-slate-500 uppercase tracking-wider block">Psychiatry Care</span>
+              <span className="text-[10px] font-semibold text-teal-700 uppercase tracking-wider block">Psychiatrist Care App</span>
             </div>
           </Link>
 
           <Link
             to="/"
-            className="text-xs sm:text-sm font-semibold text-[#004f6e] hover:text-[#023047] bg-slate-100 hover:bg-slate-200 px-4 py-2 rounded-xl transition-all flex items-center gap-1.5"
+            className="text-xs sm:text-sm font-semibold text-teal-800 hover:text-purple-700 bg-slate-100 hover:bg-slate-200 px-4 py-2 rounded-xl transition-all flex items-center gap-1.5"
           >
             <span>Open Web App</span>
             <ExternalLink className="w-4 h-4" />
@@ -89,19 +87,24 @@ const Download: React.FC = () => {
         {/* App Hero */}
         <div className="flex flex-col items-center text-center max-w-xl mb-8">
           <div className="relative mb-5">
-            <div className="w-20 h-20 sm:w-24 sm:h-24 rounded-3xl bg-gradient-to-br from-[#004f6e] via-[#005f85] to-[#023047] flex items-center justify-center text-white shadow-xl shadow-[#004f6e]/25 border-4 border-white">
-              <Stethoscope className="w-10 h-10 sm:w-12 sm:h-12 text-emerald-400 drop-shadow-md" />
-            </div>
-            <div className="absolute -bottom-1 -right-1 bg-emerald-500 text-white p-1 rounded-full shadow border-2 border-white">
+            <img 
+              src="/mananti-app-icon.png" 
+              alt="MANANTI App Icon" 
+              className="w-20 h-20 sm:w-24 sm:h-24 rounded-3xl shadow-xl shadow-teal-900/10 border-4 border-white object-contain"
+            />
+            <div className="absolute -bottom-1 -right-1 bg-gradient-to-r from-teal-500 to-purple-500 text-white p-1 rounded-full shadow border-2 border-white">
               <Sparkles className="w-3.5 h-3.5" />
             </div>
           </div>
 
-          <h1 className="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight mb-2">
+          <h1 className="text-3xl sm:text-4xl font-black tracking-wider bg-gradient-to-r from-[#0d9488] via-[#0284c7] to-[#8b5cf6] bg-clip-text text-transparent mb-1">
             Download MANANTI
           </h1>
-          <p className="text-sm sm:text-base font-medium text-slate-600 mb-2">
-            Official Mental Health and Psychiatry Care Application
+          <h2 className="text-lg sm:text-xl font-bold text-slate-800 tracking-tight mb-1">
+            Psychiatrist Care App
+          </h2>
+          <p className="text-xs sm:text-sm font-semibold text-slate-400 mb-2">
+            Better Mind &bull; Brighter Tomorrow
           </p>
           <p className="text-xs sm:text-sm text-slate-500 max-w-md">
             Fast, secure, dedicated application for your laptop and mobile device.

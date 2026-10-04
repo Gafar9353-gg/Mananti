@@ -58,12 +58,12 @@ const Login = () => {
       {/* ========================================================================= */}
       <div className="hidden lg:flex w-1/2 relative bg-gradient-to-br from-[#e6f7f5] via-[#f0f9ff] to-[#f5f3ff] items-center justify-center p-12 overflow-hidden border-r border-slate-100">
         <div className="relative z-10 text-center flex flex-col items-center max-w-md">
-          {/* Official Brain + Leaf App Logo */}
-          <div className="p-3 bg-white/90 backdrop-blur-md rounded-3xl shadow-xl shadow-teal-900/5 mb-6 border border-white">
+          {/* MANANTI Official Brain + Leaf Squircle Logo */}
+          <div className="p-3 bg-white/95 backdrop-blur-md rounded-3xl shadow-xl shadow-teal-900/10 mb-6 border border-white/80">
             <img 
-              src="/mananti-logo.jpg" 
+              src="/mananti-logo.png" 
               alt="MANANTI Logo" 
-              className="w-28 h-28 object-contain rounded-2xl"
+              className="w-32 h-32 object-contain rounded-2xl drop-shadow-sm"
             />
           </div>
           
@@ -77,7 +77,7 @@ const Login = () => {
             Better Mind &bull; Brighter Tomorrow
           </p>
           
-          <div className="bg-white/80 backdrop-blur-sm px-6 py-4 rounded-2xl border border-slate-200/60 shadow-sm max-w-sm">
+          <div className="bg-white/85 backdrop-blur-sm px-6 py-4 rounded-2xl border border-slate-200/60 shadow-sm max-w-sm">
             <p className="text-slate-600 font-medium text-sm leading-relaxed">
               Professional support for a healthier, happier you.
             </p>
@@ -86,64 +86,43 @@ const Login = () => {
       </div>
 
       {/* ========================================================================= */}
-      {/* 2. MOBILE HEADER (Phone View with Brain+Leaf Logo & Theme)                 */}
+      {/* 2. SIGN IN SECTION (Responsive for Mobile & Desktop)                     */}
       {/* ========================================================================= */}
-      <div className="lg:hidden w-full bg-gradient-to-b from-[#e6f7f5] to-white/60 p-6 relative overflow-hidden text-center flex flex-col items-center">
-        {/* Back to Home Button */}
-        <div className="w-full flex justify-between items-center mb-4">
+      <div className="flex-1 flex flex-col items-center justify-center p-4 sm:p-8 lg:p-16 relative z-10 min-h-screen">
+        
+        {/* Back to Home Button (Top Right on Desktop, Top Left on Mobile) */}
+        <div className="w-full max-w-md flex justify-between items-center mb-4">
           <Link 
             to="/" 
             className="inline-flex items-center gap-1.5 text-xs font-bold text-teal-800 hover:text-purple-700 bg-white/90 backdrop-blur-md px-3.5 py-1.5 rounded-full border border-slate-200/80 active:scale-95 transition-all shadow-sm"
           >
             <ArrowLeft className="w-3.5 h-3.5" />
-            <span>Home</span>
+            <span>Back to Home</span>
           </Link>
-          <span className="text-[11px] font-bold text-purple-700 bg-purple-100/70 px-2.5 py-0.5 rounded-full">
-            Care Portal
+          <span className="text-[11px] font-bold text-purple-700 bg-purple-100/80 px-3 py-1 rounded-full border border-purple-200/60">
+            Psychiatry Portal
           </span>
         </div>
 
-        {/* Mobile Logo & Brand */}
-        <div className="flex flex-col items-center">
-          <div className="p-2 bg-white rounded-2xl shadow-md border border-slate-100 mb-3">
-            <img 
-              src="/mananti-logo.jpg" 
-              alt="MANANTI Logo" 
-              className="w-16 h-16 object-contain rounded-xl"
-            />
-          </div>
-          <h1 className="text-3xl font-extrabold tracking-wider bg-gradient-to-r from-[#0d9488] via-[#0284c7] to-[#8b5cf6] bg-clip-text text-transparent leading-none">
-            MANANTI
-          </h1>
-          <p className="text-xs font-bold text-slate-700 mt-1">
-            Psychiatrist Care App
-          </p>
-          <p className="text-[11px] font-semibold text-slate-400 mt-0.5">
-            Better Mind &bull; Brighter Tomorrow
-          </p>
-        </div>
-      </div>
-
-      {/* ========================================================================= */}
-      {/* 3. SIGN IN FORM CARD                                                      */}
-      {/* ========================================================================= */}
-      <div className="flex-1 flex flex-col items-center justify-center p-5 sm:p-8 lg:p-16 relative z-10">
-        
-        {/* Desktop Back button */}
-        <div className="hidden lg:block absolute top-8 right-8">
-          <Link 
-            to="/" 
-            className="text-sm font-semibold text-slate-500 hover:text-teal-700 transition-colors flex items-center gap-1.5 bg-white/80 px-4 py-2 rounded-full border border-slate-200 shadow-sm"
-          >
-            <ArrowLeft className="w-4 h-4" /> Back to Home
-          </Link>
-        </div>
-
+        {/* The Main Login Card */}
         <div className="w-full max-w-md bg-white/95 backdrop-blur-md p-6 sm:p-8 rounded-3xl shadow-xl shadow-slate-200/60 border border-slate-100">
           
-          <div className="mb-6 text-left">
-            <h2 className="text-2xl sm:text-3xl font-extrabold text-slate-800 tracking-tight">Sign In</h2>
-            <p className="text-xs sm:text-sm text-slate-500 mt-1">Access your psychiatric care account</p>
+          {/* Header Inside Card: Centered Logo + "Welcome to MANANTI" + "Sign In" */}
+          <div className="flex flex-col items-center text-center mb-6">
+            <div className="p-2.5 bg-gradient-to-br from-teal-50 to-purple-50 rounded-2xl shadow-sm border border-slate-100 mb-3">
+              <img 
+                src="/mananti-logo.png" 
+                alt="MANANTI Logo" 
+                className="w-16 h-16 sm:w-20 sm:h-20 object-contain rounded-xl"
+              />
+            </div>
+            
+            <h2 className="text-2xl sm:text-3xl font-extrabold text-slate-800 tracking-tight leading-tight">
+              Welcome to <span className="bg-gradient-to-r from-[#0d9488] via-[#0284c7] to-[#8b5cf6] bg-clip-text text-transparent">MANANTI</span>
+            </h2>
+            <p className="text-xs sm:text-sm font-semibold text-slate-500 mt-1">
+              Sign In to your practitioner account
+            </p>
           </div>
 
           {/* Quick-Fill Helpers for Easy 1-Tap Login */}
@@ -229,7 +208,7 @@ const Login = () => {
             <button
               type="submit"
               disabled={loading}
-              className="w-full bg-gradient-to-r from-[#10b981] via-[#0d9488] to-[#8b5cf6] hover:opacity-95 active:scale-98 text-white font-bold py-3.5 rounded-full transition-all shadow-lg shadow-teal-600/25 mt-5 flex items-center justify-center gap-2 cursor-pointer"
+              className="w-full bg-gradient-to-r from-[#10b981] via-[#0d9488] to-[#8b5cf6] hover:opacity-95 active:scale-98 text-white font-bold py-3.5 rounded-full transition-all shadow-lg shadow-teal-600/25 mt-5 flex items-center justify-center gap-2 cursor-pointer text-base"
             >
               {loading ? (
                 <span className="inline-block w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin"></span>
