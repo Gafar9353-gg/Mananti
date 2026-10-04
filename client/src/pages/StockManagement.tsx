@@ -218,7 +218,7 @@ const StockManagement = () => {
   const lowStockCount = medicines.filter(m => m.stock > 0 && m.stock <= lowStockThreshold).length;
 
   return (
-    <div className="flex flex-col h-full bg-slate-50 p-3 sm:p-6 rounded-2xl relative w-full max-w-full min-w-0">
+    <div className="flex flex-col min-h-full bg-slate-50 p-3 sm:p-6 rounded-2xl relative w-full max-w-full min-w-0 overflow-visible">
       <div className="mb-6 flex flex-col sm:flex-row sm:justify-between sm:items-start gap-4">
         <div>
           <h1 className="text-2xl sm:text-3xl font-bold text-slate-800 flex flex-wrap items-center gap-2 sm:gap-3">
@@ -326,7 +326,7 @@ const StockManagement = () => {
           </div>
         </div>
       ) : (
-        <div className="bg-white border border-slate-200 rounded-2xl shadow-sm flex-1 flex flex-col p-4 sm:p-6 overflow-hidden w-full max-w-full">
+        <div className="bg-white border border-slate-200 rounded-2xl shadow-sm flex flex-col p-3 sm:p-6 overflow-visible w-full max-w-full mb-8">
           <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-3 mb-6">
             <h2 className="text-lg sm:text-xl font-bold text-slate-800 flex items-center gap-2">
               <PlusCircle className="w-5 h-5 text-[#004f6e]" /> New GST Purchase Entry

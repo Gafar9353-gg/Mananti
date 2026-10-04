@@ -216,7 +216,7 @@ const BillingForm = ({ patient, onClose, initialPrescription }) => {
 
           {/* Table */}
           <div className="border-2 border-slate-800 rounded-md overflow-x-auto mb-4 w-full">
-            <table className="w-full text-left text-xs print:text-[9px] border-collapse min-w-[540px]">
+            <table className="w-full text-left text-xs print:text-[9px] border-collapse min-w-[480px]">
               <thead>
                 <tr className="bg-slate-100 text-black border-b-2 border-slate-800">
                   <th className="p-1.5 border-r border-slate-800 font-bold text-center w-8">Sl.</th>
@@ -244,24 +244,24 @@ const BillingForm = ({ patient, onClose, initialPrescription }) => {
                 ))}
               </tbody>
             </table>
-            
-            {/* Totals Section */}
-            <div className="flex justify-end border-t-2 border-slate-800">
-              <div className="w-48 print:w-40 border-l-2 border-slate-800">
-                <div className="flex justify-between p-1.5 border-b border-slate-300 text-xs print:text-[10px] text-black">
-                  <span>Subtotal</span>
-                  <span>₹ {subtotal.toFixed(2)}</span>
-                </div>
-                {(parseFloat(consultationCharges) > 0) && (
-                <div className="flex justify-between p-1.5 border-b border-slate-300 text-xs print:text-[10px] text-black">
-                  <span>Consultation Fees</span>
-                  <span>₹ {parseFloat(consultationCharges).toFixed(2)}</span>
-                </div>
-                )}
-                <div className="flex justify-between p-1.5 bg-slate-100 font-bold text-black text-sm print:text-xs">
-                  <span>Total</span>
-                  <span>₹ {totalAmount.toFixed(2)}</span>
-                </div>
+          </div>
+          
+          {/* Totals Section outside table so Subtotal and Fees are never sliced */}
+          <div className="flex justify-end mb-4 w-full">
+            <div className="w-full sm:w-56 border-2 border-slate-800 rounded-md bg-white">
+              <div className="flex justify-between p-1.5 border-b border-slate-300 text-xs print:text-[10px] text-black">
+                <span>Subtotal</span>
+                <span>₹ {subtotal.toFixed(2)}</span>
+              </div>
+              {(parseFloat(consultationCharges) > 0) && (
+              <div className="flex justify-between p-1.5 border-b border-slate-300 text-xs print:text-[10px] text-black">
+                <span>Consultation Fees</span>
+                <span>₹ {parseFloat(consultationCharges).toFixed(2)}</span>
+              </div>
+              )}
+              <div className="flex justify-between p-1.5 bg-slate-100 font-bold text-black text-sm print:text-xs">
+                <span>Total</span>
+                <span>₹ {totalAmount.toFixed(2)}</span>
               </div>
             </div>
           </div>
@@ -308,42 +308,43 @@ const BillingForm = ({ patient, onClose, initialPrescription }) => {
             ))}
           </datalist>
 
-          <div className="border border-slate-200 rounded-xl overflow-hidden">
-            <table className="w-full text-left text-sm whitespace-nowrap">
-              <thead className="bg-slate-50 text-slate-600">
+          <div className="border border-slate-200 rounded-xl overflow-x-auto w-full shadow-sm bg-white">
+            <table className="w-full text-left text-xs sm:text-sm whitespace-nowrap min-w-[720px]">
+              <thead className="bg-slate-50 text-slate-700">
                 <tr>
-                  <th className="p-3 font-semibold">Medicine Name </th>
+                  <th className="p-3 font-semibold min-w-[160px]">Medicine Name</th>
                   <th className="p-3 font-semibold w-24">Dosing 1-0-1</th>
                   <th className="p-3 font-semibold w-24 text-center">Days (Duration)</th>
-                  <th className="p-3 font-semibold w-20 text-center">Qty</th>
-                  <th className="p-3 font-semibold w-32">Batch No.</th>
-                  <th className="p-3 font-semibold w-32">Exp. Date</th>
+                  <th className="p-3 font-semibold w-16 text-center">Qty</th>
+                  <th className="p-3 font-semibold w-28">Batch No.</th>
+                  <th className="p-3 font-semibold w-28">Exp. Date</th>
                   <th className="p-3 font-semibold w-32 text-right">GST + Amount</th>
                 </tr>
               </thead>
               <tbody className="divide-y divide-slate-100">
                 {items.map((item, idx) => (
-                  <tr key={idx}>
-                    <td className="p-2"><input list="billing-medicine-suggestions" required value={item.name} onChange={(e) => handleItemChange(idx, 'name', e.target.value)} className="w-full px-2 py-1.5 border rounded outline-none focus:border-orange-400" /></td>
-                    <td className="p-2"><input required value={item.dosing} onChange={(e) => handleItemChange(idx, 'dosing', e.target.value)} className="w-full px-2 py-1.5 border rounded outline-none focus:border-orange-400" /></td>
-                    <td className="p-2"><input required value={item.days} onChange={(e) => handleItemChange(idx, 'days', e.target.value)} className="w-full px-2 py-1.5 border rounded outline-none focus:border-orange-400 text-center" /></td>
+                  <tr key={idx} className="hover:bg-slate-50">
+                    <td className="p-2"><input list="billing-medicine-suggestions" required value={item.name} onChange={(e) => handleItemChange(idx, 'name', e.target.value)} className="w-full min-w-[150px] px-2.5 py-2 border rounded-lg outline-none focus:border-orange-400 font-medium" placeholder="Medicine Name" /></td>
+                    <td className="p-2"><input required value={item.dosing} onChange={(e) => handleItemChange(idx, 'dosing', e.target.value)} className="w-full px-2 py-2 border rounded-lg outline-none focus:border-orange-400 text-center" placeholder="1-0-1" /></td>
+                    <td className="p-2"><input required value={item.days} onChange={(e) => handleItemChange(idx, 'days', e.target.value)} className="w-full px-2 py-2 border rounded-lg outline-none focus:border-orange-400 text-center" placeholder="5" /></td>
                     <td className="p-2 text-center font-bold text-slate-700">{item.quantity}</td>
-                    <td className="p-2"><input required placeholder="B-123" value={item.batchNo} onChange={(e) => handleItemChange(idx, 'batchNo', e.target.value)} className="w-full px-2 py-1.5 border rounded outline-none focus:border-orange-400" /></td>
-                    <td className="p-2"><input required placeholder="MM/YY" value={item.expDate} onChange={(e) => handleItemChange(idx, 'expDate', e.target.value)} className="w-full px-2 py-1.5 border rounded outline-none focus:border-orange-400" /></td>
-                    <td className="p-2"><input required type="number" step="0.01" placeholder="0.00" value={item.amount} onChange={(e) => handleItemChange(idx, 'amount', e.target.value)} className="w-full px-2 py-1.5 border rounded outline-none focus:border-orange-400 text-right font-medium" /></td>
+                    <td className="p-2"><input required placeholder="B-123" value={item.batchNo} onChange={(e) => handleItemChange(idx, 'batchNo', e.target.value)} className="w-full px-2 py-2 border rounded-lg outline-none focus:border-orange-400" /></td>
+                    <td className="p-2"><input required placeholder="MM/YY" value={item.expDate} onChange={(e) => handleItemChange(idx, 'expDate', e.target.value)} className="w-full px-2 py-2 border rounded-lg outline-none focus:border-orange-400" /></td>
+                    <td className="p-2"><input required type="number" step="0.01" placeholder="0.00" value={item.amount} onChange={(e) => handleItemChange(idx, 'amount', e.target.value)} className="w-full px-2 py-2 border rounded-lg outline-none focus:border-orange-400 text-right font-bold text-slate-800" /></td>
                   </tr>
                 ))}
               </tbody>
             </table>
-            <div className="bg-slate-50 p-4 border-t border-slate-200 flex justify-end">
-               <button type="button" onClick={() => setItems([...items, { name: '', dosing: '', days: '', batchNo: '', expDate: '', amount: '' }])} className="text-sm text-blue-600 font-semibold hover:underline">
+            <div className="bg-slate-50 p-3 border-t border-slate-200 flex items-center justify-between">
+               <button type="button" onClick={() => setItems([...items, { name: '', dosing: '1-0-1', days: '5', batchNo: '', expDate: '', amount: '' }])} className="text-xs text-orange-600 font-bold hover:underline px-2 py-1">
                  + Add Item Manually
                </button>
+               <span className="text-[11px] text-slate-500 font-medium hidden sm:inline">Scroll horizontally to view Batch, Exp & Amount →</span>
             </div>
           </div>
 
-          <div className="mt-6 flex justify-end">
-            <div className="w-80 bg-slate-50 p-4 rounded-xl border border-slate-200 space-y-3 text-sm">
+          <div className="mt-6 flex justify-end w-full">
+            <div className="w-full sm:w-80 bg-slate-50 p-4 rounded-xl border border-slate-200 space-y-3 text-sm">
               <div className="flex justify-between items-center text-slate-600">
                 <span>Subtotal</span>
                 <span className="font-semibold">₹{subtotal.toFixed(2)}</span>
@@ -357,7 +358,7 @@ const BillingForm = ({ patient, onClose, initialPrescription }) => {
                   placeholder="0.00"
                   value={consultationCharges}
                   onChange={(e) => setConsultationCharges(e.target.value)}
-                  className="w-24 px-2 py-1 border rounded outline-none focus:border-orange-400 text-right font-medium"
+                  className="w-24 px-2 py-1.5 border rounded-lg outline-none focus:border-orange-400 text-right font-medium"
                 />
               </div>
               <div className="border-t border-slate-200 pt-3 flex justify-between items-center">

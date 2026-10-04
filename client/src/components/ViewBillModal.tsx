@@ -103,24 +103,24 @@ const ViewBillModal = ({ bill, patient, doctor, onClose }) => {
               ))}
             </tbody>
           </table>
-          
-          {/* Totals Section */}
-          <div className="flex justify-end border-t-2 border-slate-800">
-            <div className="w-48 print:w-40 border-l-2 border-slate-800">
-              <div className="flex justify-between p-1.5 border-b border-slate-300 text-xs print:text-[10px] text-black">
-                <span>Subtotal</span>
-                <span>₹ {parseFloat(bill.subtotal || totalAmount).toFixed(2)}</span>
-              </div>
-              {(parseFloat(bill.consultationCharges) > 0) && (
-              <div className="flex justify-between p-1.5 border-b border-slate-300 text-xs print:text-[10px] text-black">
-                <span>Consultation Fees</span>
-                <span>₹ {parseFloat(bill.consultationCharges).toFixed(2)}</span>
-              </div>
-              )}
-              <div className="flex justify-between p-1.5 bg-slate-100 font-bold text-black text-sm print:text-xs">
-                <span>Total</span>
-                <span>₹ {parseFloat(bill.totalAmount || totalAmount).toFixed(2)}</span>
-              </div>
+        </div>
+        
+        {/* Totals Section outside table so Subtotal and Fees are never sliced */}
+        <div className="flex justify-end mb-4 w-full">
+          <div className="w-full sm:w-56 border-2 border-slate-800 rounded-md bg-white">
+            <div className="flex justify-between p-2 border-b border-slate-300 text-xs font-semibold text-black">
+              <span>Subtotal</span>
+              <span>₹ {parseFloat(bill.subtotal || totalAmount).toFixed(2)}</span>
+            </div>
+            {(parseFloat(bill.consultationCharges) > 0) && (
+            <div className="flex justify-between p-2 border-b border-slate-300 text-xs font-semibold text-black">
+              <span>Consultation Fees</span>
+              <span>₹ {parseFloat(bill.consultationCharges).toFixed(2)}</span>
+            </div>
+            )}
+            <div className="flex justify-between p-2 bg-slate-100 font-extrabold text-black text-sm">
+              <span>Total</span>
+              <span>₹ {parseFloat(bill.totalAmount || totalAmount).toFixed(2)}</span>
             </div>
           </div>
         </div>
