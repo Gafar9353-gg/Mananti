@@ -4,6 +4,7 @@ import { AuthContext } from './context/AuthContext';
 import Login from './pages/Login';
 import Home from './pages/Home';
 import Install from './pages/Install';
+import Download from './pages/Download';
 import Dashboard from './pages/Dashboard';
 import PatientDetail from './pages/PatientDetail';
 import Patients from './pages/Patients';
@@ -158,6 +159,7 @@ function App() {
       <Route path="/" element={<Home />} />
       <Route path="/login" element={<Login />} />
       <Route path="/install" element={<Install />} />
+      <Route path="/download" element={<Download />} />
       
       {/* Protected Routes inside Layout */}
       <Route

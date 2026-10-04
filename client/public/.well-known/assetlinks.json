@@ -1,0 +1,8 @@
+[{
+      "relation": ["delegate_permission/common.handle_all_urls"],
+      "target": {
+        "namespace": "android_app",
+        "package_name": "app.vercel.mananti.twa",
+        "sha256_cert_fingerprints": ["A2:32:5C:14:F1:C5:E0:3B:98:E7:F4:1F:31:2B:A0:A8:89:08:03:54:4F:2B:DF:87:E3:E4:FF:AE:19:21:2E:D0"]
+      }
+    }]

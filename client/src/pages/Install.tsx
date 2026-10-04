@@ -255,9 +255,19 @@ const Install: React.FC = () => {
                         <Download className="w-5 h-5 group-hover:-translate-y-0.5 transition-transform" />
                         <span>Install MANANTI</span>
                       </button>
-                      <p className="text-xs text-center text-slate-400">
-                        Browser prompt will appear to confirm installation.
-                      </p>
+
+                      <div className="text-center">
+                        <span className="text-xs text-slate-400">or download standalone desktop setup:</span>
+                      </div>
+
+                      <a
+                        href="/downloads/MANANTI-Setup.exe"
+                        download="MANANTI-Setup.exe"
+                        className="w-full bg-slate-100 hover:bg-slate-200 text-[#004f6e] py-3 px-5 rounded-2xl font-bold text-sm transition-all flex items-center justify-center gap-2 border border-slate-200"
+                      >
+                        <Download className="w-4 h-4" />
+                        <span>Download Windows Desktop App (.exe)</span>
+                      </a>
                     </div>
                   ) : (
                     <div>
@@ -307,14 +317,15 @@ const Install: React.FC = () => {
                         </div>
                       </div>
 
-                      <div className="mt-5">
-                        <button
-                          onClick={handleInstallClick}
+                      <div className="mt-5 space-y-2">
+                        <a
+                          href="/downloads/MANANTI-Setup.exe"
+                          download="MANANTI-Setup.exe"
                           className="w-full bg-[#004f6e] hover:bg-[#023047] text-white py-3.5 px-6 rounded-2xl font-bold text-sm shadow-md shadow-[#004f6e]/20 transition-all flex items-center justify-center gap-2"
                         >
                           <Download className="w-4 h-4" />
-                          <span>Install MANANTI</span>
-                        </button>
+                          <span>Download Windows Desktop App (.exe)</span>
+                        </a>
                       </div>
                     </div>
                   )}
@@ -337,69 +348,40 @@ const Install: React.FC = () => {
                     </p>
                   </div>
 
-                  {canPrompt ? (
-                    <div className="space-y-4">
+                  <div className="space-y-4">
+                    <a
+                      href="/downloads/MANANTI.apk"
+                      download="MANANTI.apk"
+                      className="w-full bg-emerald-600 hover:bg-emerald-700 text-white py-4 px-6 rounded-2xl font-bold text-base shadow-lg shadow-emerald-600/25 hover:shadow-xl transition-all flex items-center justify-center gap-2 text-center"
+                    >
+                      <Download className="w-5 h-5" />
+                      <span>Download Android App (.apk)</span>
+                    </a>
+
+                    {canPrompt && (
                       <button
                         onClick={handleInstallClick}
-                        className="w-full bg-[#004f6e] hover:bg-[#023047] text-white py-4 px-6 rounded-2xl font-bold text-base shadow-lg shadow-[#004f6e]/25 hover:shadow-xl hover:shadow-[#004f6e]/30 transition-all flex items-center justify-center gap-2 group"
+                        className="w-full bg-slate-100 hover:bg-slate-200 text-[#004f6e] py-3.5 px-6 rounded-2xl font-bold text-sm border border-slate-200 transition-all flex items-center justify-center gap-2"
                       >
-                        <Download className="w-5 h-5 group-hover:-translate-y-0.5 transition-transform" />
-                        <span>Install MANANTI</span>
+                        <Smartphone className="w-4 h-4" />
+                        <span>Install via Browser Prompt</span>
                       </button>
-                      <p className="text-xs text-center text-slate-400">
-                        Tap install on the system prompt to add to your home screen.
-                      </p>
-                    </div>
-                  ) : (
-                    <div>
-                      {/* Android Manual Instructions */}
-                      <div className="bg-slate-50 rounded-2xl p-5 border border-slate-200 space-y-4 text-left">
-                        <div className="flex items-center gap-2 text-slate-800 font-bold text-sm">
-                          <MoreVertical className="w-4 h-4 text-[#004f6e]" />
-                          <span>How to install on Android Chrome:</span>
-                        </div>
+                    )}
 
-                        <div className="space-y-3 text-xs sm:text-sm text-slate-600">
-                          <div className="flex items-start gap-3">
-                            <span className="flex-shrink-0 w-6 h-6 rounded-full bg-emerald-100 text-emerald-700 font-bold flex items-center justify-center text-xs">
-                              1
-                            </span>
-                            <p>
-                              Open the browser menu by tapping the <strong className="text-slate-800">three dots (⋮)</strong> in the top right corner.
-                            </p>
-                          </div>
-
-                          <div className="flex items-start gap-3">
-                            <span className="flex-shrink-0 w-6 h-6 rounded-full bg-emerald-100 text-emerald-700 font-bold flex items-center justify-center text-xs">
-                              2
-                            </span>
-                            <p>
-                              Select <strong className="text-slate-800">&quot;Install app&quot;</strong> or <strong className="text-slate-800">&quot;Add to Home screen&quot;</strong>.
-                            </p>
-                          </div>
-
-                          <div className="flex items-start gap-3">
-                            <span className="flex-shrink-0 w-6 h-6 rounded-full bg-emerald-100 text-emerald-700 font-bold flex items-center justify-center text-xs">
-                              3
-                            </span>
-                            <p>
-                              Confirm the installation by tapping <strong className="text-slate-800">&quot;Install&quot;</strong> or <strong className="text-slate-800">&quot;Add&quot;</strong>.
-                            </p>
-                          </div>
-                        </div>
+                    {/* Android Manual Instructions */}
+                    <div className="bg-slate-50 rounded-2xl p-5 border border-slate-200 space-y-3 text-left">
+                      <div className="flex items-center gap-2 text-slate-800 font-bold text-sm">
+                        <MoreVertical className="w-4 h-4 text-[#004f6e]" />
+                        <span>How to install the downloaded APK:</span>
                       </div>
 
-                      <div className="mt-5">
-                        <button
-                          onClick={handleInstallClick}
-                          className="w-full bg-[#004f6e] hover:bg-[#023047] text-white py-3.5 px-6 rounded-2xl font-bold text-sm shadow-md shadow-[#004f6e]/20 transition-all flex items-center justify-center gap-2"
-                        >
-                          <Download className="w-4 h-4" />
-                          <span>Install MANANTI</span>
-                        </button>
+                      <div className="space-y-2 text-xs sm:text-sm text-slate-600">
+                        <p>1. Tap <strong>Download Android App (.apk)</strong> above.</p>
+                        <p>2. Once downloaded, open the notification or file manager.</p>
+                        <p>3. Tap <strong>Install</strong> (allow unknown sources if prompted).</p>
                       </div>
                     </div>
-                  )}
+                  </div>
                 </div>
               )}
 
