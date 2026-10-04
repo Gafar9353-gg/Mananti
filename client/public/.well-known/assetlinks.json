@@ -1,8 +1,11 @@
 [{
-      "relation": ["delegate_permission/common.handle_all_urls"],
-      "target": {
-        "namespace": "android_app",
-        "package_name": "app.vercel.mananti.twa",
-        "sha256_cert_fingerprints": ["A2:32:5C:14:F1:C5:E0:3B:98:E7:F4:1F:31:2B:A0:A8:89:08:03:54:4F:2B:DF:87:E3:E4:FF:AE:19:21:2E:D0"]
-      }
-    }]
+  "relation": ["delegate_permission/common.handle_all_urls"],
+  "target": {
+    "namespace": "android_app",
+    "package_name": "app.vercel.mananti.twa",
+    "sha256_cert_fingerprints": [
+      "A2:32:5C:14:F1:C5:E0:3B:98:E7:F4:1F:31:2B:A0:A8:89:08:03:54:4F:2B:DF:87:E3:E4:FF:AE:19:21:2E:D0",
+      "A2:23:6A:FB:19:5F:74:B8:50:01:E3:77:22:72:EE:0F:05:BE:91:25:01:53:76:0C:75:66:5F:70:BD:6E:87:9F"
+    ]
+  }
+}]

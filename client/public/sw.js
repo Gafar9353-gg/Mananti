@@ -1,5 +1,5 @@
 // MANANTI PWA Service Worker
-const CACHE_NAME = 'mananti-pwa-v2';
+const CACHE_NAME = 'mananti-pwa-v4';
 
 self.addEventListener('install', (event) => {
   self.skipWaiting();
