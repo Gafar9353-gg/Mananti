@@ -8,7 +8,8 @@ import {
   ShieldCheck, 
   User, 
   Lock,
-  ArrowRight
+  ArrowRight,
+  Stethoscope
 } from 'lucide-react';
 
 const Login = () => {
@@ -55,32 +56,30 @@ const Login = () => {
 
       {/* ========================================================================= */}
       {/* 1. DESKTOP LEFT SIDE BRANDING (Visible on screens >= lg)                  */}
+      {/* Classic / Old MANANTI desktop style with login-bg.jpg & Stethoscope       */}
       {/* ========================================================================= */}
-      <div className="hidden lg:flex w-1/2 relative bg-gradient-to-br from-[#e6f7f5] via-[#f0f9ff] to-[#f5f3ff] items-center justify-center p-12 overflow-hidden border-r border-slate-100">
+      <div className="hidden lg:flex w-1/2 relative bg-slate-950 items-center justify-center p-12 overflow-hidden border-r border-slate-900">
+        <img 
+          src="/login-bg.jpg" 
+          alt="MANANTI" 
+          className="absolute inset-0 w-full h-full object-cover opacity-60"
+        />
         <div className="relative z-10 text-center flex flex-col items-center max-w-md">
-          {/* MANANTI Official Brain + Leaf Squircle Logo */}
-          <div className="p-3 bg-white/95 backdrop-blur-md rounded-3xl shadow-xl shadow-teal-900/10 mb-6 border border-white/80">
-            <img 
-              src="/mananti-logo.png" 
-              alt="MANANTI Logo" 
-              className="w-32 h-32 object-contain rounded-2xl drop-shadow-sm"
-            />
+          <div className="bg-white/10 backdrop-blur-md p-6 rounded-full shadow-2xl mb-8 flex items-center justify-center relative group border border-white/20">
+            {/* Animation Layers */}
+            <div className="absolute inset-0 bg-emerald-400 rounded-full animate-ping opacity-20"></div>
+            <div className="absolute inset-2 bg-emerald-100 rounded-full animate-pulse opacity-50"></div>
+            
+            <Stethoscope className="h-16 w-16 text-emerald-400 relative z-10 transform transition-all duration-700 group-hover:scale-110 group-hover:-rotate-12 drop-shadow-md" />
           </div>
-          
-          <h1 className="text-5xl font-black tracking-wider bg-gradient-to-r from-[#0d9488] via-[#0284c7] to-[#8b5cf6] bg-clip-text text-transparent mb-2">
+          <h1 className="text-5xl font-bold text-white tracking-tight mb-4 text-shadow-sm drop-shadow-lg">
             MANANTI
           </h1>
-          <h2 className="text-2xl font-bold text-slate-800 tracking-tight mb-2">
-            Psychiatrist Care App
-          </h2>
-          <p className="text-sm font-semibold text-slate-500 tracking-wide mb-6">
-            Better Mind &bull; Brighter Tomorrow
+          <p className="text-xl text-slate-300 font-medium mb-6 px-4 drop-shadow-md">
+            Mental Health and Psychiatry Care Software
           </p>
-          
-          <div className="bg-white/85 backdrop-blur-sm px-6 py-4 rounded-2xl border border-slate-200/60 shadow-sm max-w-sm">
-            <p className="text-slate-600 font-medium text-sm leading-relaxed">
-              Professional support for a healthier, happier you.
-            </p>
+          <div className="bg-white/10 backdrop-blur-sm px-6 py-3 rounded-2xl border border-white/15 text-slate-300 text-sm">
+            Better Mind &bull; Brighter Tomorrow
           </div>
         </div>
       </div>
