@@ -1,0 +1,28 @@
+﻿<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#004f6e"/>
+      <stop offset="100%" stop-color="#023047"/>
+    </linearGradient>
+    <linearGradient id="cross" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#10b981"/>
+      <stop offset="100%" stop-color="#059669"/>
+    </linearGradient>
+  </defs>
+  <!-- Background with rounded corners -->
+  <rect width="512" height="512" rx="112" fill="url(#bg)"/>
+  
+  <!-- Subtle circular glow -->
+  <circle cx="256" cy="256" r="180" fill="none" stroke="#ffffff" stroke-width="4" stroke-opacity="0.15"/>
+  <circle cx="256" cy="256" r="140" fill="#ffffff" fill-opacity="0.05"/>
+
+  <!-- Medical Cross / Plus Symbol -->
+  <rect x="232" y="120" width="48" height="180" rx="24" fill="#ffffff"/>
+  <rect x="166" y="186" width="180" height="48" rx="24" fill="#ffffff"/>
+
+  <!-- Stethoscope / Care Loop in Emerald Green -->
+  <path d="M 170 290 C 170 370, 342 370, 342 290" fill="none" stroke="url(#cross)" stroke-width="26" stroke-linecap="round"/>
+  <path d="M 256 345 L 256 395" fill="none" stroke="url(#cross)" stroke-width="26" stroke-linecap="round"/>
+  <circle cx="256" cy="415" r="28" fill="url(#cross)"/>
+  <circle cx="256" cy="415" r="12" fill="#ffffff"/>
+</svg>

@@ -3,6 +3,7 @@ import { Routes, Route, Navigate, useLocation, Link } from 'react-router-dom';
 import { AuthContext } from './context/AuthContext';
 import Login from './pages/Login';
 import Home from './pages/Home';
+import Install from './pages/Install';
 import Dashboard from './pages/Dashboard';
 import PatientDetail from './pages/PatientDetail';
 import Patients from './pages/Patients';
@@ -156,6 +157,7 @@ function App() {
       {/* Public Routes */}
       <Route path="/" element={<Home />} />
       <Route path="/login" element={<Login />} />
+      <Route path="/install" element={<Install />} />
       
       {/* Protected Routes inside Layout */}
       <Route
