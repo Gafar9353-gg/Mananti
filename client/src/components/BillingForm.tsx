@@ -126,8 +126,22 @@ const BillingForm = ({ patient, onClose, initialPrescription }) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
+
+    const billData = {
+      _id: 'finbill_' + Date.now(),
+      billNo: `B-${Date.now().toString().slice(-4)}`,
+      date: new Date().toISOString(),
+      patientId: patient._id,
+      items,
+      subtotal,
+      gstAmount,
+      consultationCharges: parseFloat(consultationCharges) || 0,
+      totalAmount,
+      generatedBy: doctor?.name || 'Staff'
+    };
+
     try {
-      const config = { headers: { Authorization: `Bearer ${doctor.token}` } };
+      const config = { headers: { Authorization: `Bearer ${doctor?.token || ''}` } };
       await axios.post(`${import.meta.env.VITE_API_URL || 'http://localhost:5005'}/api/bills/generate`, {
         patientId: patient._id,
         items,
@@ -136,12 +150,33 @@ const BillingForm = ({ patient, onClose, initialPrescription }) => {
         consultationCharges: parseFloat(consultationCharges) || 0,
         totalAmount
       }, config);
-      setPrintMode(true);
     } catch (error) {
-      console.error(error);
-      alert('Error generating bill');
+      console.warn('Backend unavailable, saving bill locally:', error);
+      try {
+        const storedMeds = localStorage.getItem('mananti_medicines');
+        if (storedMeds) {
+          let medsList = JSON.parse(storedMeds);
+          items.forEach(it => {
+            const itName = String(it.name || it.medicine || '').trim().toLowerCase();
+            const itQty = parseInt(it.quantity) || 1;
+            const mIdx = medsList.findIndex(m => m.name && m.name.trim().toLowerCase() === itName);
+            if (mIdx !== -1) {
+              medsList[mIdx].stock = Math.max(0, (parseInt(medsList[mIdx].stock) || 0) - itQty);
+            }
+          });
+          localStorage.setItem('mananti_medicines', JSON.stringify(medsList));
+        }
+        const patKey = `mananti_patient_${patient._id}`;
+        const storedPat = localStorage.getItem(patKey);
+        if (storedPat) {
+          const pObj = JSON.parse(storedPat);
+          pObj.financialBills = [...(pObj.financialBills || []), billData];
+          localStorage.setItem(patKey, JSON.stringify(pObj));
+        }
+      } catch (e) {}
     } finally {
       setLoading(false);
+      setPrintMode(true);
     }
   };
 

@@ -173,6 +173,13 @@ const Layout = ({ children }) => {
 };
 
 function App() {
+  React.useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+    if (params.get('source') === 'apk') {
+      localStorage.setItem('mananti_app_mode', 'apk');
+    }
+  }, []);
+
   return (
     <Routes>
       {/* Public Routes */}

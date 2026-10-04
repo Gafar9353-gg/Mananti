@@ -37,27 +37,38 @@ export const purchaseEntry = async (req, res) => {
     });
 
     for (const item of items) {
+      const medName = String(item.name || '').trim();
+      if (!medName) continue;
+
       const qty = parseInt(item.qty || 0);
       const free = parseInt(item.free || 0);
       const totalQty = qty + free;
       
       if (totalQty <= 0) continue;
 
-      // Find exact same name and batch (case-insensitive for name)
-      const existingMed = await Medicine.findOne({ 
-        name: { $regex: new RegExp('^' + item.name + '$', 'i') },
-        batch: item.batch || ''
+      // Find existing medicine by name (case-insensitive)
+      let existingMed = await Medicine.findOne({ 
+        name: { $regex: new RegExp('^' + medName.replace(/[-/\\^$*+?.()|[\]{}]/g, '\\$&') + '$', 'i') }
       });
       
       if (existingMed) {
-        existingMed.stock = (existingMed.stock || 0) + totalQty;
+        existingMed.stock = (parseInt(existingMed.stock) || 0) + totalQty;
         existingMed.vendor = vendor || existingMed.vendor;
+        if (item.batch) existingMed.batch = item.batch;
+        if (item.exp) existingMed.exp = item.exp;
+        if (item.mrp) existingMed.mrp = item.mrp;
+        if (item.rate) existingMed.rate = item.rate;
+        if (item.pack) existingMed.pack = item.pack;
+        if (item.mfr) existingMed.mfr = item.mfr;
+        if (item.hsn) existingMed.hsn = item.hsn;
+        if (item.sgstPercent !== undefined && item.sgstPercent !== '') existingMed.sgstPercent = item.sgstPercent;
+        if (item.cgstPercent !== undefined && item.cgstPercent !== '') existingMed.cgstPercent = item.cgstPercent;
         existingMed.lastRestocked = new Date().toISOString();
         await existingMed.save();
       } else {
         await Medicine.create({
           _id: 'med_' + Date.now() + Math.floor(Math.random() * 1000),
-          name: item.name,
+          name: medName,
           vendor: vendor || 'Unknown',
           stock: totalQty,
           batch: item.batch || '',
@@ -65,6 +76,8 @@ export const purchaseEntry = async (req, res) => {
           mrp: item.mrp || '',
           rate: item.rate || '',
           pack: item.pack || '',
+          mfr: item.mfr || '',
+          hsn: item.hsn || '',
           sgstPercent: item.sgstPercent || 0,
           cgstPercent: item.cgstPercent || 0,
           lastRestocked: new Date().toISOString()

@@ -2,7 +2,7 @@
   "name": "MANANTI - Mental Health & Psychiatry Care",
   "short_name": "MANANTI",
   "description": "Mental Health and Psychiatry Care Software",
-  "start_url": "/",
+  "start_url": "/login?source=apk",
   "scope": "/",
   "display": "standalone",
   "orientation": "any",

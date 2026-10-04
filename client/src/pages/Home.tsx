@@ -10,6 +10,21 @@ const Home = () => {
     return <Navigate to="/dashboard" replace />;
   }
 
+  // Detect if opened inside the installed APK / TWA / Standalone Android app
+  const searchParams = new URLSearchParams(window.location.search);
+  const isApkMode = 
+    searchParams.get('source') === 'apk' ||
+    window.matchMedia('(display-mode: standalone)').matches ||
+    (window.navigator as any).standalone === true ||
+    document.referrer.includes('android-app://') ||
+    sessionStorage.getItem('mananti_app_mode') === 'apk' ||
+    localStorage.getItem('mananti_app_mode') === 'apk';
+
+  if (isApkMode) {
+    localStorage.setItem('mananti_app_mode', 'apk');
+    return <Navigate to="/login" replace />;
+  }
+
   return (
     <div className="h-screen w-full relative overflow-hidden bg-[#eef5f8] flex flex-col justify-center items-center font-sans">
       {/* Top Bar with Login Options Button */}

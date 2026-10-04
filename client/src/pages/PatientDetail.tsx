@@ -27,11 +27,18 @@ const PatientDetail = () => {
 
   const fetchPatient = async () => {
     try {
-      const config = { headers: { Authorization: `Bearer ${doctor.token}` } };
+      const config = { headers: { Authorization: `Bearer ${doctor?.token || ''}` } };
       const { data } = await axios.get(`${import.meta.env.VITE_API_URL || 'http://localhost:5005'}/api/patients/${id}`, config);
-      setPatient(data);
+      if (data) {
+        setPatient(data);
+        localStorage.setItem(`patient_${id}`, JSON.stringify(data));
+      }
     } catch (error) {
-      console.error(error);
+      console.warn('Backend unavailable, loading patient from cache:', error);
+      const cached = localStorage.getItem(`patient_${id}`);
+      if (cached) {
+        try { setPatient(JSON.parse(cached)); } catch (e) {}
+      }
     } finally {
       setLoading(false);
     }
@@ -164,15 +171,20 @@ const PatientDetail = () => {
               <p className="text-sm text-slate-500 text-center py-6 bg-slate-50 rounded-xl">No reports uploaded yet.</p>
             ) : (
               <div className="grid grid-cols-2 sm:grid-cols-3 gap-4">
-                {patient.bills && patient.bills.map(report => (
-                  <a key={report._id} href={`${import.meta.env.VITE_API_URL || 'http://localhost:5005'}${report.filePath}`} target="_blank" rel="noopener noreferrer" className="block group">
-                    <div className="bg-slate-50 border border-slate-200 rounded-xl p-3 flex flex-col items-center justify-center text-center hover:bg-blue-50 hover:border-blue-200 transition-colors aspect-square">
-                      <FileImage className="h-8 w-8 text-slate-400 group-hover:text-blue-600 mb-2 transition-colors" />
-                      <span className="text-xs font-semibold text-slate-700 line-clamp-1 w-full">{report.originalName}</span>
-                      <span className="text-[10px] text-slate-500 mt-1 px-2 py-0.5 bg-slate-200 rounded-md">{report.billType}</span>
-                    </div>
-                  </a>
-                ))}
+                {patient.bills && patient.bills.map(report => {
+                  const fileUrl = (report.filePath && (report.filePath.startsWith('data:') || report.filePath.startsWith('blob:') || report.filePath.startsWith('http')))
+                    ? report.filePath
+                    : `${import.meta.env.VITE_API_URL || 'http://localhost:5005'}${report.filePath || ''}`;
+                  return (
+                    <a key={report._id} href={fileUrl} target="_blank" rel="noopener noreferrer" className="block group">
+                      <div className="bg-slate-50 border border-slate-200 rounded-xl p-3 flex flex-col items-center justify-center text-center hover:bg-blue-50 hover:border-blue-200 transition-colors aspect-square">
+                        <FileImage className="h-8 w-8 text-slate-400 group-hover:text-blue-600 mb-2 transition-colors" />
+                        <span className="text-xs font-semibold text-slate-700 line-clamp-1 w-full">{report.originalName}</span>
+                        <span className="text-[10px] text-slate-500 mt-1 px-2 py-0.5 bg-slate-200 rounded-md">{report.billType}</span>
+                      </div>
+                    </a>
+                  );
+                })}
               </div>
             )}
           </div>
@@ -207,7 +219,22 @@ const PatientDetail = () => {
       </div>
 
       {showEdit && <PatientForm initialData={patient} onClose={() => setShowEdit(false)} />}
-      {showUpload && <ReportUploadForm patientId={patient._id} onClose={() => setShowUpload(false)} />}
+      {showUpload && (
+        <ReportUploadForm 
+          patientId={patient._id} 
+          onClose={() => setShowUpload(false)} 
+          onReportUploaded={(newReport) => {
+            setPatient(prev => {
+              const updated = {
+                ...prev,
+                bills: [...(prev.bills || []), newReport]
+              };
+              localStorage.setItem(`patient_${prev._id}`, JSON.stringify(updated));
+              return updated;
+            });
+          }}
+        />
+      )}
       {showPrescription && (
         <PrescriptionForm 
           patientId={patient._id} 
