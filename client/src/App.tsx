@@ -44,12 +44,10 @@ const Sidebar = ({ isOpen, setIsOpen, setShowLogoutConfirm }) => {
       <div className={`w-64 bg-slate-50 h-screen border-r border-slate-200 flex flex-col fixed left-0 top-0 z-50 transform transition-transform duration-300 ${isOpen ? 'translate-x-0' : '-translate-x-full'} md:translate-x-0`}>
         <div className="p-6 flex items-center justify-between gap-3 border-b border-slate-200 bg-white">
           <div className="flex items-center gap-3">
-            <div className="bg-blue-600 p-2 rounded-xl text-white shadow-sm">
-              <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/></svg>
-            </div>
+            <img src="/mananti-logo.jpg" alt="MANANTI" className="w-10 h-10 rounded-xl object-contain shadow-xs border border-slate-100" />
             <div>
-              <h2 className="font-bold text-slate-800 leading-tight tracking-wide text-lg">MANANTI</h2>
-              <p className="text-[10px] text-slate-500">Healthcare Portal</p>
+              <h2 className="font-extrabold bg-gradient-to-r from-teal-700 to-purple-700 bg-clip-text text-transparent leading-tight tracking-wide text-lg">MANANTI</h2>
+              <p className="text-[10px] text-slate-500 font-semibold">Psychiatrist Care</p>
             </div>
           </div>
           <button className="md:hidden text-slate-500" onClick={() => setIsOpen(false)}>

@@ -4,11 +4,11 @@ import { useNavigate, Link } from 'react-router-dom';
 import { 
   Eye, 
   EyeOff, 
-  Stethoscope, 
   ArrowLeft, 
   ShieldCheck, 
   User, 
-  Lock
+  Lock,
+  ArrowRight
 } from 'lucide-react';
 
 const Login = () => {
@@ -47,95 +47,103 @@ const Login = () => {
   };
 
   return (
-    <div className="min-h-screen flex flex-col lg:flex-row w-full bg-slate-50 font-sans antialiased">
+    <div className="min-h-screen flex flex-col lg:flex-row w-full bg-gradient-to-br from-[#f0fdfa] via-[#ffffff] to-[#faf5ff] font-sans antialiased relative overflow-hidden">
       
+      {/* Decorative ambient background glows */}
+      <div className="absolute top-0 left-0 w-96 h-96 bg-teal-200/20 rounded-full blur-3xl pointer-events-none -translate-x-1/2 -translate-y-1/2"></div>
+      <div className="absolute bottom-0 right-0 w-96 h-96 bg-purple-200/25 rounded-full blur-3xl pointer-events-none translate-x-1/3 translate-y-1/3"></div>
+
       {/* ========================================================================= */}
-      {/* 1. DESKTOP LEFT SIDE IMAGE & BRANDING (Visible on screens >= lg)           */}
+      {/* 1. DESKTOP LEFT SIDE BRANDING (Visible on screens >= lg)                  */}
       {/* ========================================================================= */}
-      <div className="hidden lg:flex w-1/2 relative bg-slate-950 items-center justify-center overflow-hidden">
-        <img 
-          src="/login-bg.jpg" 
-          alt="MANANTI Healthcare" 
-          className="absolute inset-0 w-full h-full object-cover opacity-60"
-        />
-        <div className="relative z-10 text-center flex flex-col items-center max-w-md p-6">
-          <div className="bg-white/10 backdrop-blur-md p-6 rounded-full shadow-2xl mb-8 flex items-center justify-center relative group border border-white/20">
-            <div className="absolute inset-0 bg-emerald-400 rounded-full animate-ping opacity-20"></div>
-            <div className="absolute inset-2 bg-emerald-100 rounded-full animate-pulse opacity-50"></div>
-            
-            <Stethoscope className="h-16 w-16 text-emerald-400 relative z-10 transform transition-all duration-700 group-hover:scale-110 group-hover:-rotate-12 drop-shadow-md" />
+      <div className="hidden lg:flex w-1/2 relative bg-gradient-to-br from-[#e6f7f5] via-[#f0f9ff] to-[#f5f3ff] items-center justify-center p-12 overflow-hidden border-r border-slate-100">
+        <div className="relative z-10 text-center flex flex-col items-center max-w-md">
+          {/* Official Brain + Leaf App Logo */}
+          <div className="p-3 bg-white/90 backdrop-blur-md rounded-3xl shadow-xl shadow-teal-900/5 mb-6 border border-white">
+            <img 
+              src="/mananti-logo.jpg" 
+              alt="MANANTI Logo" 
+              className="w-28 h-28 object-contain rounded-2xl"
+            />
           </div>
-          <h1 className="text-5xl font-extrabold text-white tracking-tight mb-4 drop-shadow-lg">MANANTI</h1>
-          <p className="text-xl text-slate-200 font-semibold mb-3 px-4 drop-shadow-md">
-            Mental Health and Psychiatry Care Software
+          
+          <h1 className="text-5xl font-black tracking-wider bg-gradient-to-r from-[#0d9488] via-[#0284c7] to-[#8b5cf6] bg-clip-text text-transparent mb-2">
+            MANANTI
+          </h1>
+          <h2 className="text-2xl font-bold text-slate-800 tracking-tight mb-2">
+            Psychiatrist Care App
+          </h2>
+          <p className="text-sm font-semibold text-slate-500 tracking-wide mb-6">
+            Better Mind &bull; Brighter Tomorrow
           </p>
-          <p className="text-xs text-slate-300 font-medium">
-            Dr. N.R. Acharya Memorial Hospital • Practitioner Access
-          </p>
+          
+          <div className="bg-white/80 backdrop-blur-sm px-6 py-4 rounded-2xl border border-slate-200/60 shadow-sm max-w-sm">
+            <p className="text-slate-600 font-medium text-sm leading-relaxed">
+              Professional support for a healthier, happier you.
+            </p>
+          </div>
         </div>
       </div>
 
       {/* ========================================================================= */}
-      {/* 2. MOBILE HEADER (Phone View with MANANTI Medical Branding)               */}
+      {/* 2. MOBILE HEADER (Phone View with Brain+Leaf Logo & Theme)                 */}
       {/* ========================================================================= */}
-      <div className="lg:hidden w-full bg-gradient-to-br from-slate-950 via-[#002f43] to-[#023047] text-white p-5 relative overflow-hidden rounded-b-3xl shadow-xl">
-        {/* Ambient Glows */}
-        <div className="absolute -top-10 -right-10 w-36 h-36 bg-emerald-500/20 rounded-full blur-2xl pointer-events-none"></div>
-        <div className="absolute -bottom-8 left-10 w-28 h-28 bg-teal-400/10 rounded-full blur-xl pointer-events-none"></div>
-
-        {/* Back Button */}
-        <div className="flex items-center justify-between mb-4 relative z-10">
+      <div className="lg:hidden w-full bg-gradient-to-b from-[#e6f7f5] to-white/60 p-6 relative overflow-hidden text-center flex flex-col items-center">
+        {/* Back to Home Button */}
+        <div className="w-full flex justify-between items-center mb-4">
           <Link 
             to="/" 
-            className="inline-flex items-center gap-1.5 text-xs font-semibold text-slate-200 hover:text-white bg-white/10 backdrop-blur-md px-3.5 py-1.5 rounded-full border border-white/15 active:scale-95 transition-all"
+            className="inline-flex items-center gap-1.5 text-xs font-bold text-teal-800 hover:text-purple-700 bg-white/90 backdrop-blur-md px-3.5 py-1.5 rounded-full border border-slate-200/80 active:scale-95 transition-all shadow-sm"
           >
             <ArrowLeft className="w-3.5 h-3.5" />
-            <span>Back to Home</span>
+            <span>Home</span>
           </Link>
+          <span className="text-[11px] font-bold text-purple-700 bg-purple-100/70 px-2.5 py-0.5 rounded-full">
+            Care Portal
+          </span>
         </div>
 
-        {/* Branding header */}
-        <div className="flex items-center gap-4 relative z-10">
-          <div className="bg-white/10 backdrop-blur-md p-3.5 rounded-2xl shadow-xl flex items-center justify-center relative border border-white/20 shrink-0">
-            <div className="absolute inset-0 bg-emerald-400 rounded-2xl animate-ping opacity-20"></div>
-            <Stethoscope className="h-8 w-8 text-emerald-400 relative z-10" />
+        {/* Mobile Logo & Brand */}
+        <div className="flex flex-col items-center">
+          <div className="p-2 bg-white rounded-2xl shadow-md border border-slate-100 mb-3">
+            <img 
+              src="/mananti-logo.jpg" 
+              alt="MANANTI Logo" 
+              className="w-16 h-16 object-contain rounded-xl"
+            />
           </div>
-          <div>
-            <div className="flex items-center gap-1.5">
-              <h1 className="text-2xl font-extrabold text-white tracking-tight leading-none">
-                MANANTI
-              </h1>
-              <span className="px-1.5 py-0.5 rounded-full bg-emerald-400/20 text-emerald-300 text-[9px] font-bold border border-emerald-400/30">
-                PRO
-              </span>
-            </div>
-            <p className="text-xs text-slate-200 font-medium leading-snug mt-1">
-              Mental Health & Psychiatry Care
-            </p>
-            <p className="text-[10px] text-emerald-400 font-semibold uppercase tracking-wider mt-0.5">
-              Practitioner Portal Sign In
-            </p>
-          </div>
+          <h1 className="text-3xl font-extrabold tracking-wider bg-gradient-to-r from-[#0d9488] via-[#0284c7] to-[#8b5cf6] bg-clip-text text-transparent leading-none">
+            MANANTI
+          </h1>
+          <p className="text-xs font-bold text-slate-700 mt-1">
+            Psychiatrist Care App
+          </p>
+          <p className="text-[11px] font-semibold text-slate-400 mt-0.5">
+            Better Mind &bull; Brighter Tomorrow
+          </p>
         </div>
       </div>
 
       {/* ========================================================================= */}
-      {/* 3. SIGN IN FORM (Clean and responsive for desktop and phone)              */}
+      {/* 3. SIGN IN FORM CARD                                                      */}
       {/* ========================================================================= */}
-      <div className="flex-1 flex flex-col items-center justify-center p-5 sm:p-8 lg:p-20 bg-white relative">
+      <div className="flex-1 flex flex-col items-center justify-center p-5 sm:p-8 lg:p-16 relative z-10">
         
         {/* Desktop Back button */}
         <div className="hidden lg:block absolute top-8 right-8">
-          <Link to="/" className="text-sm font-semibold text-slate-500 hover:text-blue-600 transition-colors flex items-center gap-1">
+          <Link 
+            to="/" 
+            className="text-sm font-semibold text-slate-500 hover:text-teal-700 transition-colors flex items-center gap-1.5 bg-white/80 px-4 py-2 rounded-full border border-slate-200 shadow-sm"
+          >
             <ArrowLeft className="w-4 h-4" /> Back to Home
           </Link>
         </div>
 
-        <div className="w-full max-w-md">
+        <div className="w-full max-w-md bg-white/95 backdrop-blur-md p-6 sm:p-8 rounded-3xl shadow-xl shadow-slate-200/60 border border-slate-100">
           
           <div className="mb-6 text-left">
-            <h2 className="text-2xl sm:text-3xl font-extrabold text-slate-800 tracking-tight">Welcome Back</h2>
-            <p className="text-xs sm:text-sm text-slate-500 mt-1">Sign in to your practitioner account</p>
+            <h2 className="text-2xl sm:text-3xl font-extrabold text-slate-800 tracking-tight">Sign In</h2>
+            <p className="text-xs sm:text-sm text-slate-500 mt-1">Access your psychiatric care account</p>
           </div>
 
           {/* Quick-Fill Helpers for Easy 1-Tap Login */}
@@ -145,14 +153,14 @@ const Login = () => {
               <button
                 type="button"
                 onClick={() => handleQuickFill('doctor')}
-                className="text-xs font-bold px-3 py-1.5 rounded-xl bg-blue-50 text-blue-700 hover:bg-blue-100 border border-blue-200 active:scale-95 transition-all flex items-center gap-1"
+                className="text-xs font-bold px-3 py-1.5 rounded-xl bg-teal-50 text-teal-700 hover:bg-teal-100 border border-teal-200 active:scale-95 transition-all flex items-center gap-1 shadow-xs"
               >
                 <span>👨‍⚕️ Doctor</span>
               </button>
               <button
                 type="button"
                 onClick={() => handleQuickFill('staff')}
-                className="text-xs font-bold px-3 py-1.5 rounded-xl bg-purple-50 text-purple-700 hover:bg-purple-100 border border-purple-200 active:scale-95 transition-all flex items-center gap-1"
+                className="text-xs font-bold px-3 py-1.5 rounded-xl bg-purple-50 text-purple-700 hover:bg-purple-100 border border-purple-200 active:scale-95 transition-all flex items-center gap-1 shadow-xs"
               >
                 <span>📋 Staff</span>
               </button>
@@ -170,19 +178,19 @@ const Login = () => {
             {/* Username / Email Field */}
             <div>
               <label className="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1.5">
-                Username / Email Address
+                Username / Email
               </label>
               <div className="relative">
-                <div className="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-slate-400">
+                <div className="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-teal-600">
                   <User className="w-4 h-4" />
                 </div>
                 <input
                   type="text"
-                  className="w-full pl-10 pr-4 py-3 rounded-xl border border-slate-200 focus:ring-4 focus:ring-blue-600/10 focus:border-blue-600 outline-none text-slate-900 text-sm font-medium transition-all"
+                  className="w-full pl-10 pr-4 py-3 rounded-2xl border border-slate-200 bg-slate-50/50 focus:bg-white focus:ring-4 focus:ring-teal-500/10 focus:border-teal-600 outline-none text-slate-900 text-sm font-medium transition-all"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   required
-                  placeholder="doctor"
+                  placeholder="doctor or staff"
                   autoComplete="username"
                 />
               </div>
@@ -194,12 +202,12 @@ const Login = () => {
                 Password
               </label>
               <div className="relative">
-                <div className="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-slate-400">
+                <div className="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-purple-600">
                   <Lock className="w-4 h-4" />
                 </div>
                 <input
                   type={showPassword ? "text" : "password"}
-                  className="w-full pl-10 pr-12 py-3 rounded-xl border border-slate-200 focus:ring-4 focus:ring-blue-600/10 focus:border-blue-600 outline-none text-slate-900 text-sm font-medium transition-all"
+                  className="w-full pl-10 pr-12 py-3 rounded-2xl border border-slate-200 bg-slate-50/50 focus:bg-white focus:ring-4 focus:ring-purple-500/10 focus:border-purple-600 outline-none text-slate-900 text-sm font-medium transition-all"
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
                   required
@@ -217,23 +225,26 @@ const Login = () => {
               </div>
             </div>
 
-            {/* Sign In Button */}
+            {/* Sign In Button with Home Page Gradient Theme */}
             <button
               type="submit"
               disabled={loading}
-              className="w-full bg-blue-600 hover:bg-blue-700 active:scale-98 text-white font-bold py-3.5 rounded-xl transition-all shadow-lg shadow-blue-600/25 mt-4 flex items-center justify-center gap-2"
+              className="w-full bg-gradient-to-r from-[#10b981] via-[#0d9488] to-[#8b5cf6] hover:opacity-95 active:scale-98 text-white font-bold py-3.5 rounded-full transition-all shadow-lg shadow-teal-600/25 mt-5 flex items-center justify-center gap-2 cursor-pointer"
             >
               {loading ? (
                 <span className="inline-block w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin"></span>
               ) : (
-                <span>Sign In</span>
+                <>
+                  <span>Sign In</span>
+                  <ArrowRight className="w-4 h-4" />
+                </>
               )}
             </button>
           </form>
 
           {/* Security Badge */}
           <div className="flex items-center justify-center gap-1.5 text-[11px] text-slate-400 mt-6 pt-4 border-t border-slate-100">
-            <ShieldCheck className="w-3.5 h-3.5 text-emerald-600" />
+            <ShieldCheck className="w-3.5 h-3.5 text-teal-600" />
             <span>256-Bit Encrypted Healthcare Access</span>
           </div>
 

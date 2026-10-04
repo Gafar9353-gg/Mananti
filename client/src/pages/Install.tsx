@@ -114,18 +114,16 @@ const Install: React.FC = () => {
       <header className="w-full bg-white/80 backdrop-blur-md border-b border-slate-200/80 sticky top-0 z-40">
         <div className="max-w-5xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between">
           <Link to="/" className="flex items-center gap-3 group">
-            <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-[#004f6e] to-[#023047] flex items-center justify-center text-white shadow-md shadow-[#004f6e]/20 group-hover:scale-105 transition-transform">
-              <Stethoscope className="w-5 h-5 text-emerald-400" />
-            </div>
+            <img src="/mananti-logo.jpg" alt="MANANTI" className="w-10 h-10 rounded-xl object-contain shadow-md border border-slate-100 group-hover:scale-105 transition-transform" />
             <div>
               <span className="font-extrabold text-lg text-slate-900 tracking-tight leading-none block">MANANTI</span>
-              <span className="text-[10px] font-semibold text-slate-500 uppercase tracking-wider block">Psychiatry Care</span>
+              <span className="text-[10px] font-semibold text-teal-700 uppercase tracking-wider block">Psychiatrist Care App</span>
             </div>
           </Link>
 
           <Link
             to="/"
-            className="flex items-center gap-2 text-xs sm:text-sm font-semibold text-[#004f6e] hover:text-[#023047] bg-slate-100 hover:bg-slate-200/80 px-4 py-2 rounded-xl transition-all"
+            className="flex items-center gap-2 text-xs sm:text-sm font-semibold text-teal-800 hover:text-purple-700 bg-slate-100 hover:bg-slate-200/80 px-4 py-2 rounded-xl transition-all"
           >
             <span>Continue to MANANTI Website</span>
             <ArrowRight className="w-4 h-4" />
@@ -139,21 +137,26 @@ const Install: React.FC = () => {
         {/* App Hero Badge */}
         <div className="flex flex-col items-center text-center max-w-2xl mb-8">
           <div className="relative mb-6">
-            <div className="w-24 h-24 sm:w-28 sm:h-28 rounded-3xl bg-gradient-to-br from-[#004f6e] via-[#005f85] to-[#023047] flex items-center justify-center text-white shadow-xl shadow-[#004f6e]/25 border-4 border-white">
-              <Stethoscope className="w-12 h-12 sm:w-14 sm:h-14 text-emerald-400 drop-shadow-md" />
-            </div>
-            <div className="absolute -bottom-2 -right-2 bg-emerald-500 text-white p-1.5 rounded-full shadow-md border-2 border-white">
+            <img 
+              src="/mananti-logo.jpg" 
+              alt="MANANTI Logo" 
+              className="w-24 h-24 sm:w-28 sm:h-28 rounded-3xl shadow-xl shadow-teal-900/10 border-4 border-white object-contain"
+            />
+            <div className="absolute -bottom-2 -right-2 bg-gradient-to-r from-teal-500 to-purple-500 text-white p-1.5 rounded-full shadow-md border-2 border-white">
               <Sparkles className="w-4 h-4" />
             </div>
           </div>
 
-          <h1 className="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight mb-2">
+          <h1 className="text-3xl sm:text-4xl font-black tracking-wider bg-gradient-to-r from-[#0d9488] via-[#0284c7] to-[#8b5cf6] bg-clip-text text-transparent mb-1">
             MANANTI
           </h1>
-          <p className="text-base sm:text-lg font-medium text-slate-600 mb-2">
-            Mental Health and Psychiatry Care Software
+          <h2 className="text-xl sm:text-2xl font-bold text-slate-800 tracking-tight mb-1">
+            Psychiatrist Care App
+          </h2>
+          <p className="text-xs sm:text-sm font-semibold text-slate-400 mb-3 tracking-wide">
+            Better Mind &bull; Brighter Tomorrow
           </p>
-          <p className="text-sm text-slate-500 max-w-md">
+          <p className="text-sm text-slate-600 max-w-md">
             Install MANANTI on your device for a faster app-like experience.
           </p>
         </div>
