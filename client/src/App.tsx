@@ -130,9 +130,29 @@ const Layout = ({ children }) => {
         <Sidebar isOpen={sidebarOpen} setIsOpen={setSidebarOpen} setShowLogoutConfirm={setShowLogoutConfirm} />
         <div className="flex-1 md:ml-64 flex flex-col h-screen overflow-hidden min-w-0 w-full">
           <Topbar setIsOpen={setSidebarOpen} setShowLogoutConfirm={setShowLogoutConfirm} />
-          <main className="flex-1 p-4 md:p-8 overflow-y-auto w-full">
+          <main className="flex-1 p-4 md:p-8 pb-24 md:pb-8 overflow-y-auto w-full">
             {children}
           </main>
+          
+          {/* Mobile Bottom Navigation Bar for Android / Phone View */}
+          <div className="md:hidden bg-white/95 backdrop-blur-md border-t border-slate-200 fixed bottom-0 left-0 right-0 z-40 px-4 py-2 flex justify-around items-center shadow-lg">
+            <Link to="/dashboard" className={`flex flex-col items-center text-[10px] font-bold ${location.pathname === '/dashboard' ? 'text-[#004f6e]' : 'text-slate-500'}`}>
+              <LayoutDashboard className="w-5 h-5 mb-0.5" />
+              <span>Dashboard</span>
+            </Link>
+            <Link to="/patients" className={`flex flex-col items-center text-[10px] font-bold ${location.pathname.startsWith('/patients') || location.pathname.startsWith('/patient') ? 'text-[#004f6e]' : 'text-slate-500'}`}>
+              <Users className="w-5 h-5 mb-0.5" />
+              <span>Patients</span>
+            </Link>
+            <Link to="/appointments" className={`flex flex-col items-center text-[10px] font-bold ${location.pathname.startsWith('/appointments') ? 'text-[#004f6e]' : 'text-slate-500'}`}>
+              <Calendar className="w-5 h-5 mb-0.5" />
+              <span>Tokens</span>
+            </Link>
+            <Link to="/inventory" className={`flex flex-col items-center text-[10px] font-bold ${location.pathname.startsWith('/inventory') ? 'text-[#004f6e]' : 'text-slate-500'}`}>
+              <PackageSearch className="w-5 h-5 mb-0.5" />
+              <span>Stock</span>
+            </Link>
+          </div>
         </div>
       </div>
       
