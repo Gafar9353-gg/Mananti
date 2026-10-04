@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useContext, useRef } from 'react';
 import axios from 'axios';
 import { AuthContext } from '../context/AuthContext';
-import { X, Trash2, Loader2, ClipboardList } from 'lucide-react';
+import { X, Trash2, Loader2, ClipboardList, PlusCircle } from 'lucide-react';
 
 const PrescriptionForm = ({ patientId, initialDisease, onClose, onPrescriptionSaved }) => {
   const { doctor } = useContext(AuthContext);
@@ -163,8 +163,9 @@ const PrescriptionForm = ({ patientId, initialDisease, onClose, onPrescriptionSa
             </div>
             <div className="p-4 space-y-3">
               {medicines.map((med, index) => (
-                <div key={index} className="flex items-center gap-3">
-                  <div className="flex-1">
+                <div key={index} className="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-3 p-3 bg-slate-50 sm:bg-transparent rounded-xl border sm:border-0 border-slate-200">
+                  <div className="flex-1 w-full min-w-0">
+                    <label className="block sm:hidden text-[10px] font-bold text-slate-500 uppercase mb-1">Medicine Name</label>
                     <input 
                       ref={el => { nameInputRefs.current[index] = el; }}
                       name="name"
@@ -174,42 +175,65 @@ const PrescriptionForm = ({ patientId, initialDisease, onClose, onPrescriptionSa
                       value={med.name} 
                       onChange={(e) => handleMedicineChange(index, 'name', e.target.value)} 
                       onKeyDown={(e) => handleMedKeyDown(e, index)}
-                      className="w-full px-3 py-2 rounded-lg border focus:ring-2 focus:ring-purple-600/20 outline-none text-sm" 
+                      className="w-full px-3 py-2 rounded-lg border border-slate-300 focus:ring-2 focus:ring-purple-600/20 outline-none text-sm font-medium" 
                     />
                   </div>
-                  <div className="w-32">
-                    <input 
-                      name="dosing"
-                      placeholder="1-0-1" 
-                      value={med.dosing} 
-                      onChange={(e) => handleMedicineChange(index, 'dosing', e.target.value)} 
-                      onKeyDown={(e) => handleMedKeyDown(e, index)}
-                      className="w-full px-3 py-2 rounded-lg border focus:ring-2 focus:ring-purple-600/20 outline-none text-sm" 
-                    />
+                  <div className="flex items-center gap-2 w-full sm:w-auto">
+                    <div className="flex-1 sm:w-32">
+                      <label className="block sm:hidden text-[10px] font-bold text-slate-500 uppercase mb-1">Dosing</label>
+                      <input 
+                        name="dosing"
+                        placeholder="1-0-1" 
+                        value={med.dosing} 
+                        onChange={(e) => handleMedicineChange(index, 'dosing', e.target.value)} 
+                        onKeyDown={(e) => handleMedKeyDown(e, index)}
+                        className="w-full px-3 py-2 rounded-lg border border-slate-300 focus:ring-2 focus:ring-purple-600/20 outline-none text-sm" 
+                      />
+                    </div>
+                    <div className="flex-1 sm:w-24">
+                      <label className="block sm:hidden text-[10px] font-bold text-slate-500 uppercase mb-1">Days</label>
+                      <input 
+                        name="days"
+                        placeholder="Days" 
+                        type="number" 
+                        value={med.days} 
+                        onChange={(e) => handleMedicineChange(index, 'days', e.target.value)} 
+                        onKeyDown={(e) => handleMedKeyDown(e, index)}
+                        className="w-full px-3 py-2 rounded-lg border border-slate-300 focus:ring-2 focus:ring-purple-600/20 outline-none text-sm" 
+                      />
+                    </div>
+                    {medicines.length > 1 && (
+                      <div className="self-end sm:self-auto pt-1 sm:pt-0">
+                        <button 
+                          type="button" 
+                          onClick={() => handleRemoveMedicine(index)} 
+                          className="text-red-400 hover:text-red-600 p-2 bg-red-50 hover:bg-red-100 rounded-lg transition-colors"
+                          title="Remove row"
+                        >
+                          <Trash2 className="w-4 h-4" />
+                        </button>
+                      </div>
+                    )}
                   </div>
-                  <div className="w-24">
-                    <input 
-                      name="days"
-                      placeholder="Days" 
-                      type="number" 
-                      value={med.days} 
-                      onChange={(e) => handleMedicineChange(index, 'days', e.target.value)} 
-                      onKeyDown={(e) => handleMedKeyDown(e, index)}
-                      className="w-full px-3 py-2 rounded-lg border focus:ring-2 focus:ring-purple-600/20 outline-none text-sm" 
-                    />
-                  </div>
-                  {medicines.length > 1 && (
-                    <button 
-                      type="button" 
-                      onClick={() => handleRemoveMedicine(index)} 
-                      className="text-red-400 hover:text-red-600 p-2 bg-red-50 rounded-lg transition-colors"
-                      title="Remove row"
-                    >
-                      <Trash2 className="w-4 h-4" />
-                    </button>
-                  )}
                 </div>
               ))}
+
+              {/* Explicit button to add medicine row easily on touch phones */}
+              <div className="pt-2">
+                <button
+                  type="button"
+                  onClick={() => {
+                    const newIndex = medicines.length;
+                    setMedicines([...medicines, { name: '', dosing: '1-0-1', days: '5' }]);
+                    setTimeout(() => {
+                      nameInputRefs.current[newIndex]?.focus();
+                    }, 50);
+                  }}
+                  className="w-full py-2.5 px-4 bg-purple-50 hover:bg-purple-100 text-purple-700 font-bold text-xs rounded-xl border border-dashed border-purple-300 flex items-center justify-center gap-1.5 transition-colors active:scale-98"
+                >
+                  <PlusCircle className="w-4 h-4" /> + Add Medicine Row
+                </button>
+              </div>
             </div>
           </div>
           

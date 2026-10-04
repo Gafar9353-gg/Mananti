@@ -215,8 +215,8 @@ const BillingForm = ({ patient, onClose, initialPrescription }) => {
           </div>
 
           {/* Table */}
-          <div className="border-2 border-slate-800 rounded-md overflow-hidden mb-4">
-            <table className="w-full text-left text-xs print:text-[9px] border-collapse">
+          <div className="border-2 border-slate-800 rounded-md overflow-x-auto mb-4 w-full">
+            <table className="w-full text-left text-xs print:text-[9px] border-collapse min-w-[540px]">
               <thead>
                 <tr className="bg-slate-100 text-black border-b-2 border-slate-800">
                   <th className="p-1.5 border-r border-slate-800 font-bold text-center w-8">Sl.</th>

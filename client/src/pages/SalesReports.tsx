@@ -83,31 +83,31 @@ const SalesReports = () => {
   };
 
   return (
-    <div className="flex flex-col h-full">
-      <div className="mb-6 flex justify-between items-end">
+    <div className="flex flex-col h-full w-full max-w-full min-w-0">
+      <div className="mb-6 flex flex-col sm:flex-row sm:justify-between sm:items-start gap-4">
         <div>
-          <h1 className="text-3xl font-bold text-slate-800 flex items-center gap-3">
-            <BarChart2 className="w-8 h-8 text-blue-600" /> Pharmacy Sales & Reports
+          <h1 className="text-2xl sm:text-3xl font-bold text-slate-800 flex items-center gap-2 sm:gap-3">
+            <BarChart2 className="w-7 h-7 sm:w-8 sm:h-8 text-blue-600" /> Pharmacy Sales & Reports
           </h1>
-          <p className="text-slate-500 mt-1">Track medicine sales, revenue, and generated bills.</p>
+          <p className="text-slate-500 mt-1 text-xs sm:text-sm">Track medicine sales, revenue, and generated bills.</p>
         </div>
         
-        <div className="bg-white border border-slate-200 rounded-xl p-1 flex">
+        <div className="bg-white border border-slate-200 rounded-xl p-1 flex w-full sm:w-auto justify-between sm:justify-start">
           <button 
             onClick={() => setReportType('daily')}
-            className={`px-4 py-2 rounded-lg text-sm font-semibold transition-colors ${reportType === 'daily' ? 'bg-blue-600 text-white shadow-sm' : 'text-slate-600 hover:bg-slate-50'}`}
+            className={`flex-1 sm:flex-initial px-3 sm:px-4 py-2 rounded-lg text-xs sm:text-sm font-semibold transition-colors ${reportType === 'daily' ? 'bg-blue-600 text-white shadow-sm' : 'text-slate-600 hover:bg-slate-50'}`}
           >
             Daily
           </button>
           <button 
             onClick={() => setReportType('weekly')}
-            className={`px-4 py-2 rounded-lg text-sm font-semibold transition-colors ${reportType === 'weekly' ? 'bg-blue-600 text-white shadow-sm' : 'text-slate-600 hover:bg-slate-50'}`}
+            className={`flex-1 sm:flex-initial px-3 sm:px-4 py-2 rounded-lg text-xs sm:text-sm font-semibold transition-colors ${reportType === 'weekly' ? 'bg-blue-600 text-white shadow-sm' : 'text-slate-600 hover:bg-slate-50'}`}
           >
             Weekly
           </button>
           <button 
             onClick={() => setReportType('monthly')}
-            className={`px-4 py-2 rounded-lg text-sm font-semibold transition-colors ${reportType === 'monthly' ? 'bg-blue-600 text-white shadow-sm' : 'text-slate-600 hover:bg-slate-50'}`}
+            className={`flex-1 sm:flex-initial px-3 sm:px-4 py-2 rounded-lg text-xs sm:text-sm font-semibold transition-colors ${reportType === 'monthly' ? 'bg-blue-600 text-white shadow-sm' : 'text-slate-600 hover:bg-slate-50'}`}
           >
             Monthly
           </button>

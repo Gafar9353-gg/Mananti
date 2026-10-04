@@ -342,13 +342,13 @@ const StockManagement = () => {
           {successMsg && <div className="bg-emerald-50 text-emerald-600 p-4 rounded-xl text-sm mb-4 border border-emerald-100">{successMsg}</div>}
           {errorMsg && <div className="bg-red-50 text-red-600 p-4 rounded-xl text-sm mb-4 border border-red-100">{errorMsg}</div>}
 
-          <form onSubmit={handlePurchaseEntry} className="flex-1 flex flex-col overflow-hidden">
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-4">
+          <form onSubmit={handlePurchaseEntry} className="w-full flex flex-col gap-4 overflow-visible">
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3 mb-2">
               <div>
                 <label className="block text-xs font-bold text-slate-600 mb-1 uppercase tracking-wide">Invoice No.</label>
                 <input
                   type="text"
-                  className="w-full px-3 py-2 rounded-lg border border-slate-200 focus:ring-2 focus:ring-[#004f6e]/20 focus:border-[#004f6e] outline-none text-sm font-semibold"
+                  className="w-full px-3 py-2.5 rounded-xl border border-slate-200 focus:ring-2 focus:ring-[#004f6e]/20 focus:border-[#004f6e] outline-none text-sm font-semibold"
                   value={invoiceNo}
                   onChange={(e) => setInvoiceNo(e.target.value)}
                   placeholder="e.g. B0005943"
@@ -358,16 +358,16 @@ const StockManagement = () => {
                 <label className="block text-xs font-bold text-slate-600 mb-1 uppercase tracking-wide">Invoice Date</label>
                 <input
                   type="date"
-                  className="w-full px-3 py-2 rounded-lg border border-slate-200 focus:ring-2 focus:ring-[#004f6e]/20 focus:border-[#004f6e] outline-none text-sm font-semibold"
+                  className="w-full px-3 py-2.5 rounded-xl border border-slate-200 focus:ring-2 focus:ring-[#004f6e]/20 focus:border-[#004f6e] outline-none text-sm font-semibold"
                   value={invoiceDate}
                   onChange={(e) => setInvoiceDate(e.target.value)}
                 />
               </div>
-              <div>
+              <div className="sm:col-span-2 md:col-span-1">
                 <label className="block text-xs font-bold text-slate-600 mb-1 uppercase tracking-wide">Party / Vendor Name</label>
                 <input
                   type="text"
-                  className="w-full px-3 py-2 rounded-lg border border-slate-200 focus:ring-2 focus:ring-[#004f6e]/20 focus:border-[#004f6e] outline-none text-sm font-semibold"
+                  className="w-full px-3 py-2.5 rounded-xl border border-slate-200 focus:ring-2 focus:ring-[#004f6e]/20 focus:border-[#004f6e] outline-none text-sm font-semibold"
                   value={vendor}
                   onChange={(e) => setVendor(e.target.value)}
                   placeholder="e.g. BHARANI ENTERPRISES"
@@ -376,58 +376,58 @@ const StockManagement = () => {
               </div>
             </div>
 
-            <div className="border border-slate-200 rounded-xl overflow-x-auto flex-1 flex flex-col">
-              <table className="w-full text-left text-xs whitespace-nowrap">
-                <thead className="bg-slate-100 text-slate-600 sticky top-0 z-10 uppercase tracking-wider text-[10px]">
+            <div className="border border-slate-200 rounded-xl overflow-x-auto overflow-y-auto min-h-[260px] max-h-[500px] flex flex-col w-full shadow-inner bg-white">
+              <table className="w-full text-left text-xs whitespace-nowrap min-w-[980px]">
+                <thead className="bg-slate-100 text-slate-700 sticky top-0 z-10 uppercase tracking-wider text-[11px]">
                   <tr>
-                    <th className="p-2 font-bold w-12 text-center">S.</th>
-                    <th className="p-2 font-bold w-16">Qty</th>
-                    <th className="p-2 font-bold w-16">Free</th>
-                    <th className="p-2 font-bold w-16">Mfr</th>
-                    <th className="p-2 font-bold w-16">Pack</th>
-                    <th className="p-2 font-bold min-w-[150px]">Product Name</th>
-                    <th className="p-2 font-bold w-24">Batch</th>
-                    <th className="p-2 font-bold w-16">Exp</th>
-                    <th className="p-2 font-bold w-16">HSN</th>
-                    <th className="p-2 font-bold w-20">M.R.P</th>
-                    <th className="p-2 font-bold w-20">Rate</th>
-                    <th className="p-2 font-bold w-20">Dis</th>
-                    <th className="p-2 font-bold w-16">SGST %</th>
-                    <th className="p-2 font-bold w-20">SGST Val</th>
-                    <th className="p-2 font-bold w-16">CGST %</th>
-                    <th className="p-2 font-bold w-20">CGST Val</th>
-                    <th className="p-2 font-bold w-24 text-right">Amount</th>
-                    <th className="p-2 font-bold w-10"></th>
+                    <th className="p-2.5 font-bold w-12 text-center">S.</th>
+                    <th className="p-2.5 font-bold w-16">Qty</th>
+                    <th className="p-2.5 font-bold w-16">Free</th>
+                    <th className="p-2.5 font-bold w-16">Mfr</th>
+                    <th className="p-2.5 font-bold w-16">Pack</th>
+                    <th className="p-2.5 font-bold min-w-[180px]">Product Name</th>
+                    <th className="p-2.5 font-bold w-24">Batch</th>
+                    <th className="p-2.5 font-bold w-20">Exp</th>
+                    <th className="p-2.5 font-bold w-20">HSN</th>
+                    <th className="p-2.5 font-bold w-20">M.R.P</th>
+                    <th className="p-2.5 font-bold w-20">Rate</th>
+                    <th className="p-2.5 font-bold w-16">Dis %</th>
+                    <th className="p-2.5 font-bold w-16">SGST %</th>
+                    <th className="p-2.5 font-bold w-20">SGST Val</th>
+                    <th className="p-2.5 font-bold w-16">CGST %</th>
+                    <th className="p-2.5 font-bold w-20">CGST Val</th>
+                    <th className="p-2.5 font-bold w-24 text-right">Amount</th>
+                    <th className="p-2.5 font-bold w-10"></th>
                   </tr>
                 </thead>
                 <tbody className="divide-y divide-slate-100">
                   {items.map((item, idx) => (
                     <tr key={idx} className="hover:bg-slate-50">
-                      <td className="p-1 text-center font-bold text-slate-400">{idx + 1}</td>
-                      <td className="p-1"><input type="number" required value={item.qty} onChange={(e) => handleItemChange(idx, 'qty', e.target.value)} className="w-full px-1.5 py-1 border rounded outline-none focus:border-[#004f6e]" /></td>
-                      <td className="p-1"><input type="number" value={item.free} onChange={(e) => handleItemChange(idx, 'free', e.target.value)} className="w-full px-1.5 py-1 border rounded outline-none focus:border-[#004f6e]" /></td>
-                      <td className="p-1"><input value={item.mfr} onChange={(e) => handleItemChange(idx, 'mfr', e.target.value)} className="w-full px-1.5 py-1 border rounded outline-none focus:border-[#004f6e]" /></td>
-                      <td className="p-1"><input value={item.pack} onChange={(e) => handleItemChange(idx, 'pack', e.target.value)} className="w-full px-1.5 py-1 border rounded outline-none focus:border-[#004f6e]" /></td>
-                      <td className="p-1">
+                      <td className="p-1.5 text-center font-bold text-slate-400">{idx + 1}</td>
+                      <td className="p-1.5"><input type="number" required value={item.qty} onChange={(e) => handleItemChange(idx, 'qty', e.target.value)} className="w-14 px-2 py-1.5 border rounded-lg outline-none focus:border-[#004f6e]" /></td>
+                      <td className="p-1.5"><input type="number" value={item.free} onChange={(e) => handleItemChange(idx, 'free', e.target.value)} className="w-14 px-2 py-1.5 border rounded-lg outline-none focus:border-[#004f6e]" /></td>
+                      <td className="p-1.5"><input value={item.mfr} onChange={(e) => handleItemChange(idx, 'mfr', e.target.value)} className="w-16 px-2 py-1.5 border rounded-lg outline-none focus:border-[#004f6e]" /></td>
+                      <td className="p-1.5"><input value={item.pack} onChange={(e) => handleItemChange(idx, 'pack', e.target.value)} className="w-16 px-2 py-1.5 border rounded-lg outline-none focus:border-[#004f6e]" /></td>
+                      <td className="p-1.5">
                         <datalist id="med-suggestions">
                           {medicines.map((m) => (
                             <option key={m._id} value={m.name} />
                           ))}
                         </datalist>
-                        <input list="med-suggestions" required value={item.name} onChange={(e) => handleItemChange(idx, 'name', e.target.value)} className="w-full px-1.5 py-1 border rounded outline-none focus:border-[#004f6e] font-semibold text-slate-800" />
+                        <input list="med-suggestions" required value={item.name} onChange={(e) => handleItemChange(idx, 'name', e.target.value)} className="w-full min-w-[160px] px-2 py-1.5 border rounded-lg outline-none focus:border-[#004f6e] font-semibold text-slate-800" placeholder="Medicine Name" />
                       </td>
-                      <td className="p-1"><input value={item.batch} onChange={(e) => handleItemChange(idx, 'batch', e.target.value)} className="w-full px-1.5 py-1 border rounded outline-none focus:border-[#004f6e]" /></td>
-                      <td className="p-1"><input value={item.exp} onChange={(e) => handleItemChange(idx, 'exp', e.target.value)} className="w-full px-1.5 py-1 border rounded outline-none focus:border-[#004f6e]" /></td>
-                      <td className="p-1"><input value={item.hsn} onChange={(e) => handleItemChange(idx, 'hsn', e.target.value)} className="w-full px-1.5 py-1 border rounded outline-none focus:border-[#004f6e]" /></td>
-                      <td className="p-1"><input type="number" step="0.01" value={item.mrp} onChange={(e) => handleItemChange(idx, 'mrp', e.target.value)} className="w-full px-1.5 py-1 border rounded outline-none focus:border-[#004f6e]" /></td>
-                      <td className="p-1"><input type="number" step="0.01" value={item.rate} onChange={(e) => handleItemChange(idx, 'rate', e.target.value)} className="w-full px-1.5 py-1 border rounded outline-none focus:border-[#004f6e]" /></td>
-                      <td className="p-1"><input type="number" step="0.01" value={item.dis} onChange={(e) => handleItemChange(idx, 'dis', e.target.value)} className="w-full px-1.5 py-1 border rounded outline-none focus:border-[#004f6e]" /></td>
-                      <td className="p-1"><input type="number" step="0.01" value={item.sgstPercent} onChange={(e) => handleItemChange(idx, 'sgstPercent', e.target.value)} className="w-full px-1.5 py-1 border rounded outline-none focus:border-[#004f6e]" /></td>
-                      <td className="p-1"><input type="number" step="0.01" readOnly value={item.sgstValue} className="w-full px-1.5 py-1 border border-transparent bg-transparent outline-none text-slate-500 font-medium" /></td>
-                      <td className="p-1"><input type="number" step="0.01" value={item.cgstPercent} onChange={(e) => handleItemChange(idx, 'cgstPercent', e.target.value)} className="w-full px-1.5 py-1 border rounded outline-none focus:border-[#004f6e]" /></td>
-                      <td className="p-1"><input type="number" step="0.01" readOnly value={item.cgstValue} className="w-full px-1.5 py-1 border border-transparent bg-transparent outline-none text-slate-500 font-medium" /></td>
-                      <td className="p-1"><input type="number" step="0.01" readOnly value={item.amount} className="w-full px-1.5 py-1 border border-transparent bg-transparent outline-none text-right font-bold text-slate-800" /></td>
-                      <td className="p-1 text-center">
+                      <td className="p-1.5"><input value={item.batch} onChange={(e) => handleItemChange(idx, 'batch', e.target.value)} className="w-20 px-2 py-1.5 border rounded-lg outline-none focus:border-[#004f6e]" placeholder="Batch" /></td>
+                      <td className="p-1.5"><input value={item.exp} onChange={(e) => handleItemChange(idx, 'exp', e.target.value)} className="w-20 px-2 py-1.5 border rounded-lg outline-none focus:border-[#004f6e]" placeholder="MM/YY" /></td>
+                      <td className="p-1.5"><input value={item.hsn} onChange={(e) => handleItemChange(idx, 'hsn', e.target.value)} className="w-20 px-2 py-1.5 border rounded-lg outline-none focus:border-[#004f6e]" /></td>
+                      <td className="p-1.5"><input type="number" step="0.01" value={item.mrp} onChange={(e) => handleItemChange(idx, 'mrp', e.target.value)} className="w-20 px-2 py-1.5 border rounded-lg outline-none focus:border-[#004f6e]" /></td>
+                      <td className="p-1.5"><input type="number" step="0.01" value={item.rate} onChange={(e) => handleItemChange(idx, 'rate', e.target.value)} className="w-20 px-2 py-1.5 border rounded-lg outline-none focus:border-[#004f6e]" /></td>
+                      <td className="p-1.5"><input type="number" step="0.01" value={item.dis} onChange={(e) => handleItemChange(idx, 'dis', e.target.value)} className="w-16 px-2 py-1.5 border rounded-lg outline-none focus:border-[#004f6e]" /></td>
+                      <td className="p-1.5"><input type="number" step="0.01" value={item.sgstPercent} onChange={(e) => handleItemChange(idx, 'sgstPercent', e.target.value)} className="w-16 px-2 py-1.5 border rounded-lg outline-none focus:border-[#004f6e]" /></td>
+                      <td className="p-1.5"><input type="number" step="0.01" readOnly value={item.sgstValue} className="w-20 px-2 py-1.5 border border-transparent bg-transparent outline-none text-slate-500 font-medium" /></td>
+                      <td className="p-1.5"><input type="number" step="0.01" value={item.cgstPercent} onChange={(e) => handleItemChange(idx, 'cgstPercent', e.target.value)} className="w-16 px-2 py-1.5 border rounded-lg outline-none focus:border-[#004f6e]" /></td>
+                      <td className="p-1.5"><input type="number" step="0.01" readOnly value={item.cgstValue} className="w-20 px-2 py-1.5 border border-transparent bg-transparent outline-none text-slate-500 font-medium" /></td>
+                      <td className="p-1.5"><input type="number" step="0.01" readOnly value={item.amount} className="w-24 px-2 py-1.5 border border-transparent bg-transparent outline-none text-right font-bold text-slate-800" /></td>
+                      <td className="p-1.5 text-center">
                         {items.length > 1 && (
                           <button type="button" onClick={() => handleRemoveItem(idx)} className="text-slate-300 hover:text-red-500 transition-colors p-1" title="Remove Row">
                             <X className="w-4 h-4" />
@@ -438,21 +438,22 @@ const StockManagement = () => {
                   ))}
                 </tbody>
               </table>
-              <div className="bg-slate-50 p-2 border-t border-b border-slate-200 flex items-center justify-between">
-                <button type="button" onClick={() => setItems([...items, getEmptyItem()])} className="text-xs text-[#004f6e] font-bold hover:underline px-2 py-1">
-                  + Add Another Row
+              <div className="bg-slate-50 p-2.5 border-t border-b border-slate-200 flex items-center justify-between">
+                <button type="button" onClick={() => setItems([...items, getEmptyItem()])} className="text-xs text-white bg-[#004f6e] hover:bg-[#00394f] font-bold px-3 py-1.5 rounded-lg flex items-center gap-1 shadow-sm active:scale-95">
+                  <PlusCircle className="w-3.5 h-3.5" /> + Add Another Row
                 </button>
+                <span className="text-[11px] text-slate-500 font-medium hidden sm:inline">Scroll horizontally to view GST & Amounts →</span>
               </div>
 
               {/* Invoice Footer / Totals */}
-              <div className="bg-white p-4 text-sm font-semibold text-slate-700 flex justify-between">
+              <div className="bg-white p-4 text-xs sm:text-sm font-semibold text-slate-700 flex flex-col sm:flex-row justify-between gap-4">
                 <div className="flex gap-8">
                    <div>
                      <span className="text-xs text-slate-500 block uppercase tracking-wide">Total Items</span>
-                     <span className="text-lg">{items.length}</span>
+                     <span className="text-lg font-bold text-[#004f6e]">{items.length}</span>
                    </div>
                 </div>
-                <div className="grid grid-cols-2 gap-x-8 gap-y-2 text-right">
+                <div className="grid grid-cols-2 gap-x-8 gap-y-1.5 text-right text-xs sm:text-sm">
                   <div className="text-slate-500">TOTAL</div>
                   <div>₹{summary.totalAmount}</div>
                   <div className="text-slate-500">DIS AMT.</div>
@@ -461,17 +462,17 @@ const StockManagement = () => {
                   <div>₹{summary.sgstPayable}</div>
                   <div className="text-slate-500">CGST PAYABLE</div>
                   <div>₹{summary.cgstPayable}</div>
-                  <div className="text-slate-800 font-bold text-lg mt-2 pt-2 border-t border-slate-200">GRAND TOTAL</div>
-                  <div className="text-[#004f6e] font-bold text-xl mt-2 pt-2 border-t border-slate-200">₹{summary.grandTotal}</div>
+                  <div className="text-slate-800 font-bold text-sm sm:text-base mt-2 pt-2 border-t border-slate-200">GRAND TOTAL</div>
+                  <div className="text-[#004f6e] font-bold text-base sm:text-xl mt-2 pt-2 border-t border-slate-200">₹{summary.grandTotal}</div>
                 </div>
               </div>
             </div>
 
-            <div className="mt-4 flex justify-end gap-3">
+            <div className="mt-2 flex justify-end gap-3 w-full">
               <button
                 type="submit"
                 disabled={saving}
-                className="bg-[#004f6e] hover:bg-[#00394f] text-white px-8 py-3 rounded-xl font-bold transition-colors flex items-center gap-2 shadow-sm disabled:opacity-70"
+                className="w-full sm:w-auto bg-[#004f6e] hover:bg-[#00394f] text-white px-8 py-3 rounded-xl font-bold transition-colors flex items-center justify-center gap-2 shadow-sm disabled:opacity-70 active:scale-98 text-sm"
               >
                 {saving ? <Loader2 className="w-5 h-5 animate-spin" /> : <Save className="w-5 h-5" />}
                 Save Purchase Invoice
