@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import { Link, Navigate } from 'react-router-dom';
 import { AuthContext } from '../context/AuthContext';
-import { LogIn } from 'lucide-react';
+import { LogIn, ArrowRight } from 'lucide-react';
 
 const Home = () => {
   const { doctor } = useContext(AuthContext);
@@ -9,7 +9,6 @@ const Home = () => {
   if (doctor) {
     return <Navigate to="/dashboard" replace />;
   }
-
 
   return (
     <div className="h-screen w-full relative overflow-hidden bg-gradient-to-b from-[#f1f6fc] via-[#ffffff] to-[#eef9f6] flex flex-col justify-center items-center font-sans select-none">
@@ -24,7 +23,7 @@ const Home = () => {
         </Link>
       </div>
 
-      {/* MANANTI Main Home Graphic from User's Design */}
+      {/* MANANTI Main Home Graphic */}
       <div className="relative h-full w-full max-w-[430px] flex items-center justify-center p-0">
         <img 
           src="/mananti-home.jpg" 
@@ -32,15 +31,14 @@ const Home = () => {
           className="w-full h-full object-contain drop-shadow-md pointer-events-none"
         />
 
-        {/* Interactive Clickable 'Get Started' Button Overlay */}
+        {/* Visible Styled 'Get Started' Button */}
         <Link
           to="/login"
-          className="absolute bottom-[10%] left-1/2 -translate-x-1/2 w-[76%] h-[56px] rounded-full flex items-center justify-center cursor-pointer transition-all duration-300 active:scale-95 group focus:outline-none focus:ring-4 focus:ring-teal-500/30"
+          className="absolute bottom-[9%] left-1/2 -translate-x-1/2 w-[78%] max-w-[320px] h-[52px] bg-gradient-to-r from-teal-700 via-teal-800 to-teal-900 hover:from-teal-800 hover:to-teal-950 text-white font-extrabold text-base rounded-full flex items-center justify-center gap-2 shadow-xl shadow-teal-900/30 transition-all duration-200 active:scale-95 cursor-pointer z-30 tracking-wide"
           aria-label="Get Started"
-          title="Get Started"
         >
-          {/* Subtle animated hover shine to indicate clickability */}
-          <span className="absolute inset-0 rounded-full bg-white/0 group-hover:bg-white/15 transition-colors"></span>
+          <span>Get Started</span>
+          <ArrowRight className="w-5 h-5" />
         </Link>
       </div>
     </div>

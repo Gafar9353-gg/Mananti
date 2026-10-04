@@ -107,16 +107,8 @@ const Login = () => {
         {/* The Main Login Card */}
         <div className="w-full max-w-md bg-white/95 backdrop-blur-md p-6 sm:p-8 rounded-3xl shadow-xl shadow-slate-200/60 border border-slate-100">
           
-          {/* Header Inside Card: Centered Logo + "Welcome to MANANTI" + "Sign In" */}
+          {/* Header Inside Card: "Welcome to MANANTI" + "Sign In" */}
           <div className="flex flex-col items-center text-center mb-6">
-            <div className="p-2.5 bg-gradient-to-br from-teal-50 to-purple-50 rounded-2xl shadow-sm border border-slate-100 mb-3">
-              <img 
-                src="/mananti-logo.png" 
-                alt="MANANTI Logo" 
-                className="w-16 h-16 sm:w-20 sm:h-20 object-contain rounded-xl"
-              />
-            </div>
-            
             <h2 className="text-2xl sm:text-3xl font-extrabold text-slate-800 tracking-tight leading-tight">
               Welcome to <span className="bg-gradient-to-r from-[#0d9488] via-[#0284c7] to-[#8b5cf6] bg-clip-text text-transparent">MANANTI</span>
             </h2>
