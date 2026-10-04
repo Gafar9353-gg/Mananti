@@ -32,33 +32,34 @@ const Patients = () => {
   const filteredPatients = patients.filter(p => 
     p.name.toLowerCase().includes(search.toLowerCase()) || 
     (p.disease && p.disease.toLowerCase().includes(search.toLowerCase())) ||
-    p.contact.includes(search)
+    (p.contact && p.contact.includes(search)) ||
+    (p.pid && p.pid.toLowerCase().includes(search.toLowerCase()))
   );
 
   return (
-    <div className="flex-1 flex flex-col h-full">
-      <div className="mb-8 flex justify-between items-center">
+    <div className="flex-1 flex flex-col h-full w-full max-w-full min-w-0">
+      <div className="mb-6 flex flex-col sm:flex-row sm:justify-between sm:items-center gap-4">
         <div>
-          <h1 className="text-3xl font-bold text-[#1B2559]">Patients Directory</h1>
-          <p className="text-slate-500 mt-1">View and manage all your patients.</p>
+          <h1 className="text-2xl sm:text-3xl font-bold text-[#1B2559]">Patients Directory</h1>
+          <p className="text-slate-500 mt-1 text-sm">View and manage all your patients.</p>
         </div>
-        <div>
+        <div className="w-full sm:w-auto">
           <input 
             type="text" 
             placeholder="Search by name, contact, disease..." 
             value={search}
             onChange={(e) => setSearch(e.target.value)}
-            className="px-4 py-2 w-[300px] border border-slate-200 rounded-xl focus:ring-2 focus:ring-[#004f6e]/20 outline-none"
+            className="px-4 py-2.5 w-full sm:w-[300px] border border-slate-200 rounded-xl focus:ring-2 focus:ring-[#004f6e]/20 outline-none text-sm shadow-sm"
           />
         </div>
       </div>
 
-      <div className="bg-white border border-slate-200 rounded-2xl shadow-sm overflow-hidden flex-1 flex flex-col">
+      <div className="bg-white border border-slate-200 rounded-2xl shadow-sm overflow-hidden flex-1 flex flex-col w-full max-w-full">
         {loading ? (
           <div className="p-8 text-center text-slate-500">Loading patients...</div>
         ) : (
-          <div className="overflow-auto flex-1">
-            <table className="w-full text-left text-sm whitespace-nowrap">
+          <div className="overflow-x-auto overflow-y-auto flex-1 w-full max-w-full">
+            <table className="w-full text-left text-sm whitespace-nowrap min-w-[640px]">
               <thead className="bg-slate-50 text-slate-500 sticky top-0 z-10">
                 <tr>
                   <th className="px-6 py-4 font-medium">PID</th>
@@ -123,7 +124,7 @@ const Patients = () => {
                 ))}
                 {filteredPatients.length === 0 && (
                   <tr>
-                    <td colSpan="5" className="px-6 py-8 text-center text-slate-500">No patients match your search.</td>
+                    <td colSpan="6" className="px-6 py-8 text-center text-slate-500">No patients match your search.</td>
                   </tr>
                 )}
               </tbody>

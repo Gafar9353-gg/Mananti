@@ -6,13 +6,9 @@ import {
   EyeOff, 
   Stethoscope, 
   ArrowLeft, 
-  Download, 
-  Smartphone, 
   ShieldCheck, 
   User, 
-  Lock, 
-  Sparkles,
-  CheckCircle2
+  Lock
 } from 'lucide-react';
 
 const Login = () => {
@@ -33,7 +29,7 @@ const Login = () => {
       await login(email, password);
       navigate('/dashboard');
     } catch (err) {
-      setError(err.response?.data?.message || 'Invalid username or password. Try quick-fill demo below.');
+      setError(err.response?.data?.message || 'Invalid username or password. Try quick-fill below.');
     } finally {
       setLoading(false);
     }
@@ -64,7 +60,6 @@ const Login = () => {
         />
         <div className="relative z-10 text-center flex flex-col items-center max-w-md p-6">
           <div className="bg-white/10 backdrop-blur-md p-6 rounded-full shadow-2xl mb-8 flex items-center justify-center relative group border border-white/20">
-            {/* Animation Layers */}
             <div className="absolute inset-0 bg-emerald-400 rounded-full animate-ping opacity-20"></div>
             <div className="absolute inset-2 bg-emerald-100 rounded-full animate-pulse opacity-50"></div>
             
@@ -81,34 +76,25 @@ const Login = () => {
       </div>
 
       {/* ========================================================================= */}
-      {/* 2. MOBILE HEADER (Visible on Phone Screens < lg)                          */}
+      {/* 2. MOBILE HEADER (Phone View with MANANTI Medical Branding)               */}
       {/* ========================================================================= */}
       <div className="lg:hidden w-full bg-gradient-to-br from-slate-950 via-[#002f43] to-[#023047] text-white p-5 relative overflow-hidden rounded-b-3xl shadow-xl">
-        {/* Glow Effects */}
+        {/* Ambient Glows */}
         <div className="absolute -top-10 -right-10 w-36 h-36 bg-emerald-500/20 rounded-full blur-2xl pointer-events-none"></div>
         <div className="absolute -bottom-8 left-10 w-28 h-28 bg-teal-400/10 rounded-full blur-xl pointer-events-none"></div>
 
-        {/* Mobile Top Navigation */}
+        {/* Back Button */}
         <div className="flex items-center justify-between mb-4 relative z-10">
           <Link 
             to="/" 
-            className="inline-flex items-center gap-1.5 text-xs font-semibold text-slate-200 hover:text-white bg-white/10 backdrop-blur-md px-3 py-1.5 rounded-full border border-white/15 active:scale-95 transition-all"
+            className="inline-flex items-center gap-1.5 text-xs font-semibold text-slate-200 hover:text-white bg-white/10 backdrop-blur-md px-3.5 py-1.5 rounded-full border border-white/15 active:scale-95 transition-all"
           >
             <ArrowLeft className="w-3.5 h-3.5" />
             <span>Back to Home</span>
           </Link>
-
-          <a 
-            href="/downloads/MANANTI.apk" 
-            download="MANANTI.apk"
-            className="inline-flex items-center gap-1.5 text-xs font-bold text-emerald-300 bg-emerald-500/20 border border-emerald-400/30 px-3 py-1.5 rounded-full active:scale-95 transition-all"
-          >
-            <Download className="w-3.5 h-3.5" />
-            <span>Install App</span>
-          </a>
         </div>
 
-        {/* Branding content */}
+        {/* Branding header */}
         <div className="flex items-center gap-4 relative z-10">
           <div className="bg-white/10 backdrop-blur-md p-3.5 rounded-2xl shadow-xl flex items-center justify-center relative border border-white/20 shrink-0">
             <div className="absolute inset-0 bg-emerald-400 rounded-2xl animate-ping opacity-20"></div>
@@ -134,7 +120,7 @@ const Login = () => {
       </div>
 
       {/* ========================================================================= */}
-      {/* 3. SIGN IN FORM (Optimized for both Desktop & Mobile Phone View)          */}
+      {/* 3. SIGN IN FORM (Clean and responsive for desktop and phone)              */}
       {/* ========================================================================= */}
       <div className="flex-1 flex flex-col items-center justify-center p-5 sm:p-8 lg:p-20 bg-white relative">
         
@@ -152,7 +138,7 @@ const Login = () => {
             <p className="text-xs sm:text-sm text-slate-500 mt-1">Sign in to your practitioner account</p>
           </div>
 
-          {/* Quick-Fill Demo Helpers for Fast Mobile Testing */}
+          {/* Quick-Fill Helpers for Easy 1-Tap Login */}
           <div className="mb-5 p-3 rounded-2xl bg-slate-50 border border-slate-200/80 flex items-center justify-between">
             <span className="text-[11px] font-bold text-slate-500 uppercase tracking-wider">Quick Fill:</span>
             <div className="flex items-center gap-2">
@@ -245,32 +231,10 @@ const Login = () => {
             </button>
           </form>
 
-          {/* Dedicated Android APK Install Banner (Phone View) */}
-          <div className="mt-8 pt-5 border-t border-slate-100">
-            <div className="bg-slate-50 border border-slate-200/80 rounded-2xl p-3.5 flex items-center justify-between">
-              <div className="flex items-center gap-3">
-                <div className="w-10 h-10 rounded-xl bg-emerald-100 text-emerald-700 flex items-center justify-center shrink-0">
-                  <Smartphone className="w-5 h-5" />
-                </div>
-                <div>
-                  <p className="font-bold text-xs text-slate-900">Install Phone App</p>
-                  <p className="text-[11px] text-slate-500">Android APK • 1.2 MB</p>
-                </div>
-              </div>
-              <a
-                href="/downloads/MANANTI.apk"
-                download="MANANTI.apk"
-                className="bg-emerald-600 hover:bg-emerald-700 active:scale-95 text-white font-bold text-xs px-3.5 py-2 rounded-xl shadow-sm flex items-center gap-1.5 transition-all"
-              >
-                <Download className="w-3.5 h-3.5" />
-                <span>Install</span>
-              </a>
-            </div>
-
-            <div className="flex items-center justify-center gap-1.5 text-[11px] text-slate-400 mt-4">
-              <ShieldCheck className="w-3.5 h-3.5 text-emerald-600" />
-              <span>256-Bit Encrypted Healthcare Access</span>
-            </div>
+          {/* Security Badge */}
+          <div className="flex items-center justify-center gap-1.5 text-[11px] text-slate-400 mt-6 pt-4 border-t border-slate-100">
+            <ShieldCheck className="w-3.5 h-3.5 text-emerald-600" />
+            <span>256-Bit Encrypted Healthcare Access</span>
           </div>
 
         </div>

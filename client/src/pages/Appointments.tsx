@@ -57,18 +57,18 @@ const Appointments = () => {
   }, [socket]);
 
   return (
-    <div className="flex-1 flex flex-col h-full">
-      <div className="mb-8">
-        <h1 className="text-3xl font-bold text-[#1B2559]">Appointments Directory</h1>
-        <p className="text-slate-500 mt-1">View all scheduled appointments.</p>
+    <div className="flex-1 flex flex-col h-full w-full max-w-full min-w-0">
+      <div className="mb-6">
+        <h1 className="text-2xl sm:text-3xl font-bold text-[#1B2559]">Appointments Directory</h1>
+        <p className="text-slate-500 mt-1 text-sm">View all scheduled appointments.</p>
       </div>
 
-      <div className="bg-white border border-slate-200 rounded-2xl shadow-sm overflow-hidden flex-1 flex flex-col">
+      <div className="bg-white border border-slate-200 rounded-2xl shadow-sm overflow-hidden flex-1 flex flex-col w-full max-w-full">
         {loading ? (
           <div className="p-8 text-center text-slate-500">Loading appointments...</div>
         ) : (
-          <div className="overflow-auto flex-1">
-            <table className="w-full text-left text-sm whitespace-nowrap">
+          <div className="overflow-x-auto overflow-y-auto flex-1 w-full max-w-full">
+            <table className="w-full text-left text-sm whitespace-nowrap min-w-[600px]">
               <thead className="bg-slate-50 text-slate-500 sticky top-0 z-10">
                 <tr>
                   <th className="px-6 py-4 font-medium">Token ID</th>

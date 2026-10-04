@@ -218,39 +218,39 @@ const StockManagement = () => {
   const lowStockCount = medicines.filter(m => m.stock > 0 && m.stock <= lowStockThreshold).length;
 
   return (
-    <div className="flex flex-col h-full bg-slate-50 p-6 rounded-2xl relative">
-      <div className="mb-6 flex justify-between items-end">
+    <div className="flex flex-col h-full bg-slate-50 p-3 sm:p-6 rounded-2xl relative w-full max-w-full min-w-0">
+      <div className="mb-6 flex flex-col sm:flex-row sm:justify-between sm:items-start gap-4">
         <div>
-          <h1 className="text-3xl font-bold text-slate-800 flex items-center gap-3">
-            <PackageSearch className="w-8 h-8 text-[#004f6e]" /> Stock Management
+          <h1 className="text-2xl sm:text-3xl font-bold text-slate-800 flex flex-wrap items-center gap-2 sm:gap-3">
+            <PackageSearch className="w-7 h-7 sm:w-8 sm:h-8 text-[#004f6e]" /> Stock Management
             {lowStockCount > 0 && (
-              <span className="ml-3 bg-orange-100 text-orange-700 text-sm font-bold px-3 py-1 rounded-full flex items-center gap-1 border border-orange-200">
-                <AlertTriangle className="w-4 h-4" /> {lowStockCount} Low Stock
+              <span className="bg-orange-100 text-orange-700 text-xs sm:text-sm font-bold px-2.5 py-0.5 rounded-full flex items-center gap-1 border border-orange-200">
+                <AlertTriangle className="w-3.5 h-3.5" /> {lowStockCount} Low Stock
               </span>
             )}
           </h1>
-          <p className="text-slate-500 mt-1">Track medicine inventory and add purchase entries.</p>
+          <p className="text-slate-500 mt-1 text-xs sm:text-sm">Track medicine inventory and add purchase entries.</p>
         </div>
         
-        <div className="flex items-center gap-3">
+        <div className="flex flex-wrap items-center gap-2 w-full sm:w-auto">
           <div className="bg-white border border-slate-200 rounded-xl p-1 flex">
             <button 
               onClick={() => setActiveTab('stock')}
-              className={`px-4 py-2 rounded-lg text-sm font-semibold transition-colors ${activeTab === 'stock' ? 'bg-[#004f6e] text-white shadow-sm' : 'text-slate-600 hover:bg-slate-50'}`}
+              className={`px-3 sm:px-4 py-2 rounded-lg text-xs sm:text-sm font-semibold transition-colors ${activeTab === 'stock' ? 'bg-[#004f6e] text-white shadow-sm' : 'text-slate-600 hover:bg-slate-50'}`}
             >
               Current Stock
             </button>
             <button 
               onClick={() => setActiveTab('entry')}
-              className={`px-4 py-2 rounded-lg text-sm font-semibold transition-colors flex items-center gap-2 ${activeTab === 'entry' ? 'bg-[#004f6e] text-white shadow-sm' : 'text-slate-600 hover:bg-slate-50'}`}
+              className={`px-3 sm:px-4 py-2 rounded-lg text-xs sm:text-sm font-semibold transition-colors flex items-center gap-1.5 ${activeTab === 'entry' ? 'bg-[#004f6e] text-white shadow-sm' : 'text-slate-600 hover:bg-slate-50'}`}
             >
-              <FileText className="w-4 h-4" /> Purchase Entry
+              <FileText className="w-3.5 h-3.5" /> Purchase Entry
             </button>
           </div>
           {activeTab === 'stock' && (
             <button 
               onClick={() => openMedModal()}
-              className="bg-[#004f6e] text-white hover:bg-[#00394f] px-4 py-2.5 rounded-xl text-sm font-bold transition-colors flex items-center gap-2 shadow-sm"
+              className="bg-[#004f6e] text-white hover:bg-[#00394f] px-3.5 py-2 sm:px-4 sm:py-2.5 rounded-xl text-xs sm:text-sm font-bold transition-colors flex items-center gap-1.5 shadow-sm active:scale-95"
             >
               <PlusCircle className="w-4 h-4" /> Add Medicine
             </button>
@@ -259,9 +259,9 @@ const StockManagement = () => {
       </div>
 
       {activeTab === 'stock' ? (
-        <div className="bg-white border border-slate-200 rounded-2xl shadow-sm flex-1 flex flex-col overflow-hidden">
-          <div className="overflow-y-auto flex-1">
-            <table className="w-full text-left text-sm whitespace-nowrap">
+        <div className="bg-white border border-slate-200 rounded-2xl shadow-sm flex-1 flex flex-col overflow-hidden w-full max-w-full">
+          <div className="overflow-x-auto overflow-y-auto flex-1 w-full max-w-full">
+            <table className="w-full text-left text-sm whitespace-nowrap min-w-[680px]">
               <thead className="bg-slate-50 text-slate-500 sticky top-0 z-10 shadow-sm">
                 <tr>
                   <th className="px-6 py-4 font-semibold">Medicine Name</th>
@@ -326,14 +326,14 @@ const StockManagement = () => {
           </div>
         </div>
       ) : (
-        <div className="bg-white border border-slate-200 rounded-2xl shadow-sm flex-1 flex flex-col p-6 overflow-hidden">
-          <div className="flex justify-between items-center mb-6">
-            <h2 className="text-xl font-bold text-slate-800 flex items-center gap-2">
+        <div className="bg-white border border-slate-200 rounded-2xl shadow-sm flex-1 flex flex-col p-4 sm:p-6 overflow-hidden w-full max-w-full">
+          <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-3 mb-6">
+            <h2 className="text-lg sm:text-xl font-bold text-slate-800 flex items-center gap-2">
               <PlusCircle className="w-5 h-5 text-[#004f6e]" /> New GST Purchase Entry
             </h2>
             <button 
               onClick={() => setViewPurchasesModal(true)}
-              className="px-4 py-2 bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold rounded-lg transition-colors flex items-center gap-2"
+              className="px-3.5 py-2 bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold rounded-lg transition-colors flex items-center gap-2 text-xs sm:text-sm w-fit"
             >
               <FileText className="w-4 h-4" /> View Purchase Entries
             </button>
