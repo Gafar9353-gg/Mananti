@@ -40,12 +40,19 @@ const Home = () => {
       {/* 2. PHONE & APK VIEW (Visible on mobile screens < md / Phones / APK app)   */}
       {/* New MANANTI style: Full poster graphic + floating Get Started button      */}
       {/* ========================================================================= */}
-      <div className="flex md:hidden h-screen w-full relative overflow-hidden bg-white select-none">
-        {/* Full-bleed Mobile Poster Image */}
+      <div className="flex md:hidden w-full relative overflow-hidden bg-[#dceff3] select-none" style={{ height: '100dvh' }}>
+        {/* Blurred backdrop fills any leftover space on tall/narrow phones */}
+        <img
+          src="/mananti-home.jpg"
+          alt=""
+          aria-hidden="true"
+          className="absolute inset-0 w-full h-full object-cover blur-2xl scale-110 opacity-80 pointer-events-none"
+        />
+        {/* Full poster, never cropped or stretched */}
         <img 
           src="/mananti-home.jpg" 
           alt="MANANTI Mental Health & Psychiatric Care Software" 
-          className="w-full h-full object-cover sm:object-contain pointer-events-none"
+          className="relative w-full h-full object-contain pointer-events-none"
         />
 
         {/* Floating Top Right Login Pill */}
