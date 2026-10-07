@@ -8,8 +8,22 @@ import PatientForm from '../components/PatientForm';
 import AppointmentForm from '../components/AppointmentForm';
 
 const Dashboard = () => {
-  const [patients, setPatients] = useState([]);
-  const [appointments, setAppointments] = useState([]);
+  const [patients, setPatients] = useState(() => {
+    try {
+      const cached = localStorage.getItem('mananti_patients');
+      return cached ? JSON.parse(cached) : [];
+    } catch (e) {
+      return [];
+    }
+  });
+  const [appointments, setAppointments] = useState(() => {
+    try {
+      const cached = localStorage.getItem('mananti_appointments');
+      return cached ? JSON.parse(cached) : [];
+    } catch (e) {
+      return [];
+    }
+  });
   
   // Modals state
   const [showAddForm, setShowAddForm] = useState(false);
@@ -22,23 +36,37 @@ const Dashboard = () => {
 
   const fetchData = async () => {
     try {
-      const config = { headers: { Authorization: `Bearer ${doctor.token}` } };
+      const config = { headers: { Authorization: `Bearer ${doctor?.token || ''}` } };
       
       const [patientRes, apptRes] = await Promise.all([
         axios.get(`${import.meta.env.VITE_API_URL || 'http://localhost:5005'}/api/patients`, config),
         axios.get(`${import.meta.env.VITE_API_URL || 'http://localhost:5005'}/api/appointments`, config)
       ]);
       
-      setPatients(patientRes.data);
-      setAppointments(apptRes.data);
+      if (Array.isArray(patientRes.data) && patientRes.data.length > 0) {
+        setPatients(patientRes.data);
+        localStorage.setItem('mananti_patients', JSON.stringify(patientRes.data));
+      }
+      if (Array.isArray(apptRes.data) && apptRes.data.length > 0) {
+        setAppointments(apptRes.data);
+        localStorage.setItem('mananti_appointments', JSON.stringify(apptRes.data));
+      }
     } catch (error) {
-      console.error(error);
+      console.warn('Backend unavailable, using cached dashboard data:', error);
+      const cachedP = localStorage.getItem('mananti_patients');
+      if (cachedP) {
+        try { setPatients(JSON.parse(cachedP)); } catch (e) {}
+      }
+      const cachedA = localStorage.getItem('mananti_appointments');
+      if (cachedA) {
+        try { setAppointments(JSON.parse(cachedA)); } catch (e) {}
+      }
     }
   };
 
   useEffect(() => {
     fetchData();
-  }, []);
+  }, [doctor?.token]);
 
   useEffect(() => {
     if (socket) {
@@ -148,54 +176,55 @@ const Dashboard = () => {
         </div>
 
         {/* Recent Patients Table */}
-        <div className="bg-white border border-slate-200 rounded-2xl shadow-sm overflow-hidden flex flex-col flex-1 min-h-[300px]">
-          <div className="p-6 border-b border-slate-100 flex justify-between items-center">
-            <h2 className="font-bold text-lg text-[#1B2559]">Recent Patients</h2>
-            <button onClick={() => navigate('/patients')} className="text-blue-600 text-sm font-semibold hover:underline">View All →</button>
+        <div className="bg-white border border-slate-200 rounded-2xl shadow-sm overflow-hidden flex flex-col flex-1 min-h-[540px] lg:min-h-[600px]">
+          <div className="p-5 sm:p-6 border-b border-slate-100 flex justify-between items-center bg-white sticky top-0 z-20">
+            <div>
+              <h2 className="font-bold text-lg text-[#1B2559]">Recent Patients</h2>
+              <p className="text-xs text-slate-500">Showing registered patient records ({patients.length} total)</p>
+            </div>
+            <button onClick={() => navigate('/patients')} className="text-blue-600 text-sm font-semibold hover:underline flex items-center gap-1">
+              View All ({patients.length}) →
+            </button>
           </div>
-          <div className="overflow-auto flex-1">
-            <table className="w-full text-left text-sm whitespace-nowrap">
-              <thead className="bg-slate-50 text-slate-500 sticky top-0 z-10">
+          <div className="overflow-x-auto overflow-y-auto flex-1 max-h-[520px] w-full">
+            <table className="w-full text-left text-sm whitespace-nowrap min-w-[580px]">
+              <thead className="bg-slate-50 text-slate-600 sticky top-0 z-10 shadow-xs border-b border-slate-200">
                 <tr>
-                  <th className="px-6 py-4 font-medium">PID</th>
-                  <th className="px-6 py-4 font-medium">Name</th>
-                  <th className="px-6 py-4 font-medium">Age / Gender</th>
-                  <th className="px-6 py-4 font-medium">Disease</th>
-                  <th className="px-6 py-4 font-medium text-center">Action</th>
+                  <th className="px-6 py-3.5 font-semibold">PID</th>
+                  <th className="px-6 py-3.5 font-semibold">Name</th>
+                  <th className="px-6 py-3.5 font-semibold">Age / Gender</th>
+                  <th className="px-6 py-3.5 font-semibold">Disease</th>
+                  <th className="px-6 py-3.5 font-semibold text-center">Action</th>
                 </tr>
               </thead>
               <tbody className="divide-y divide-slate-100">
-                {patients.slice(0, 5).map(p => (
-                  <tr key={p._id} className="hover:bg-slate-50 transition-colors">
-                    <td className="px-6 py-4 font-bold text-[#004f6e]">{p.pid}</td>
-                    <td className="px-6 py-4">
+                {patients.slice(0, 30).map(p => (
+                  <tr key={p._id} className="hover:bg-slate-50/80 transition-colors">
+                    <td className="px-6 py-3.5 font-bold text-[#004f6e]">{p.pid}</td>
+                    <td className="px-6 py-3.5">
                       <div className="flex items-center gap-3">
-                        <div className="h-8 w-8 bg-blue-100 text-blue-600 rounded flex justify-center items-center font-bold text-xs shrink-0">
-                          {p.name.substring(0, 2).toUpperCase()}
+                        <div className="h-8 w-8 bg-blue-100 text-blue-600 rounded-lg flex justify-center items-center font-bold text-xs shrink-0">
+                          {p.name ? p.name.substring(0, 2).toUpperCase() : 'PT'}
                         </div>
                         <span className="font-semibold text-slate-800">{p.name}</span>
                       </div>
                     </td>
-                    <td className="px-6 py-4 text-slate-600">{p.age ? `${p.age} / ${p.gender}` : p.gender}</td>
-                    <td className="px-6 py-4 text-slate-600 truncate max-w-[150px]">{p.disease || '-'}</td>
-                    <td className="px-6 py-4">
+                    <td className="px-6 py-3.5 text-slate-600">{p.age ? `${p.age} / ${p.gender}` : p.gender || '-'}</td>
+                    <td className="px-6 py-3.5 text-slate-600 truncate max-w-[180px]">{p.disease || '-'}</td>
+                    <td className="px-6 py-3.5">
                       <div className="flex items-center justify-center gap-2">
                         <Link to={`/patient/${p._id}`} className="p-1.5 text-blue-600 hover:bg-blue-50 rounded-lg transition-colors tooltip" title="View Patient Details">
                           <Eye className="w-4 h-4" />
                         </Link>
                         {doctor?.role === 'doctor' && (
-                          <>
-                            <button onClick={() => handleEditClick(p)} className="p-1.5 text-slate-500 hover:text-blue-600 hover:bg-blue-50 rounded-lg transition-colors tooltip" title="Edit Data">
-                              <Edit2 className="w-4 h-4" />
-                            </button>
-                          </>
+                          <button onClick={() => handleEditClick(p)} className="p-1.5 text-slate-500 hover:text-blue-600 hover:bg-blue-50 rounded-lg transition-colors tooltip" title="Edit Data">
+                            <Edit2 className="w-4 h-4" />
+                          </button>
                         )}
                         {doctor?.role === 'staff' && (
-                          <>
-                            <button onClick={() => navigate(`/patient/${p._id}`)} className="p-1.5 text-emerald-600 hover:text-emerald-700 hover:bg-emerald-50 rounded-lg transition-colors tooltip" title="Upload Reports">
-                              <FileUp className="w-4 h-4" />
-                            </button>
-                          </>
+                          <button onClick={() => navigate(`/patient/${p._id}`)} className="p-1.5 text-emerald-600 hover:text-emerald-700 hover:bg-emerald-50 rounded-lg transition-colors tooltip" title="Upload Reports">
+                            <FileUp className="w-4 h-4" />
+                          </button>
                         )}
                       </div>
                     </td>
@@ -203,7 +232,7 @@ const Dashboard = () => {
                 ))}
                 {patients.length === 0 && (
                   <tr>
-                    <td colSpan="5" className="px-6 py-8 text-center text-slate-500">No patients found. Click 'Add New Patient' to start.</td>
+                    <td colSpan="5" className="px-6 py-12 text-center text-slate-500">No patients found. Click 'Add New Patient' to start.</td>
                   </tr>
                 )}
               </tbody>
@@ -213,32 +242,35 @@ const Dashboard = () => {
       </div>
 
       {/* Right Sidebar (Schedule) */}
-      <div className="w-full lg:w-[340px] flex flex-col gap-6">
-        <div className="bg-white border border-slate-200 rounded-2xl shadow-sm p-6 flex-1 flex flex-col">
-          <div className="flex justify-between items-center mb-6">
-            <h2 className="font-bold text-lg text-[#1B2559] flex items-center gap-2">
-              <CalendarIcon className="w-5 h-5 text-slate-400" /> Appointments
-            </h2>
+      <div className="w-full lg:w-[350px] flex flex-col gap-6">
+        <div className="bg-white border border-slate-200 rounded-2xl shadow-sm p-6 flex flex-col min-h-[540px] lg:min-h-[600px]">
+          <div className="flex justify-between items-center mb-5 pb-3 border-b border-slate-100">
+            <div>
+              <h2 className="font-bold text-lg text-[#1B2559] flex items-center gap-2">
+                <CalendarIcon className="w-5 h-5 text-slate-400" /> Appointments
+              </h2>
+              <p className="text-xs text-slate-500">{appointments.length} total scheduled</p>
+            </div>
             <button onClick={() => navigate('/appointments')} className="text-blue-600 text-sm font-semibold hover:underline">View All →</button>
           </div>
           
-          <div className="space-y-4 overflow-y-auto pr-2 flex-1">
+          <div className="space-y-3 overflow-y-auto pr-1 flex-1 max-h-[520px]">
             {appointments.length > 0 ? appointments.map((appt) => (
               <div key={appt._id} className="relative">
-                <div className="bg-slate-50 border border-slate-100 rounded-xl p-3">
+                <div className="bg-slate-50 hover:bg-blue-50/40 border border-slate-100 rounded-xl p-3 transition-colors">
                   <div className="flex justify-between items-start mb-1">
                     <span className="text-sm font-bold text-slate-800">{appt.name}</span>
-                    <span className="text-xs font-semibold text-slate-500">{appt.timeSlot}</span>
+                    <span className="text-xs font-semibold text-slate-500 bg-white px-2 py-0.5 rounded border border-slate-100">{appt.timeSlot}</span>
                   </div>
                   <p className="text-xs text-slate-500">Token: <span className="font-semibold text-[#004f6e]">{appt.tokenNumber}</span> | {appt.phone}</p>
                 </div>
               </div>
             )) : (
-              <p className="text-sm text-slate-500 text-center py-4">No appointments scheduled.</p>
+              <p className="text-sm text-slate-500 text-center py-8">No appointments scheduled.</p>
             )}
-            </div>
           </div>
         </div>
+      </div>
 
       {/* Modals */}
       {showAddForm && <PatientForm onClose={() => setShowAddForm(false)} />}
