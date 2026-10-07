@@ -52,19 +52,27 @@ export const purchaseEntry = async (req, res) => {
       });
       
       if (existingMed) {
-        existingMed.stock = (parseInt(existingMed.stock) || 0) + totalQty;
-        existingMed.vendor = vendor || existingMed.vendor;
-        if (item.batch) existingMed.batch = item.batch;
-        if (item.exp) existingMed.exp = item.exp;
-        if (item.mrp) existingMed.mrp = item.mrp;
-        if (item.rate) existingMed.rate = item.rate;
-        if (item.pack) existingMed.pack = item.pack;
-        if (item.mfr) existingMed.mfr = item.mfr;
-        if (item.hsn) existingMed.hsn = item.hsn;
-        if (item.sgstPercent !== undefined && item.sgstPercent !== '') existingMed.sgstPercent = item.sgstPercent;
-        if (item.cgstPercent !== undefined && item.cgstPercent !== '') existingMed.cgstPercent = item.cgstPercent;
-        existingMed.lastRestocked = new Date().toISOString();
-        await existingMed.save();
+        const updateFields = {
+          vendor: vendor || existingMed.vendor,
+          lastRestocked: new Date().toISOString()
+        };
+        if (item.batch) updateFields.batch = item.batch;
+        if (item.exp) updateFields.exp = item.exp;
+        if (item.mrp) updateFields.mrp = item.mrp;
+        if (item.rate) updateFields.rate = item.rate;
+        if (item.pack) updateFields.pack = item.pack;
+        if (item.mfr) updateFields.mfr = item.mfr;
+        if (item.hsn) updateFields.hsn = item.hsn;
+        if (item.sgstPercent !== undefined && item.sgstPercent !== '') updateFields.sgstPercent = item.sgstPercent;
+        if (item.cgstPercent !== undefined && item.cgstPercent !== '') updateFields.cgstPercent = item.cgstPercent;
+
+        await Medicine.updateOne(
+          { _id: existingMed._id },
+          {
+            $inc: { stock: totalQty },
+            $set: updateFields
+          }
+        );
       } else {
         await Medicine.create({
           _id: 'med_' + Date.now() + Math.floor(Math.random() * 1000),
@@ -99,8 +107,10 @@ export const adjustStock = async (req, res) => {
     const med = await Medicine.findOne({ name: { $regex: new RegExp('^' + name + '$', 'i') } });
     if (!med) return res.status(404).json({ message: 'Medicine not found' });
 
-    med.stock = parseInt(stock);
-    await med.save();
+    await Medicine.updateOne(
+      { _id: med._id },
+      { $set: { stock: parseInt(stock) } }
+    );
     
     const allMeds = await Medicine.find().sort({ name: 1 });
     res.status(200).json(allMeds);

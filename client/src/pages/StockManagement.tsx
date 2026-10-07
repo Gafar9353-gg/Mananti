@@ -5,8 +5,22 @@ import { PackageSearch, PlusCircle, Save, AlertTriangle, Edit2, Loader2, X, File
 
 const StockManagement = () => {
   const { doctor } = useContext(AuthContext);
-  const [medicines, setMedicines] = useState([]);
-  const [purchases, setPurchases] = useState([]);
+  const [medicines, setMedicines] = useState(() => {
+    try {
+      const cached = localStorage.getItem('mananti_medicines');
+      return cached ? JSON.parse(cached) : [];
+    } catch (e) {
+      return [];
+    }
+  });
+  const [purchases, setPurchases] = useState(() => {
+    try {
+      const cached = localStorage.getItem('mananti_purchases');
+      return cached ? JSON.parse(cached) : [];
+    } catch (e) {
+      return [];
+    }
+  });
   const [loading, setLoading] = useState(true);
   const [activeTab, setActiveTab] = useState('stock'); // 'stock' | 'entry'
 
@@ -43,8 +57,29 @@ const StockManagement = () => {
       const config = { headers: { Authorization: `Bearer ${doctor?.token || ''}` } };
       const { data } = await axios.get(`${import.meta.env.VITE_API_URL || 'http://localhost:5005'}/api/medicines`, config);
       if (Array.isArray(data) && data.length > 0) {
-        setMedicines(data);
-        localStorage.setItem('mananti_medicines', JSON.stringify(data));
+        let cached = [];
+        try {
+          const cachedStr = localStorage.getItem('mananti_medicines');
+          if (cachedStr) cached = JSON.parse(cachedStr);
+        } catch (e) {}
+
+        const merged = data.map(serverMed => {
+          const local = cached.find(c => c._id === serverMed._id || (c.name && serverMed.name && c.name.trim().toLowerCase() === serverMed.name.trim().toLowerCase()));
+          if (local && (parseInt(local.stock) || 0) > (parseInt(serverMed.stock) || 0)) {
+            return { ...serverMed, stock: local.stock, pack: local.pack || serverMed.pack };
+          }
+          return serverMed;
+        });
+
+        // Also preserve any newly created local medicines
+        cached.forEach(localMed => {
+          if (!merged.some(m => m._id === localMed._id || (m.name && localMed.name && m.name.trim().toLowerCase() === localMed.name.trim().toLowerCase()))) {
+            merged.push(localMed);
+          }
+        });
+
+        setMedicines(merged);
+        localStorage.setItem('mananti_medicines', JSON.stringify(merged));
       } else {
         const cached = localStorage.getItem('mananti_medicines');
         if (cached) setMedicines(JSON.parse(cached));
@@ -98,25 +133,43 @@ const StockManagement = () => {
 
   const handleSaveMedicine = async (e) => {
     e.preventDefault();
-    try {
-      const config = { headers: { Authorization: `Bearer ${doctor.token}` } };
-      let res;
-      
-      const payload = {
-        ...medFormData,
-        sgstPercent: parseFloat(medFormData.gst || 0) / 2,
-        cgstPercent: parseFloat(medFormData.gst || 0) / 2,
-      };
+    const payload = {
+      ...medFormData,
+      sgstPercent: parseFloat(medFormData.gst || 0) / 2,
+      cgstPercent: parseFloat(medFormData.gst || 0) / 2,
+    };
 
+    try {
+      const config = { headers: { Authorization: `Bearer ${doctor?.token || ''}` } };
+      let res;
       if (editingMed) {
         res = await axios.put(`${import.meta.env.VITE_API_URL || 'http://localhost:5005'}/api/medicines/${editingMed._id}`, payload, config);
       } else {
         res = await axios.post(`${import.meta.env.VITE_API_URL || 'http://localhost:5005'}/api/medicines`, payload, config);
       }
-      setMedicines(res.data);
+      if (res && res.data) {
+        setMedicines(res.data);
+        localStorage.setItem('mananti_medicines', JSON.stringify(res.data));
+      }
       setIsMedModalOpen(false);
     } catch (error) {
-      alert(error.response?.data?.message || 'Failed to save medicine');
+      console.warn('Backend unavailable, saving medicine locally:', error);
+      let updated;
+      if (editingMed) {
+        updated = medicines.map(m => m._id === editingMed._id ? { ...m, ...payload, stock: parseInt(payload.stock) || 0 } : m);
+      } else {
+        const newMed = {
+          _id: 'med_' + Date.now(),
+          ...payload,
+          stock: parseInt(payload.stock) || 0,
+          vendor: 'Manual Entry',
+          lastRestocked: new Date().toISOString()
+        };
+        updated = [...medicines, newMed];
+      }
+      setMedicines(updated);
+      localStorage.setItem('mananti_medicines', JSON.stringify(updated));
+      setIsMedModalOpen(false);
     }
   };
 
@@ -239,8 +292,19 @@ const StockManagement = () => {
     setErrorMsg('');
     setSaving(true);
     
-    // Calculate locally updated medicines so stock increments immediately
-    let updatedMeds = [...medicines];
+    // Read latest available medicines from state or local storage
+    let baseMeds = medicines && medicines.length > 0 ? [...medicines] : [];
+    try {
+      const cached = localStorage.getItem('mananti_medicines');
+      if (cached) {
+        const parsed = JSON.parse(cached);
+        if (Array.isArray(parsed) && parsed.length >= baseMeds.length) {
+          baseMeds = parsed;
+        }
+      }
+    } catch (e) {}
+
+    let updatedMeds = [...baseMeds];
     for (const item of items) {
       const medName = String(item.name || '').trim();
       if (!medName) continue;
@@ -253,13 +317,13 @@ const StockManagement = () => {
         updatedMeds[idx] = {
           ...updatedMeds[idx],
           stock: curStock + totalQty,
-          batch: item.batch || updatedMeds[idx].batch,
-          exp: item.exp || updatedMeds[idx].exp,
-          mrp: item.mrp || updatedMeds[idx].mrp,
-          rate: item.rate || updatedMeds[idx].rate,
-          pack: item.pack || updatedMeds[idx].pack,
-          mfr: item.mfr || updatedMeds[idx].mfr,
-          hsn: item.hsn || updatedMeds[idx].hsn,
+          batch: item.batch || updatedMeds[idx].batch || '',
+          exp: item.exp || updatedMeds[idx].exp || '',
+          mrp: item.mrp || updatedMeds[idx].mrp || '',
+          rate: item.rate || updatedMeds[idx].rate || '',
+          pack: item.pack || updatedMeds[idx].pack || '',
+          mfr: item.mfr || updatedMeds[idx].mfr || '',
+          hsn: item.hsn || updatedMeds[idx].hsn || '',
           sgstPercent: item.sgstPercent !== undefined ? item.sgstPercent : updatedMeds[idx].sgstPercent,
           cgstPercent: item.cgstPercent !== undefined ? item.cgstPercent : updatedMeds[idx].cgstPercent,
           vendor: vendor || updatedMeds[idx].vendor,
@@ -285,6 +349,10 @@ const StockManagement = () => {
       }
     }
 
+    // Immediately persist and update local state so current stock table reflects the new quantity instantly
+    setMedicines(updatedMeds);
+    localStorage.setItem('mananti_medicines', JSON.stringify(updatedMeds));
+
     const localPurchase = {
       _id: 'inv_' + Date.now(),
       invoiceNo: invoiceNo || `INV-${Date.now().toString().slice(-6)}`,
@@ -306,9 +374,16 @@ const StockManagement = () => {
         summary
       }, config);
       
-      if (data && data.medicines) {
-        setMedicines(data.medicines);
-        localStorage.setItem('mananti_medicines', JSON.stringify(data.medicines));
+      if (data && data.medicines && Array.isArray(data.medicines)) {
+        const finalMeds = data.medicines.map(dm => {
+          const locallyUpdated = updatedMeds.find(um => um._id === dm._id || (um.name && dm.name && um.name.trim().toLowerCase() === dm.name.trim().toLowerCase()));
+          if (locallyUpdated && (parseInt(locallyUpdated.stock) || 0) > (parseInt(dm.stock) || 0)) {
+            return { ...dm, stock: locallyUpdated.stock, pack: locallyUpdated.pack || dm.pack };
+          }
+          return dm;
+        });
+        setMedicines(finalMeds);
+        localStorage.setItem('mananti_medicines', JSON.stringify(finalMeds));
       } else {
         setMedicines(updatedMeds);
         localStorage.setItem('mananti_medicines', JSON.stringify(updatedMeds));
@@ -327,7 +402,6 @@ const StockManagement = () => {
       setSuccessMsg(`Successfully saved purchase invoice! Stock updated to reflect new quantity.`);
     } catch (error) {
       console.warn('Backend server unavailable, saved purchase and updated stock locally:', error);
-      // Fallback: save locally so stock is updated immediately without blocking user
       setMedicines(updatedMeds);
       localStorage.setItem('mananti_medicines', JSON.stringify(updatedMeds));
       const nextPurchases = [localPurchase, ...purchases];
